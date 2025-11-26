@@ -1,0 +1,60 @@
+package com.astro.core;
+
+import com.gregtechceu.gtceu.api.addon.GTAddon;
+import com.gregtechceu.gtceu.api.addon.IGTAddon;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
+
+import net.minecraft.data.recipes.FinishedRecipe;
+import com.astro.core.common.data.AstroMachineRecipes;
+import com.astro.core.common.data.materials.AstroElements;
+
+import java.util.function.Consumer;
+
+import static com.ibm.icu.impl.CurrencyData.provider;
+
+@SuppressWarnings("unused")
+@GTAddon
+public class AstroGregGTAddon implements IGTAddon {
+
+    @Override
+    public GTRegistrate getRegistrate() {
+        return AstroCore.ASTRO_REGISTRATE;
+    }
+
+    @Override
+    public void initializeAddon() {}
+
+    @Override
+    public String addonModId() {
+        return AstroCore.MOD_ID;
+    }
+
+    @Override
+    public void registerTagPrefixes() {
+    }
+
+    @Override
+    public void addRecipes(Consumer<FinishedRecipe> provider) {
+        AstroMachineRecipes.init(provider);
+    }
+
+    @Override
+    public void registerElements() {
+        IGTAddon.super.registerElements();
+        AstroElements.init();
+    }
+
+    // If you have custom ingredient types, uncomment this & change to match your capability.
+    // KubeJS WILL REMOVE YOUR RECIPES IF THESE ARE NOT REGISTERED.
+    /*
+     * public static final ContentJS<Double> PRESSURE_IN = new ContentJS<>(NumberComponent.ANY_DOUBLE,
+     * CustomRecipeCapabilities.PRESSURE, false);
+     * public static final ContentJS<Double> PRESSURE_OUT = new ContentJS<>(NumberComponent.ANY_DOUBLE,
+     * CustomRecipeCapabilities.PRESSURE, true);
+     * 
+     * @Override
+     * public void registerRecipeKeys(KJSRecipeKeyEvent event) {
+     * event.registerKey(CustomRecipeCapabilities.PRESSURE, Pair.of(PRESSURE_IN, PRESSURE_OUT));
+     * }
+     */
+}
