@@ -2,6 +2,7 @@ package com.astro.core.common.data.block;
 
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
+import com.gregtechceu.gtceu.common.data.GTBlocks;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
@@ -15,15 +16,12 @@ import com.astro.core.AstroCore;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
 
-import java.util.HashMap;
-import java.util.Map;
+import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
 
-import static com.gregtechceu.gtceu.common.registry.GTRegistration.REGISTRATE;
-
+@SuppressWarnings("unused")
 public class AstroBlocks {
 
-    public static void init() {
-    }
+    public static void init() {}
 
     static {
         REGISTRATE.creativeModeTab(() -> AstroCore.ASTRO_CREATIVE_TAB);
@@ -59,7 +57,7 @@ public class AstroBlocks {
             AstroCore.id("block/generators/machine_casing_firebox_manasteel")      // side texture (the animated one)
     );
 
-    private static BlockEntry<ActiveBlock> createFireboxCasing(BoilerFireboxType type) {
+    private static BlockEntry<ActiveBlock> createFireboxCasing(@SuppressWarnings("SameParameterValue") BoilerFireboxType type) {
         var block = REGISTRATE
                 .block("%s_casing".formatted(type.name()), ActiveBlock::new)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
@@ -70,11 +68,10 @@ public class AstroBlocks {
                 .item(BlockItem::new)
                 .build()
                 .register();
-        ALL_FIREBOXES.put(type, block);
+        GTBlocks.ALL_FIREBOXES.put(type, block);
         return block;
     }
 
-    public static final Map<BoilerFireboxType, BlockEntry<ActiveBlock>> ALL_FIREBOXES = new HashMap<>();
-    public static final BlockEntry<ActiveBlock> FIREBOX_ALFSTEEL = createFireboxCasing(MANASTEEL_FIREBOX);
-
+    //public static final Map<BoilerFireboxType, BlockEntry<ActiveBlock>> ALL_FIREBOXES = new HashMap<>();
+    public static final BlockEntry<ActiveBlock> FIREBOX_MANASTEEL = createFireboxCasing(MANASTEEL_FIREBOX);
 }
