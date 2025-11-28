@@ -1,5 +1,5 @@
 {
     "ldlib": {
-        "connection": "astrogreg:block/terrasteel_casing_ctm"
+        "connection": "astrogreg:block/generators/terrasteel_casing_ctm"
     }
 }

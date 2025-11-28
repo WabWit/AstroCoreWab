@@ -1,5 +1,5 @@
 {
     "ldlib": {
-        "connection": "astrogreg:block/machine_casing_manasteel_plated_bricks_ctm"
+        "connection": "astrogreg:block/generators/machine_casing_manasteel_plated_bricks_ctm"
     }
 }

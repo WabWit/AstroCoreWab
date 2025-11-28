@@ -1,3 +1,12 @@
 {
-  "itemGroup.astrogreg.block.generators.machine_casing_turbine_alfsteel": "AstroGreg"
+  "block.astrogreg.alfsteel_firebox_casing": "§dAlfsteel§r Firebox Casing",
+  "block.astrogreg.alfsteel_pipe_casing": "§dAlfsteel§r Pipe Casing",
+  "block.astrogreg.manasteel_brick_machine_casing": "§bManasteel§r-Plated Brick Casing",
+  "block.astrogreg.manasteel_firebox_casing": "§bManasteel§r Firebox Casing",
+  "block.astrogreg.manasteel_pipe_casing": "§bManasteel§r Pipe Casing",
+  "block.astrogreg.solid_alfsteel_machine_casing": "§dAlfsteel§r Engine Casing",
+  "block.astrogreg.solid_terrasteel_machine_casing": "§2Terrasteel§r Machine Casing",
+  "block.astrogreg.terrasteel_firebox_casing": "§2Terrasteel§r Firebox Casing",
+  "block.astrogreg.terrasteel_pipe_casing": "§2Terrasteel§r Pipe Casing",
+  "itemGroup.astrogreg.creative_tab": "AstroGreg"
 }

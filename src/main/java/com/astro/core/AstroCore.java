@@ -6,6 +6,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEv
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 
@@ -30,6 +31,7 @@ import org.apache.logging.log4j.Logger;
 
 import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
 
+
 @SuppressWarnings("removal")
 @Mod(AstroCore.MOD_ID)
 
@@ -42,17 +44,15 @@ public class AstroCore {
                     builder -> builder
                             .displayItems(new GTCreativeModeTabs.RegistrateDisplayItemsGenerator(AstroCore.MOD_ID,
                                     REGISTRATE))
-                            .title(REGISTRATE.addLang("itemGroup",
-                                    AstroCore.id("creative_tab"),
-                                    "AstroGreg"))
-                            .icon(AstroBlocks.FIREBOX_MANASTEEL::asStack)
+                            .title(REGISTRATE.addLang("itemGroup", AstroCore.id("creative_tab"), "AstroGreg"))
+                             .icon(AstroBlocks.FIREBOX_MANASTEEL::asStack)
                             .build())
             .register();
 
     public static void init() {
         AstroConfigs.init();
         REGISTRATE.registerRegistrate();
-        //AstroBlocks.init();
+//        AstroBlocks.init();
         AstroItems.init();
         AstroMaterialFlags.init();
         AstroDatagen.init();

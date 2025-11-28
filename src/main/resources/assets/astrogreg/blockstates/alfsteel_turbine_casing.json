@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "": {
-      "model": "astrogreg:blocks/generators/machine_casing_turbine_alfsteel"
-    }
-  }
-}

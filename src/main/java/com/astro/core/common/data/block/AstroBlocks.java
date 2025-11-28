@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.Blocks;
 import com.astro.core.AstroCore;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
-
 import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
 
 @SuppressWarnings("unused")
@@ -42,19 +41,50 @@ public class AstroBlocks {
                 .register();
     }
 
-    public static final BlockEntry<Block> AETHER_ENGINE_CASING = createSidedCasingBlock(
-            "§3Æther§r Engine Casing", "alfsteel_turbine_casing",
+    public static final BlockEntry<Block> ALFSTEEL_MACHINE_CASING = createSidedCasingBlock(
+            "§dAlfsteel§r Engine Casing", "solid_alfsteel_machine_casing",
             "generators/machine_casing_turbine_alfsteel", BlockItem::new);
 
     public static final BlockEntry<Block> ALFSTEEL_PIPE_CASING = createSidedCasingBlock(
-            "Alfsteel Pipe Casing", "alfsteel_pipe_casing",
+            "§dAlfsteel§r Pipe Casing", "alfsteel_pipe_casing",
             "generators/machine_casing_pipe_alfsteel", BlockItem::new);
+
+    public static final BlockEntry<Block> TERRASTEEL_MACHINE_CASING = createSidedCasingBlock(
+            "§2Terrasteel§r Machine Casing", "solid_terrasteel_machine_casing",
+            "generators/terrasteel_casing", BlockItem::new);
+
+    public static final BlockEntry<Block> TERRASTEEL_PIPE_CASING = createSidedCasingBlock(
+            "§2Terrasteel§r Pipe Casing", "terrasteel_pipe_casing",
+            "generators/machine_casing_pipe_terrasteel", BlockItem::new);
+
+    public static final BlockEntry<Block> MANASTEEL_MACHINE_CASING = createSidedCasingBlock(
+            "§bManasteel§r-Plated Brick Casing", "manasteel_brick_machine_casing",
+            "generators/machine_casing_manasteel_plated_bricks", BlockItem::new);
+
+    public static final BlockEntry<Block> MANASTEEL_PIPE_CASING = createSidedCasingBlock(
+            "§bManasteel§r Pipe Casing", "manasteel_pipe_casing",
+            "generators/machine_casing_pipe_manasteel", BlockItem::new);
+
 
     public static final BoilerFireboxType MANASTEEL_FIREBOX = new BoilerFireboxType(
             "manasteel_firebox",
-            AstroCore.id("block/generators/casing_machine_manasteel_plated_bricks"),  // bottom texture
-            AstroCore.id("block/generators/casing_machine_manasteel_plated_bricks"),  // top texture
-            AstroCore.id("block/generators/machine_casing_firebox_manasteel")      // side texture (the animated one)
+            AstroCore.id("block/generators/machine_casing_manasteel_plated_bricks"),
+            AstroCore.id("block/generators/machine_casing_manasteel_plated_bricks"),
+            AstroCore.id("block/generators/machine_casing_firebox_manasteel")
+    );
+
+    public static final BoilerFireboxType TERRASTEEL_FIREBOX = new BoilerFireboxType(
+            "terrasteel_firebox",
+            AstroCore.id("block/generators/machine_casing_solid_terrasteel"),
+            AstroCore.id("block/generators/machine_casing_solid_terrasteel"),
+            AstroCore.id("block/generators/machine_casing_firebox_terrasteel")
+    );
+
+    public static final BoilerFireboxType ALFSTEEL_FIREBOX = new BoilerFireboxType(
+            "alfsteel_firebox",
+            AstroCore.id("block/generators/machine_casing_turbine_alfsteel"),
+            AstroCore.id("block/generators/machine_casing_turbine_alfsteel"),
+            AstroCore.id("block/generators/machine_casing_firebox_alfsteel")
     );
 
     private static BlockEntry<ActiveBlock> createFireboxCasing(@SuppressWarnings("SameParameterValue") BoilerFireboxType type) {
@@ -72,6 +102,7 @@ public class AstroBlocks {
         return block;
     }
 
-    //public static final Map<BoilerFireboxType, BlockEntry<ActiveBlock>> ALL_FIREBOXES = new HashMap<>();
     public static final BlockEntry<ActiveBlock> FIREBOX_MANASTEEL = createFireboxCasing(MANASTEEL_FIREBOX);
+    public static final BlockEntry<ActiveBlock> FIREBOX_TERRASTEEL = createFireboxCasing(TERRASTEEL_FIREBOX);
+    public static final BlockEntry<ActiveBlock> FIREBOX_ALFSTEEL = createFireboxCasing(ALFSTEEL_FIREBOX);
 }
