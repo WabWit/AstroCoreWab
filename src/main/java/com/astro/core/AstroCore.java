@@ -53,7 +53,6 @@ public class AstroCore {
     public static void init() {
         AstroConfigs.init();
         REGISTRATE.registerRegistrate();
-        // AstroBlocks.init();
         AstroItems.init();
         AstroMaterialFlags.init();
         AstroDatagen.init();
@@ -129,12 +128,8 @@ public class AstroCore {
      * @param event
      */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        // Ensure configs are initialized
         if (AstroConfigs.INSTANCE == null) {
-            AstroConfigs.init();
-        }
-
-        // Now it's safe to register machines
+            AstroConfigs.init();}
         ManaBoilers.init();
         AetherEngine.init();
     }

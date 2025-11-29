@@ -105,5 +105,4 @@ public class AstroBoilers {
                                 .withStyle(ChatFormatting.DARK_RED))
                 .register();
     }
-    // spotless on
 }
