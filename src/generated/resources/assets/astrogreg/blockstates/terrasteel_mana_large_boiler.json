@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "astrogreg:block/machine/terrasteel_mana_large_boiler",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "astrogreg:block/machine/terrasteel_mana_large_boiler"
+    },
+    "facing=south": {
+      "model": "astrogreg:block/machine/terrasteel_mana_large_boiler",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "astrogreg:block/machine/terrasteel_mana_large_boiler",
+      "y": 270
+    }
+  }
+}
