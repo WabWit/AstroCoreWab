@@ -1,8 +1,9 @@
 package com.astro.core.common.data.materials;
 
-import com.astro.core.AstroCore;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
+
+import com.astro.core.AstroCore;
 import earth.terrarium.adastra.common.registry.ModItems;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -38,7 +39,7 @@ public class AstroMaterials {
                 .color(0xc94d4e).iconSet(MaterialIconSet.METALLIC)
                 .buildAndRegister();
     }
-    
+
     public static void init() {
         rawOre.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH);
         rawOreBlock.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH_BLOCK);

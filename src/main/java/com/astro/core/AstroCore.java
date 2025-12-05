@@ -1,6 +1,5 @@
 package com.astro.core;
 
-import com.astro.core.common.data.materials.AstroMaterials;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
@@ -26,6 +25,7 @@ import com.astro.core.common.data.AstroRecipeTypes;
 import com.astro.core.common.data.block.AstroBlocks;
 import com.astro.core.common.data.configs.AstroConfigs;
 import com.astro.core.common.data.materials.AstroMaterialFlags;
+import com.astro.core.common.data.materials.AstroMaterials;
 import com.astro.core.common.machine.multiblock.generator.AetherEngine;
 import com.astro.core.common.machine.multiblock.generator.ManaBoilers;
 import com.astro.core.datagen.AstroDatagen;
