@@ -1,8 +1,5 @@
 package com.astro.core.common.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.Element;
-import com.gregtechceu.gtceu.api.registry.GTRegistries;
-
 public class AstroElements {
 
     public static final Element DE = createAndRegister(-1, -1, -1, null, "desh", "De", false);
