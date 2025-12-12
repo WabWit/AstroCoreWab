@@ -206,6 +206,12 @@ dependencies {
     modImplementation("owmii.powah:Powah:${powah_version}")
     modImplementation("me.shedaniel.cloth:cloth-config-forge:${cloth_version}")
 
+    //botania,addons and dependencies
+    modImplementation("vazkii.botania:Botania:${botania_version}")
+    modImplementation("curios:Curios:${curios_version}")
+    modImplementation("patchouli:Patchouli:${patchouli_version}")
+
+
 }
 
 // See com.example.examplemod.mixin.DummyMixin for information about mixins
