@@ -26,7 +26,8 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
  * Guide to Astro Core Cable Processing.
  * <br>
  * Cable Covering Fluids:
- * - Polyamide-Imide: This can be used for any cable tier, saving the amount of fluid needed. However, at UV (?), it will be required.
+ * - Polyamide-Imide: This can be used for any cable tier, saving the amount of fluid needed. However, at UV (?), it
+ * will be required.
  * <br>
  * Extra Materials for Cable Covering:
  * - Polyphenylene Sulfide (PPS): At LuV, this foil is required to cover cables. Lower tiers will not use it.
@@ -60,7 +61,6 @@ public final class AstroWireRecipeHandler {
         generateCableCovering(provider, property, wireGtOctal, material);
         generateCableCovering(provider, property, wireGtHex, material);
     }
-
 
     private static void generateCableCovering(@NotNull Consumer<FinishedRecipe> provider,
                                               @NotNull WireProperties property,

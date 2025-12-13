@@ -1,12 +1,14 @@
 package com.astro.core.common.data.materials;
 
-import com.astro.core.AstroCore;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
+
+import com.astro.core.AstroCore;
 
 public class AstroPolymers {
 
     public static Material POLYAMIDE_IMIDE;
+
     public static void register() {
         // GT Progression
         POLYAMIDE_IMIDE = new Material.Builder(
@@ -20,5 +22,6 @@ public class AstroPolymers {
                 // .components().formula()
                 .buildAndRegister();
     }
+
     public static void init() {}
 }

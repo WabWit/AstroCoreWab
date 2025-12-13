@@ -12,6 +12,8 @@ import com.drd.ad_extendra.common.registry.ModBlocks;
 import earth.terrarium.adastra.common.registry.ModItems;
 import owmii.powah.block.Blcks;
 import owmii.powah.item.Itms;
+import vazkii.botania.common.item.BotaniaItems;
+import org.zeith.botanicadds.init.ItemsBA;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 
@@ -29,9 +31,12 @@ public class AstroMaterials {
     public static Material ENERGIZED_STEEL;
     public static Material SKY_STONE;
     public static Material FUTURA_ALLOY;
+    public static Material MANASTEEL;
+    public static Material TERRASTEEL;
+    public static Material ELEMENTIUM;
+    public static Material GAIASTEEL;
 
     public static void register() {
-
         // Ad Astra/Extendra Materials
         DESH = new Material.Builder(
                 AstroCore.id("desh"))
@@ -169,9 +174,64 @@ public class AstroMaterials {
                 .buildAndRegister();
 
         // Botania
+        MANASTEEL = new Material.Builder(
+                AstroCore.id("manasteel"))
+                .langValue("Manasteel")
+                .dust()
+                .ingot()
+                .fluid()
+                .blastTemp(1000, BlastProperty.GasTier.LOW, 120, 400)
+                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE)
+                .color(0x228cc9).secondaryColor(0x000000).iconSet(MaterialIconSet.SHINY)
+                .element(AstroElements.MN)
+                .formula("*Fe*")
+                .buildAndRegister();
+
+        TERRASTEEL = new Material.Builder(
+                AstroCore.id("terrasteel"))
+                .langValue("Terrasteel")
+                    .dust()
+                    .ingot()
+                    .fluid()
+                    .blastTemp(1700, BlastProperty.GasTier.LOW, 120, 800)
+                    .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE,
+                           MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE)
+                    .color(0x159e1e).secondaryColor(0x000000).iconSet(MaterialIconSet.SHINY)
+                    .element(AstroElements.TR)
+                    .formula("**Fe**")
+                    .buildAndRegister();
+        ELEMENTIUM = new Material.Builder(
+                AstroCore.id("elementium"))
+                .langValue("Elementium")
+                .dust()
+                .ingot()
+                .fluid()
+                .blastTemp(3500, BlastProperty.GasTier.MID, 120, 1600)
+                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE)
+                .color(0xed64d4).secondaryColor(0x000000).iconSet(MaterialIconSet.SHINY)
+                .element(AstroElements.EL)
+                .formula("EL")
+                .buildAndRegister();
+        GAIASTEEL = new Material.Builder(
+                AstroCore.id("gaiasteel"))
+                .langValue("Gaiasteel")
+                .dust()
+                .ingot()
+                .fluid()
+                .blastTemp(7100, BlastProperty.GasTier.HIGH, 120, 2400)
+                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE)
+                .color(0x8c2929).secondaryColor(0x000000).iconSet(MaterialIconSet.SHINY)
+                .element(AstroElements.GA)
+                .formula("***Fe***")
+                .buildAndRegister();
     }
 
-    public static void init() {
+
+
+public static void init() {
         rawOre.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH);
         rawOreBlock.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH_BLOCK);
         block.setIgnored(AstroMaterials.DESH, ModItems.DESH_BLOCK);
@@ -204,5 +264,23 @@ public class AstroMaterials {
         block.setIgnored(AstroMaterials.ENERGIZED_STEEL, Blcks.ENERGIZED_STEEL);
 
         dust.setIgnored(AstroMaterials.SKY_STONE, AEItems.SKY_DUST);
+
+        ingot.setIgnored(AstroMaterials.MANASTEEL, () -> BotaniaItems.manaSteel);
+        dust.setIgnored(AstroMaterials.MANASTEEL, () -> BotaniaItems.manaPowder);
+
+        ingot.setIgnored(AstroMaterials.TERRASTEEL, () -> BotaniaItems.terrasteel);
+        nugget.setIgnored(AstroMaterials.TERRASTEEL,() -> BotaniaItems.terrasteelNugget);
+
+        ingot.setIgnored(AstroMaterials.ELEMENTIUM, () -> BotaniaItems.elementium);
+        nugget.setIgnored(AstroMaterials.ELEMENTIUM, () -> BotaniaItems.elementium);
+
+        ingot.setIgnored(AstroMaterials.GAIASTEEL, ItemsBA.GAIASTEEL_INGOT);
+
+        nugget.setIgnored(AstroMaterials.GAIASTEEL, () -> BotaniaItems.gaiaIngot);
+
+
+
+
+
     }
 }
