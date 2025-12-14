@@ -4,8 +4,6 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.ToolProperty;
-import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import appeng.core.definitions.AEItems;
@@ -143,8 +141,7 @@ public class AstroMaterials {
                 .flags(MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_LONG_ROD,
                         MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROD,
                         MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROTOR,
-                        MaterialFlags.GENERATE_FINE_WIRE,
-                        MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME)
+                        MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME)
                 .cableProperties(32, 4, 0, true).rotorStats(150, 130, 3, 12000)
                 .components(AstroMaterials.DESH, 1, GTMaterials.RedAlloy, 1, GTMaterials.Iron, 1)
                 .formula("DeFeCu(Si(FeS2)5(CrAl2O3)Hg3)4")
@@ -168,7 +165,7 @@ public class AstroMaterials {
                 .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_ALLOY_BLAST,
                         MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE)
                 .color(0xebb7ea).secondaryColor(0x000000).iconSet(MaterialIconSet.SHINY)
-                .components(AstroMaterials.SKY_STONE, 1, GTMaterials.StainlessSteel, 4)
+                .components(GTMaterials.StainlessSteel, 4, AstroMaterials.SKY_STONE, 1)
                 .formula("(Fe6CrMnNi)4✨")
                 .buildAndRegister();
 
@@ -176,6 +173,8 @@ public class AstroMaterials {
         MANA = new Material.Builder(
                 AstroCore.id("mana"))
                 .langValue("Mana")
+                .dust()
+                .flags(MaterialFlags.DISABLE_MATERIAL_RECIPES)
                 .element(AstroElements.MN).formula("✨")
                 .color(0x00fbff)
                 .buildAndRegister();
@@ -195,19 +194,9 @@ public class AstroMaterials {
                 .fluid()
                 .blastTemp(1000, BlastProperty.GasTier.LOW, 120, 400)
                 .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE)
-                .toolStats(new ToolProperty(8.0F, 7.0F, 768, 3,
-                        new GTToolType[] { GTToolType.SHOVEL, GTToolType.PICKAXE, GTToolType.AXE, GTToolType.HOE,
-                                GTToolType.WRENCH_IV, GTToolType.WIRE_CUTTER_LV,
-                                GTToolType.MINING_HAMMER, GTToolType.SPADE, GTToolType.SAW, GTToolType.HARD_HAMMER,
-                                GTToolType.SOFT_MALLET, GTToolType.WRENCH,
-                                GTToolType.FILE, GTToolType.CROWBAR, GTToolType.SCREWDRIVER, GTToolType.MORTAR,
-                                GTToolType.WIRE_CUTTER, GTToolType.SCYTHE, GTToolType.KNIFE,
-                                GTToolType.BUTCHERY_KNIFE, GTToolType.PLUNGER, GTToolType.DRILL_LV, GTToolType.DRILL_MV,
-                                GTToolType.DRILL_HV, GTToolType.DRILL_EV,
-                                GTToolType.DRILL_IV, GTToolType.CHAINSAW_LV, GTToolType.BUZZSAW,
-                                GTToolType.SCREWDRIVER_LV, GTToolType.WRENCH_LV, GTToolType.WRENCH_HV,
-                                GTToolType.WIRE_CUTTER_HV, GTToolType.WIRE_CUTTER_IV }))
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE,
+                        MaterialFlags.DISABLE_ALLOY_BLAST, MaterialFlags.DISABLE_ALLOY_PROPERTY)
+                .fluidPipeProperties(1855, 150, true, false, false, false)
                 .color(0x228cc9).iconSet(MaterialIconSet.SHINY)
                 .components(GTMaterials.Steel, 1, AstroMaterials.MANA, 1).formula("Fe✨")
                 .buildAndRegister();
@@ -227,20 +216,38 @@ public class AstroMaterials {
                 .fluid()
                 .blastTemp(1700, BlastProperty.GasTier.LOW, (int) GTVoltage.VA.MV, 800)
                 .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD)
-                .toolStats(new ToolProperty(11.0F, 11.0F, 2048, 3,
-                        new GTToolType[] { GTToolType.SHOVEL, GTToolType.PICKAXE, GTToolType.AXE, GTToolType.HOE,
-                                GTToolType.WRENCH_IV, GTToolType.WIRE_CUTTER_LV,
-                                GTToolType.MINING_HAMMER, GTToolType.SPADE, GTToolType.SAW, GTToolType.HARD_HAMMER,
-                                GTToolType.SOFT_MALLET, GTToolType.WRENCH,
-                                GTToolType.FILE, GTToolType.CROWBAR, GTToolType.SCREWDRIVER, GTToolType.MORTAR,
-                                GTToolType.WIRE_CUTTER, GTToolType.SCYTHE, GTToolType.KNIFE,
-                                GTToolType.BUTCHERY_KNIFE, GTToolType.PLUNGER, GTToolType.DRILL_LV, GTToolType.DRILL_MV,
-                                GTToolType.DRILL_HV, GTToolType.DRILL_EV,
-                                GTToolType.DRILL_IV, GTToolType.CHAINSAW_LV, GTToolType.BUZZSAW,
-                                GTToolType.SCREWDRIVER_LV, GTToolType.WRENCH_LV, GTToolType.WRENCH_HV,
-                                GTToolType.WIRE_CUTTER_HV, GTToolType.WIRE_CUTTER_IV }))
-                .color(0x159e1e).iconSet(MaterialIconSet.METALLIC)
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST,
+                        MaterialFlags.DISABLE_ALLOY_PROPERTY)
+                .fluidPipeProperties(2142, 225, true, false, false, false)
+                // .toolStats(new ToolProperty(11.0F, 11.0F, 2048, 3,
+                // new GTToolType[] { GTToolType.SHOVEL, GTToolType.PICKAXE, GTToolType.AXE, GTToolType.HOE,
+                // GTToolType.WRENCH_IV,
+                // GTToolType.WIRE_CUTTER_LV,
+                // GTToolType.MINING_HAMMER,
+                // GTToolType.SPADE, GTToolType.SAW,
+                // GTToolType.HARD_HAMMER,
+                // GTToolType.FILE,
+                // GTToolType.CROWBAR,
+                // GTToolType.SCREWDRIVER,
+                // GTToolType.MORTAR,
+                // GTToolType.WIRE_CUTTER,
+                // GTToolType.SCYTHE,
+                // GTToolType.KNIFE,
+                // GTToolType.BUTCHERY_KNIFE,
+                // GTToolType.DRILL_LV,
+                // GTToolType.DRILL_MV,
+                // GTToolType.DRILL_HV,
+                // GTToolType.DRILL_EV,
+                // GTToolType.WRENCH,
+                // GTToolType.DRILL_IV,
+                // GTToolType.CHAINSAW_LV,
+                // GTToolType.BUZZSAW,
+                // GTToolType.SCREWDRIVER_LV,
+                // GTToolType.WRENCH_LV,
+                // GTToolType.WRENCH_HV,
+                // GTToolType.WIRE_CUTTER_HV,
+                // GTToolType.WIRE_CUTTER_IV }))
+                .color(0x159e1e).iconSet(MaterialIconSet.BRIGHT)
                 .components(GTMaterials.Steel, 1, GTMaterials.Beryllium, 1, GTMaterials.Aluminium, 1,
                         AstroMaterials.MANA, 1)
                 .formula("FeBeAl✨")
@@ -248,26 +255,16 @@ public class AstroMaterials {
 
         ELEMENTIUM = new Material.Builder(
                 AstroCore.id("elementium"))
-                .langValue("§dElementium")
+                .langValue("§dAlfsteel")
                 .ingot()
                 .fluid()
                 .blastTemp(3500, BlastProperty.GasTier.MID, (int) GTVoltage.VA.IV, 1600)
                 .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD)
-                .toolStats(new ToolProperty(16.0F, 13.0F, 3072, 4,
-                        new GTToolType[] { GTToolType.SHOVEL, GTToolType.PICKAXE, GTToolType.AXE, GTToolType.HOE,
-                                GTToolType.WRENCH_IV, GTToolType.WIRE_CUTTER_LV,
-                                GTToolType.MINING_HAMMER, GTToolType.SPADE, GTToolType.SAW, GTToolType.HARD_HAMMER,
-                                GTToolType.SOFT_MALLET, GTToolType.WRENCH,
-                                GTToolType.FILE, GTToolType.CROWBAR, GTToolType.SCREWDRIVER, GTToolType.MORTAR,
-                                GTToolType.WIRE_CUTTER, GTToolType.SCYTHE, GTToolType.KNIFE,
-                                GTToolType.BUTCHERY_KNIFE, GTToolType.PLUNGER, GTToolType.DRILL_LV, GTToolType.DRILL_MV,
-                                GTToolType.DRILL_HV, GTToolType.DRILL_EV,
-                                GTToolType.DRILL_IV, GTToolType.CHAINSAW_LV, GTToolType.BUZZSAW,
-                                GTToolType.SCREWDRIVER_LV, GTToolType.WRENCH_LV, GTToolType.WRENCH_HV,
-                                GTToolType.WIRE_CUTTER_HV, GTToolType.WIRE_CUTTER_IV }))
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST)
+                .fluidPipeProperties(2426, 300, true, false, false, false)
                 .color(0xed64d4).iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Titanium, 3, GTMaterials.Rhodium, 2, GTMaterials.Carbon, 1, AstroMaterials.AETHER,
+                .components(GTMaterials.Titanium, 3, GTMaterials.Rhodium, 2, GTMaterials.Carbon, 1,
+                        AstroMaterials.AETHER,
                         1)
                 .formula("Ti3Rh2C✨")
                 .buildAndRegister();
@@ -279,20 +276,9 @@ public class AstroMaterials {
                 .fluid()
                 .blastTemp(7100, BlastProperty.GasTier.HIGH, (int) GTVoltage.VA.ZPM, 2400)
                 .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD)
-                .toolStats(ToolProperty.Builder.of(48.0F, 16.0F, 4096, 5)
-                        .types(GTToolType.SHOVEL, GTToolType.PICKAXE, GTToolType.AXE, GTToolType.HOE,
-                                GTToolType.WRENCH_IV, GTToolType.WIRE_CUTTER_LV, GTToolType.DRILL_MV,
-                                GTToolType.MINING_HAMMER, GTToolType.SPADE, GTToolType.SAW,
-                                GTToolType.SOFT_MALLET, GTToolType.WRENCH, GTToolType.HARD_HAMMER,
-                                GTToolType.FILE, GTToolType.CROWBAR, GTToolType.SCREWDRIVER,
-                                GTToolType.WIRE_CUTTER, GTToolType.SCYTHE, GTToolType.KNIFE,
-                                GTToolType.BUTCHERY_KNIFE, GTToolType.PLUNGER, GTToolType.DRILL_LV,
-                                GTToolType.DRILL_HV, GTToolType.DRILL_EV, GTToolType.MORTAR,
-                                GTToolType.DRILL_IV, GTToolType.CHAINSAW_LV, GTToolType.BUZZSAW,
-                                GTToolType.SCREWDRIVER_LV, GTToolType.WRENCH_LV, GTToolType.WRENCH_HV,
-                                GTToolType.WIRE_CUTTER_HV, GTToolType.WIRE_CUTTER_IV)
-                        .magnetic().build())
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST)
+                .fluidPipeProperties(3776, 400, true, true, true, true)
+                // .magnetic().build())
                 .color(0x8c2929).iconSet(MaterialIconSet.BRIGHT)
                 // .components().formula()
                 .buildAndRegister();
@@ -300,7 +286,9 @@ public class AstroMaterials {
         MANA_DIAMOND = new Material.Builder(
                 AstroCore.id("mana_diamond"))
                 .langValue("Mana Diamond")
-                .flags(MaterialFlags.GENERATE_LENS, MaterialFlags.GENERATE_PLATE, MaterialFlags.CRYSTALLIZABLE)
+                .gem()
+                .flags(MaterialFlags.GENERATE_LENS, MaterialFlags.GENERATE_PLATE, MaterialFlags.CRYSTALLIZABLE,
+                        MaterialFlags.DISABLE_DECOMPOSITION)
                 .components(GTMaterials.Carbon, 1, AstroMaterials.MANA, 1).formula("C✨")
                 .color(0x47eaed).iconSet(MaterialIconSet.DIAMOND)
                 .buildAndRegister();
@@ -308,7 +296,9 @@ public class AstroMaterials {
         DRAGONSTONE = new Material.Builder(
                 AstroCore.id("dragonstone"))
                 .langValue("Dragonstone")
-                .flags(MaterialFlags.GENERATE_LENS, MaterialFlags.GENERATE_PLATE, MaterialFlags.CRYSTALLIZABLE)
+                .gem()
+                .flags(MaterialFlags.GENERATE_LENS, MaterialFlags.GENERATE_PLATE, MaterialFlags.CRYSTALLIZABLE,
+                        MaterialFlags.DISABLE_DECOMPOSITION)
                 .components(GTMaterials.Carbon, 1, AstroMaterials.AETHER, 1).formula("C✨")
                 .color(0xed64d4).iconSet(MaterialIconSet.DIAMOND)
                 .buildAndRegister();
@@ -351,7 +341,9 @@ public class AstroMaterials {
         // ae2
         dust.setIgnored(AstroMaterials.SKY_STONE, AEItems.SKY_DUST);
 
-//         botania/additions
+        // botania/additions
+        dust.setIgnored(AstroMaterials.MANA, () -> BotaniaItems.manaPowder);
+
         gem.setIgnored(AstroMaterials.MANA_DIAMOND, () -> BotaniaItems.manaDiamond);
         block.setIgnored(AstroMaterials.MANA_DIAMOND, () -> BotaniaBlocks.manaDiamondBlock);
 
