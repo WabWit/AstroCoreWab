@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
-import static com.astro.core.common.data.materials.AstroPolymers.POLYAMIDE_IMIDE;
+import static com.astro.core.common.data.materials.AstroMaterials.POLYAMIDE_IMIDE;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;

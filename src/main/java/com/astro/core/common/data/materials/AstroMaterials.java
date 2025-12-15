@@ -1,5 +1,6 @@
 package com.astro.core.common.data.materials;
 
+import appeng.core.definitions.AEBlocks;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
@@ -22,6 +23,7 @@ import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 
 public class AstroMaterials {
 
+    public static Material POLYAMIDE_IMIDE;
     public static Material DESH;
     public static Material CALORITE;
     public static Material OSTRUM;
@@ -33,6 +35,8 @@ public class AstroMaterials {
     public static Material KRONALIUM;
     public static Material ENERGIZED_STEEL;
     public static Material SKY_STONE;
+    public static Material FLUIX;
+    public static Material FLUIX_PEARL;
     public static Material FUTURA_ALLOY;
     public static Material MANA;
     public static Material MANASTEEL;
@@ -45,6 +49,21 @@ public class AstroMaterials {
     public static Material AETHER;
 
     public static void register() {
+        // GregTech
+        POLYAMIDE_IMIDE = new Material.Builder(
+                AstroCore.id("polyamide_imide"))
+                .langValue("Polyamide-Imide")
+                .polymer()
+                .fluid()
+                .dust()
+                .ingot()
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME,
+                        MaterialFlags.GENERATE_FOIL)
+                .fluidPipeProperties(1400, 1000, true, true, true, true)
+                .color(0xd9ac37).secondaryColor(0x54301a).iconSet(MaterialIconSet.DULL)
+                // .components().formula()
+                .buildAndRegister();
+
         // Ad Astra/Extendra Materials
         DESH = new Material.Builder(
                 AstroCore.id("desh"))
@@ -156,6 +175,26 @@ public class AstroMaterials {
                 .color(0xffffff).iconSet(MaterialIconSet.ROUGH)
                 .buildAndRegister();
 
+        FLUIX = new Material.Builder(
+                AstroCore.id("fluix"))
+                .langValue("Fluix")
+                .gem()
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_LENS, MaterialFlags.CRYSTALLIZABLE)
+                .components(GTMaterials.CertusQuartz, 1, GTMaterials.Redstone, 1, GTMaterials.Obsidian, 1)
+                .formula("(SiO2)(Si(FeS2)5(CrAl2O3)Hg3)(MgFeSi2O4)")
+                .color(0xC090F7).secondaryColor(0x2A1E5A).iconSet(MaterialIconSet.CERTUS)
+                .buildAndRegister();
+
+        FLUIX_PEARL = new Material.Builder(
+                AstroCore.id("fluix_pearl"))
+                .langValue("Fluix Pearl")
+                .gem()
+                .components(AstroMaterials.FLUIX, 8, GTMaterials.EnderEye, 1)
+                .formula("((SiO2)(Si(FeS2)5(CrAl2O3)Hg3)(MgFeSi2O4))8((BeK4N5)(CS))")
+                .flags(MaterialFlags.CRYSTALLIZABLE)
+                .color(0x4E3C95).secondaryColor(0x181F3C).iconSet(MaterialIconSet.OPAL)
+                .buildAndRegister();
+
         FUTURA_ALLOY = new Material.Builder(
                 AstroCore.id("futura_alloy"))
                 .langValue("Futura Steel")
@@ -163,7 +202,8 @@ public class AstroMaterials {
                 .fluid()
                 .blastTemp(1700, BlastProperty.GasTier.LOW, 400, 1200)
                 .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_ALLOY_BLAST,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE)
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE,
+                        MaterialFlags.DISABLE_ALLOY_PROPERTY)
                 .color(0xebb7ea).secondaryColor(0x000000).iconSet(MaterialIconSet.SHINY)
                 .components(GTMaterials.StainlessSteel, 4, AstroMaterials.SKY_STONE, 1)
                 .formula("(Fe6CrMnNi)4✨")
@@ -187,102 +227,6 @@ public class AstroMaterials {
                 .color(0x26a33f)
                 .buildAndRegister();
 
-        MANASTEEL = new Material.Builder(
-                AstroCore.id("manasteel"))
-                .langValue("§9Manasteel")
-                .ingot()
-                .fluid()
-                .blastTemp(1000, BlastProperty.GasTier.LOW, 120, 400)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE,
-                        MaterialFlags.DISABLE_ALLOY_BLAST, MaterialFlags.DISABLE_ALLOY_PROPERTY)
-                .fluidPipeProperties(1855, 150, true, false, false, false)
-                .color(0x228cc9).iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Steel, 1, AstroMaterials.MANA, 1).formula("Fe✨")
-                .buildAndRegister();
-
-        DORMANT_TERRASTEEL = new Material.Builder(
-                AstroCore.id("dormant_terrasteel"))
-                .langValue("Inactive §2Terrasteel§r")
-                .dust()
-                .components(GTMaterials.Steel, 1, GTMaterials.Beryllium, 1, GTMaterials.Aluminium, 1).formula("FeBeAl")
-                .color(0x128719)
-                .buildAndRegister();
-
-        TERRASTEEL = new Material.Builder(
-                AstroCore.id("terrasteel"))
-                .langValue("§2Terrasteel")
-                .ingot()
-                .fluid()
-                .blastTemp(1700, BlastProperty.GasTier.LOW, (int) GTVoltage.VA.MV, 800)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST,
-                        MaterialFlags.DISABLE_ALLOY_PROPERTY)
-                .fluidPipeProperties(2142, 225, true, false, false, false)
-                // .toolStats(new ToolProperty(11.0F, 11.0F, 2048, 3,
-                // new GTToolType[] { GTToolType.SHOVEL, GTToolType.PICKAXE, GTToolType.AXE, GTToolType.HOE,
-                // GTToolType.WRENCH_IV,
-                // GTToolType.WIRE_CUTTER_LV,
-                // GTToolType.MINING_HAMMER,
-                // GTToolType.SPADE, GTToolType.SAW,
-                // GTToolType.HARD_HAMMER,
-                // GTToolType.FILE,
-                // GTToolType.CROWBAR,
-                // GTToolType.SCREWDRIVER,
-                // GTToolType.MORTAR,
-                // GTToolType.WIRE_CUTTER,
-                // GTToolType.SCYTHE,
-                // GTToolType.KNIFE,
-                // GTToolType.BUTCHERY_KNIFE,
-                // GTToolType.DRILL_LV,
-                // GTToolType.DRILL_MV,
-                // GTToolType.DRILL_HV,
-                // GTToolType.DRILL_EV,
-                // GTToolType.WRENCH,
-                // GTToolType.DRILL_IV,
-                // GTToolType.CHAINSAW_LV,
-                // GTToolType.BUZZSAW,
-                // GTToolType.SCREWDRIVER_LV,
-                // GTToolType.WRENCH_LV,
-                // GTToolType.WRENCH_HV,
-                // GTToolType.WIRE_CUTTER_HV,
-                // GTToolType.WIRE_CUTTER_IV }))
-                .color(0x159e1e).iconSet(MaterialIconSet.BRIGHT)
-                .components(GTMaterials.Steel, 1, GTMaterials.Beryllium, 1, GTMaterials.Aluminium, 1,
-                        AstroMaterials.MANA, 1)
-                .formula("FeBeAl✨")
-                .buildAndRegister();
-
-        ELEMENTIUM = new Material.Builder(
-                AstroCore.id("elementium"))
-                .langValue("§dAlfsteel")
-                .ingot()
-                .fluid()
-                .blastTemp(3500, BlastProperty.GasTier.MID, (int) GTVoltage.VA.IV, 1600)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST)
-                .fluidPipeProperties(2426, 300, true, false, false, false)
-                .color(0xed64d4).iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Titanium, 3, GTMaterials.Rhodium, 2, GTMaterials.Carbon, 1,
-                        AstroMaterials.AETHER,
-                        1)
-                .formula("Ti3Rh2C✨")
-                .buildAndRegister();
-
-        GAIASTEEL = new Material.Builder(
-                AstroCore.id("gaiasteel"))
-                .langValue("§cGaiasteel")
-                .ingot()
-                .fluid()
-                .blastTemp(7100, BlastProperty.GasTier.HIGH, (int) GTVoltage.VA.ZPM, 2400)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST)
-                .fluidPipeProperties(3776, 400, true, true, true, true)
-                // .magnetic().build())
-                .color(0x8c2929).iconSet(MaterialIconSet.BRIGHT)
-                // .components().formula()
-                .buildAndRegister();
-
         MANA_DIAMOND = new Material.Builder(
                 AstroCore.id("mana_diamond"))
                 .langValue("Mana Diamond")
@@ -301,6 +245,71 @@ public class AstroMaterials {
                         MaterialFlags.DISABLE_DECOMPOSITION)
                 .components(GTMaterials.Carbon, 1, AstroMaterials.AETHER, 1).formula("C✨")
                 .color(0xed64d4).iconSet(MaterialIconSet.DIAMOND)
+                .buildAndRegister();
+
+        MANASTEEL = new Material.Builder(
+                AstroCore.id("manasteel"))
+                .langValue("§9Manasteel")
+                .ingot()
+                .fluid()
+                .blastTemp(1000, BlastProperty.GasTier.LOW, 120, 400)
+                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE,
+                        MaterialFlags.DISABLE_ALLOY_BLAST, MaterialFlags.DISABLE_ALLOY_PROPERTY)
+                .fluidPipeProperties(1855, 150, true, false, false, false)
+                .color(0x228cc9).iconSet(MaterialIconSet.SHINY)
+                .components(GTMaterials.Steel, 1, AstroMaterials.MANA, 1).formula("Fe✨")
+                .buildAndRegister();
+
+        DORMANT_TERRASTEEL = new Material.Builder(
+                AstroCore.id("dormant_terrasteel"))
+                .langValue("Dormant §2Terrasteel§r")
+                .dust()
+                .components(GTMaterials.Steel, 1, GTMaterials.Beryllium, 1, GTMaterials.Aluminium, 1).formula("FeBeAl")
+                .color(0x128719)
+                .buildAndRegister();
+
+        TERRASTEEL = new Material.Builder(
+                AstroCore.id("terrasteel"))
+                .langValue("§2Terrasteel")
+                .ingot()
+                .fluid()
+                .blastTemp(1700, BlastProperty.GasTier.LOW, (int) GTVoltage.VA.MV, 800)
+                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST,
+                        MaterialFlags.DISABLE_ALLOY_PROPERTY)
+                .fluidPipeProperties(2142, 225, true, false, false, false)
+                .color(0x159e1e).iconSet(MaterialIconSet.BRIGHT)
+                .components(GTMaterials.Steel, 1, GTMaterials.Beryllium, 1, GTMaterials.Aluminium, 1,
+                        AstroMaterials.MANA, 1)
+                .formula("FeBeAl✨")
+                .buildAndRegister();
+
+        ELEMENTIUM = new Material.Builder(
+                AstroCore.id("elementium"))
+                .langValue("§dAlfsteel")
+                .ingot()
+                .fluid()
+                .blastTemp(3500, BlastProperty.GasTier.MID, (int) GTVoltage.VA.IV, 1600)
+                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD)
+                .fluidPipeProperties(2426, 300, true, false, false, false)
+                .color(0xed64d4).iconSet(MaterialIconSet.SHINY)
+                .components(GTMaterials.Titanium, 3, GTMaterials.Rhodium, 2, AstroMaterials.DRAGONSTONE, 2)
+                .formula("Ti3Rh2C✨")
+                .buildAndRegister();
+
+        GAIASTEEL = new Material.Builder(
+                AstroCore.id("gaiasteel"))
+                .langValue("§cGaiasteel")
+                .ingot()
+                .fluid()
+                .blastTemp(7100, BlastProperty.GasTier.HIGH, (int) GTVoltage.VA.ZPM, 2400)
+                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST)
+                .fluidPipeProperties(3776, 400, true, true, true, true)
+                .color(0x8c2929).iconSet(MaterialIconSet.BRIGHT)
+                // .components().formula()
                 .buildAndRegister();
     }
 
@@ -340,6 +349,12 @@ public class AstroMaterials {
 
         // ae2
         dust.setIgnored(AstroMaterials.SKY_STONE, AEItems.SKY_DUST);
+
+        block.setIgnored(AstroMaterials.FLUIX, AEBlocks.FLUIX_BLOCK);
+        dust.setIgnored(AstroMaterials.FLUIX, AEItems.FLUIX_DUST);
+        gem.setIgnored(AstroMaterials.FLUIX, AEItems.FLUIX_CRYSTAL);
+
+        gem.setIgnored(AstroMaterials.FLUIX_PEARL, AEItems.FLUIX_PEARL);
 
         // botania/additions
         dust.setIgnored(AstroMaterials.MANA, () -> BotaniaItems.manaPowder);

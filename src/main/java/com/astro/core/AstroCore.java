@@ -27,7 +27,6 @@ import com.astro.core.common.data.configs.AstroConfigs;
 import com.astro.core.common.data.materials.AstroMaterialFlagAddition;
 import com.astro.core.common.data.materials.AstroMaterialFlags;
 import com.astro.core.common.data.materials.AstroMaterials;
-import com.astro.core.common.data.materials.AstroPolymers;
 import com.astro.core.common.machine.multiblock.generator.AetherEngine;
 import com.astro.core.common.machine.multiblock.generator.ManaBoilers;
 import com.astro.core.datagen.AstroDatagen;
@@ -112,8 +111,6 @@ public class AstroCore {
     private void addMaterials(MaterialEvent event) {
         AstroMaterials.register();
         AstroMaterials.init();
-        AstroPolymers.init();
-        AstroPolymers.register();
     }
 
     /**
