@@ -1,12 +1,14 @@
 package com.astro.core.common.data.materials;
 
-import appeng.core.definitions.AEBlocks;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.ToolProperty;
+import com.gregtechceu.gtceu.api.item.tool.GTToolType;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
+import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.astro.core.AstroCore;
 import com.astro.core.common.GTVoltage;
@@ -54,11 +56,13 @@ public class AstroMaterials {
                 AstroCore.id("polyamide_imide"))
                 .langValue("Polyamide-Imide")
                 .polymer()
-                .fluid()
+                .liquid(1600)
                 .dust()
                 .ingot()
                 .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME,
                         MaterialFlags.GENERATE_FOIL)
+//                .toolStats(new ToolProperty(10.0F, 10.0F, 4096, 5,
+//                        new GTToolType[] {GTToolType.SOFT_MALLET, GTToolType.PLUNGER}))
                 .fluidPipeProperties(1400, 1000, true, true, true, true)
                 .color(0xd9ac37).secondaryColor(0x54301a).iconSet(MaterialIconSet.DULL)
                 // .components().formula()
@@ -179,7 +183,8 @@ public class AstroMaterials {
                 AstroCore.id("fluix"))
                 .langValue("Fluix")
                 .gem()
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_LENS, MaterialFlags.CRYSTALLIZABLE)
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_LENS, MaterialFlags.CRYSTALLIZABLE,
+                        MaterialFlags.DISABLE_DECOMPOSITION)
                 .components(GTMaterials.CertusQuartz, 1, GTMaterials.Redstone, 1, GTMaterials.Obsidian, 1)
                 .formula("(SiO2)(Si(FeS2)5(CrAl2O3)Hg3)(MgFeSi2O4)")
                 .color(0xC090F7).secondaryColor(0x2A1E5A).iconSet(MaterialIconSet.CERTUS)
@@ -191,7 +196,7 @@ public class AstroMaterials {
                 .gem()
                 .components(AstroMaterials.FLUIX, 8, GTMaterials.EnderEye, 1)
                 .formula("((SiO2)(Si(FeS2)5(CrAl2O3)Hg3)(MgFeSi2O4))8((BeK4N5)(CS))")
-                .flags(MaterialFlags.CRYSTALLIZABLE)
+                .flags(MaterialFlags.CRYSTALLIZABLE, MaterialFlags.DISABLE_DECOMPOSITION)
                 .color(0x4E3C95).secondaryColor(0x181F3C).iconSet(MaterialIconSet.OPAL)
                 .buildAndRegister();
 
@@ -295,7 +300,7 @@ public class AstroMaterials {
                         MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD)
                 .fluidPipeProperties(2426, 300, true, false, false, false)
                 .color(0xed64d4).iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Titanium, 3, GTMaterials.Rhodium, 2, AstroMaterials.DRAGONSTONE, 2)
+                .components(GTMaterials.Titanium, 3, GTMaterials.Rhodium, 2, AstroMaterials.DRAGONSTONE, 1)
                 .formula("Ti3Rh2C✨")
                 .buildAndRegister();
 
