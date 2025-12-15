@@ -15,7 +15,7 @@ public class AstroDrums {
         public static MachineDefinition DARMSTADTIUM_DRUM;
         public static MachineDefinition NEUTRONIUM_DRUM;
 
-        public static void init() {
+        public static void register() {
             RHODIUM_PLATED_PALLADIUM_DRUM = registerDrum(REGISTRATE, GTMaterials.RhodiumPlatedPalladium, 2048 * FluidType.BUCKET_VOLUME, "Rhodium Plated Palladium Drum");
             NAQUADAH_ALLOY_DRUM = registerDrum(REGISTRATE, GTMaterials.NaquadahAlloy, 4096 * FluidType.BUCKET_VOLUME, "Naquadah Alloy Drum");
             DARMSTADTIUM_DRUM = registerDrum(REGISTRATE, GTMaterials.Darmstadtium, 8192 * FluidType.BUCKET_VOLUME, "Darmstadtium Drum");
