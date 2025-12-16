@@ -28,6 +28,7 @@ import com.astro.core.common.data.materials.AstroMaterialFlagAddition;
 import com.astro.core.common.data.materials.AstroMaterialFlags;
 import com.astro.core.common.data.materials.AstroMaterials;
 import com.astro.core.common.data.materials.AstroModifiedMaterials;
+import com.astro.core.common.data.materials.MaterialModification;
 import com.astro.core.common.machine.crates.AstroCrates;
 import com.astro.core.common.machine.drums.AstroDrums;
 import com.astro.core.common.machine.multiblock.generator.AetherEngine;
@@ -114,15 +115,18 @@ public class AstroCore {
         AstroMaterials.register();
         AstroMaterials.init();
         AstroModifiedMaterials.init();
+        MaterialModification.register();
     }
 
     /**
      * (Optional) Used to modify pre-existing materials from GregTech
+     * AND create new custom materials
      * 
      * @param event
      */
     private void modifyMaterials(PostMaterialEvent event) {
         AstroMaterialFlagAddition.register();
+        MaterialModification.modify();
     }
 
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
