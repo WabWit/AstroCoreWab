@@ -3,6 +3,7 @@ package com.astro.core.common.data.materials;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
@@ -11,7 +12,7 @@ import com.astro.core.AstroCore;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 
 // Material modifications and creation
-public class MaterialModification {
+public class AstroMaterialModification {
 
     // Voltage helpers
     private static final long[] V = GTValues.V;
@@ -32,46 +33,36 @@ public class MaterialModification {
 
     // Component dusts: Name, Color, Flags
     private static final Object[][] COMPONENT_DUSTS = {
-            { "andesite_alloy", 0xa6a08f,
+            { "asteroid_stone", 0x964491, 0x70276b, MaterialIconSet.ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "asteroid_stone", 0x70276b,
+            { "livingrock", 0xc9c2b1, 0x948e7f, MaterialIconSet.ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "livingrock", 0xc9c2b1,
+            { "livingclay", 0xc9c2e7, 0x4eaeb5, MaterialIconSet.FINE,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "livingclay", 0xc9c2e7,
-                    new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "acorn", 0x734d15,
+            { "acorn", 0xe0b677, 0x734d15, MaterialIconSet.FINE,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } }
     };
 
     // SuperConductors: Name, Color, BlastTemp/GasTier, Cable, Rotor
     private static final Object[][] SUPERCONDUCTORS = {
-            { "blazing_etrium", 0x8ee8ed,
-                    new Object[] { 1700, BlastProperty.GasTier.LOW },
-                    new Object[] { V[GTValues.MV], 8, 0, true },
-                    new Object[] { 190, 150, 3, 14000 } },
-            { "niotic_calorite", 0xe4eb60,
-                    new Object[] { 1700, BlastProperty.GasTier.LOW },
-                    new Object[] { V[GTValues.HV], 16, 0, true },
-                    new Object[] { 220, 170, 3, 16000 } },
-            { "spirited_uranium", 0xcb74cc,
-                    new Object[] { 3500, BlastProperty.GasTier.LOW },
+            { "spirited_uranium", "Spirited Uranium", 0xcb74cc, MaterialIconSet.RADIOACTIVE,
+                    new Object[] { 3500, BlastProperty.GasTier.LOW, 7680, 1200 },
                     new Object[] { V[GTValues.EV], 24, 0, true },
                     new Object[] { 300, 190, 3, 18000 } },
-            { "nitro_flux", 0x110c9c,
-                    new Object[] { 4400, BlastProperty.GasTier.MID },
+            { "nitro_flux", "Nitro-Flux", 0x110c9c, MaterialIconSet.SHINY,
+                    new Object[] { 4400, BlastProperty.GasTier.MID, 30720, 1400 },
                     new Object[] { V[GTValues.IV], 32, 0, true },
                     new Object[] { 450, 220, 3, 20000 } },
-            { "juperiosaturlytide", 0xf66999,
-                    new Object[] { 5300, BlastProperty.GasTier.MID },
+            { "juperiosaturlytide", "Juperio-Saturlytide", 0xf66999, MaterialIconSet.BRIGHT,
+                    new Object[] { 5300, BlastProperty.GasTier.MID, 122880, 1600 },
                     new Object[] { V[GTValues.LuV], 48, 0, true },
                     new Object[] { 700, 260, 3, 24000 } },
-            { "gaiaforged_naquadah", 0x421218,
-                    new Object[] { 7100, BlastProperty.GasTier.HIGH },
+            { "gaiaforged_naquadah", "Gaia-Forged Naquadah", 0x421218, MaterialIconSet.SHINY,
+                    new Object[] { 7100, BlastProperty.GasTier.HIGH, 491520, 1800 },
                     new Object[] { V[GTValues.ZPM], 64, 0, true },
                     new Object[] { 1100, 380, 3, 32000 } },
-            { "neptunium_molybdenum_selenide", 0x088a5c,
-                    new Object[] { 10000, BlastProperty.GasTier.HIGHER },
+            { "neptunium_molybdenum_selenide", "Neptunium Molybdenum Selenide", 0x088a5c, MaterialIconSet.RADIOACTIVE,
+                    new Object[] { 10000, BlastProperty.GasTier.HIGHER, 1966080, 2000 },
                     new Object[] { V[GTValues.UV], 96, 0, true },
                     new Object[] { 2000, 550, 3, 48000 } }
     };
@@ -150,12 +141,16 @@ public class MaterialModification {
         for (Object[] dust : COMPONENT_DUSTS) {
             String name = (String) dust[0];
             int color = (int) dust[1];
-            MaterialFlag[] flags = (MaterialFlag[]) dust[2];
+            int color2 = (int) dust[2];
+            MaterialIconSet icon = (MaterialIconSet) dust[3];
+            MaterialFlag[] flags = (MaterialFlag[]) dust[4];
 
             // Create materials without components for now
             new Material.Builder(AstroCore.id(name))
                     .dust()
                     .color(color)
+                    .secondaryColor(color2)
+                    .iconSet(icon)
                     .flags(flags)
                     .buildAndRegister();
         }
@@ -167,22 +162,26 @@ public class MaterialModification {
                 GENERATE_PLATE, GENERATE_ROD, GENERATE_BOLT_SCREW, GENERATE_FRAME,
                 GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_FOIL, GENERATE_RING,
                 GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR,
-                GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_ROUND, DISABLE_DECOMPOSITION
+                GENERATE_FINE_WIRE, GENERATE_ROTOR, DISABLE_DECOMPOSITION
         };
 
         for (Object[] sc : SUPERCONDUCTORS) {
-            String name = (String) sc[0];
-            int color = (int) sc[1];
-            Object[] blast = (Object[]) sc[2];
-            Object[] cable = (Object[]) sc[3];
-            Object[] rotor = (Object[]) sc[4];
+            String id = (String) sc[0];
+            String name = (String) sc[1];
+            int color = (int) sc[2];
+            MaterialIconSet icon = (MaterialIconSet) sc[3];
+            Object[] blast = (Object[]) sc[4];
+            Object[] cable = (Object[]) sc[5];
+            Object[] rotor = (Object[]) sc[6];
 
             // Create materials without components
-            Material material = new Material.Builder(AstroCore.id(name))
+            Material material = new Material.Builder(AstroCore.id(id))
+                    .langValue(name)
                     .ingot()
                     .fluid()
                     .color(color)
-                    .blastTemp((int) blast[0], (BlastProperty.GasTier) blast[1])
+                    .iconSet(icon)
+                    .blastTemp((int) blast[0], (BlastProperty.GasTier) blast[1], (int) blast[2], (int) blast[3])
                     .cableProperties((long) cable[0], (int) cable[1], (int) cable[2], (boolean) cable[3])
                     .rotorStats(
                             ((Number) rotor[0]).intValue(),

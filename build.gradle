@@ -95,6 +95,14 @@ repositories {
             includeModule('org.appliedenergistics', 'guideme')
         }
     }
+    //create
+    maven {
+        url = 'https://maven.createmod.net'
+    }
+    maven {
+        url = "https://maven.ithundxr.dev/mirror" }
+    maven {
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" }
 }
 
 version = mod_version
@@ -168,6 +176,15 @@ dependencies {
 
     // Mixin
 //    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
+
+    //Create and dependencies
+    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    modImplementation("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}")
+    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}")
+    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
+    modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
+    modCompileOnly("io.github.llamalad7:mixinextras-common:0.4.1")
+    modImplementation("io.github.llamalad7:mixinextras-forge:0.4.1")
 
     //Ad Astra and dependencies
     modImplementation("earth.terrarium.adastra:ad_astra-forge-${minecraft_version}:${ad_astra_version}")

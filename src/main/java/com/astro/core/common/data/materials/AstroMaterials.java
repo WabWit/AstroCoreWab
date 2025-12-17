@@ -1,5 +1,6 @@
 package com.astro.core.common.data.materials;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
@@ -11,6 +12,8 @@ import appeng.core.definitions.AEItems;
 import com.astro.core.AstroCore;
 import com.astro.core.common.GTVoltage;
 import com.drd.ad_extendra.common.registry.ModBlocks;
+import com.simibubi.create.AllBlocks;
+import com.simibubi.create.AllItems;
 import earth.terrarium.adastra.common.registry.ModItems;
 import org.zeith.botanicadds.init.BlocksBA;
 import org.zeith.botanicadds.init.ItemsBA;
@@ -21,8 +24,16 @@ import vazkii.botania.common.item.BotaniaItems;
 
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
 
+@SuppressWarnings("all")
 public class AstroMaterials {
 
+    private static final long[] V = GTValues.V;
+    private static final int[] VA = GTValues.VA;
+
+    public static Material UNKNOWN;
+    public static Material ANDESITE_ALLOY;
+    public static Material BLAZING_ETRIUM;
+    public static Material NIOTIC_CALORITE;
     public static Material POLYAMIDE_IMIDE;
     public static Material DESH;
     public static Material CALORITE;
@@ -49,21 +60,22 @@ public class AstroMaterials {
     public static Material AETHER;
 
     public static void register() {
-        // GregTech
-        POLYAMIDE_IMIDE = new Material.Builder(
-                AstroCore.id("polyamide_imide"))
-                .langValue("Polyamide-Imide")
-                .polymer()
-                .liquid(1600)
-                .dust()
+        // Unknown
+        UNKNOWN = new Material.Builder(
+                AstroCore.id("unknown"))
+                .langValue("Unknown")
+                .element(AstroElements.UK)
+                .color(0xffffff)
+                .buildAndRegister();
+
+        // Create
+        ANDESITE_ALLOY = new Material.Builder(
+                AstroCore.id("andesite_alloy"))
+                .langValue("Andesite Alloy")
                 .ingot()
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME,
-                        MaterialFlags.GENERATE_FOIL)
-                // .toolStats(new ToolProperty(10.0F, 10.0F, 4096, 5,
-                // new GTToolType[] {GTToolType.SOFT_MALLET, GTToolType.PLUNGER}))
-                .fluidPipeProperties(1400, 1000, true, true, true, true)
-                .color(0xd9ac37).secondaryColor(0x54301a).iconSet(MaterialIconSet.DULL)
-                // .components().formula()
+                .components(GTMaterials.Iron, 1, AstroMaterials.UNKNOWN, 1).formula("Fe?")
+                .color(0xa6a08f).iconSet(MaterialIconSet.ROUGH)
+                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
                 .buildAndRegister();
 
         // Ad Astra/Extendra Materials
@@ -163,7 +175,8 @@ public class AstroMaterials {
                         MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROD,
                         MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROTOR,
                         MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME)
-                .cableProperties(32, 4, 0, true).rotorStats(150, 130, 3, 12000)
+                .cableProperties(32, 4, 0, true)
+                .rotorStats(150, 130, 3, 12000)
                 .components(AstroMaterials.DESH, 1, GTMaterials.RedAlloy, 1, GTMaterials.Iron, 1)
                 .formula("DeFeCu(Si(FeS2)5(CrAl2O3)Hg3)4")
                 .buildAndRegister();
@@ -314,9 +327,68 @@ public class AstroMaterials {
                 .color(0x8c2929).iconSet(MaterialIconSet.BRIGHT)
                 // .components().formula()
                 .buildAndRegister();
+
+        // GregTech
+        POLYAMIDE_IMIDE = new Material.Builder(
+                AstroCore.id("polyamide_imide"))
+                .langValue("Polyamide-Imide")
+                .polymer()
+                .liquid(1600)
+                .dust()
+                .ingot()
+                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME,
+                        MaterialFlags.GENERATE_FOIL)
+                // .toolStats(new ToolProperty(10.0F, 10.0F, 4096, 5,
+                // new GTToolType[] {GTToolType.SOFT_MALLET, GTToolType.PLUNGER}))
+                .fluidPipeProperties(1400, 1000, true, true, true, true)
+                .color(0xd9ac37).secondaryColor(0x54301a).iconSet(MaterialIconSet.DULL)
+                // .components().formula()
+                .buildAndRegister();
+
+        BLAZING_ETRIUM = new Material.Builder(
+                AstroCore.id("blazing_etrium"))
+                .langValue("Blazing Etrium")
+                .ingot()
+                .liquid()
+                .color(0x8ee8ed).iconSet(MaterialIconSet.METALLIC)
+                .blastTemp(1700, BlastProperty.GasTier.LOW, VA[GTValues.HV], 800)
+                .flags(MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_LONG_ROD,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROD,
+                        MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROTOR,
+                        MaterialFlags.DISABLE_ALLOY_PROPERTY,
+                        MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME,
+                        MaterialFlags.DISABLE_ALLOY_BLAST)
+                .cableProperties(V[GTValues.MV], 8, 0, true)
+                .rotorStats(150, 130, 3, 14000)
+                .components(AstroMaterials.ETRIUM, 2, GTMaterials.Blaze, 1)
+                .formula("(Ot3(AgAu))CS")
+                .buildAndRegister();
+
+        NIOTIC_CALORITE = new Material.Builder(
+                AstroCore.id("niotic_calorite"))
+                .langValue("Niotic Calorite")
+                .ingot()
+                .liquid()
+                .color(0xe4eb60).iconSet(MaterialIconSet.SHINY)
+                .blastTemp(1700, BlastProperty.GasTier.LOW, VA[GTValues.EV], 1000)
+                .flags(MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_LONG_ROD,
+                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROD,
+                        MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROTOR,
+                        MaterialFlags.DISABLE_ALLOY_PROPERTY,
+                        MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME,
+                        MaterialFlags.DISABLE_ALLOY_BLAST)
+                .cableProperties(V[GTValues.HV], 16, 0, true)
+                .rotorStats(220, 170, 3, 16000)
+                // .components()
+                // .formula("")
+                .buildAndRegister();
     }
 
     public static void init() {
+        // create
+        ingot.setIgnored(AstroMaterials.ANDESITE_ALLOY, () -> AllItems.ANDESITE_ALLOY.get());
+        block.setIgnored(AstroMaterials.ANDESITE_ALLOY, () -> AllBlocks.ANDESITE_ALLOY_BLOCK.get());
+
         // ad astra/extendra
         rawOre.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH);
         rawOreBlock.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH_BLOCK);
