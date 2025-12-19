@@ -5,14 +5,13 @@ import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
-import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
 
 import java.util.Locale;
 import java.util.function.BiFunction;
 
+import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
 
 public class AstroMachineUtils {
-
 
     public static MachineDefinition[] registerTieredMachines(String name,
                                                              BiFunction<IMachineBlockEntity, Integer, MetaMachine> factory,

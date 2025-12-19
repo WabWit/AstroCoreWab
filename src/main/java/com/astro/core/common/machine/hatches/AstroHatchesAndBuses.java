@@ -1,4 +1,4 @@
-package com.astro.core.common.machine;
+package com.astro.core.common.machine.hatches;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;

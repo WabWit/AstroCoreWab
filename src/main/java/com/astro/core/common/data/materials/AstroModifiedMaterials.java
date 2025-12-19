@@ -121,7 +121,6 @@ public class AstroModifiedMaterials {
                     case "fluid":
                         if (!material.hasProperty(PropertyKey.FLUID)) {
                             FluidProperty fluidProperty = new FluidProperty();
-                            // FluidProperty requires at least one fluid type to be registered
                             fluidProperty.getStorage().enqueueRegistration(
                                     com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.LIQUID,
                                     new com.gregtechceu.gtceu.api.fluids.FluidBuilder());
