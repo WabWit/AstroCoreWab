@@ -19,17 +19,7 @@ public class AstroMaterialModification {
     private static final int[] VA = GTValues.VA;
 
     // Material modification: Name, Flags
-    private static final Object[][] MATERIAL_MODIFIERS = {
-            { "titanium", new MaterialFlag[] { GENERATE_DENSE } },
-            { "neutronium", new MaterialFlag[] { GENERATE_DENSE } },
-            { "iron", new MaterialFlag[] { GENERATE_FOIL } },
-            { "potin", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING } },
-            { "brass", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING } },
-            { "invar", new MaterialFlag[] { GENERATE_RING, GENERATE_FOIL } },
-            { "red_alloy", new MaterialFlag[] { GENERATE_RING } },
-            { "zinc", new MaterialFlag[] { GENERATE_BOLT_SCREW } },
-            { "nickel", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING, GENERATE_ROD, GENERATE_BOLT_SCREW } }
-    };
+
 
     // Component dusts: Name, Color, Flags
     private static final Object[][] COMPONENT_DUSTS = {
@@ -69,9 +59,7 @@ public class AstroMaterialModification {
     };
 
     // Periodic table elements to modify: Name, Properties to add
-    private static final Object[][] PERIODIC_ELEMENTS = {
-            { "neptunium", new String[] { "ingot", "fluid" } }
-    };
+
     // Called during MaterialEvent to CREATE new materials
 
     public static void register() {
@@ -79,62 +67,11 @@ public class AstroMaterialModification {
         createSuperConductors();
     }
 
-    public static void modify() {
-        modifyPeriodicElements();
-        addMaterialFlags();
-    }
 
-    private static void modifyPeriodicElements() {
-        for (Object[] element : PERIODIC_ELEMENTS) {
-            String name = (String) element[0];
-            String[] types = (String[]) element[1];
 
-            Material material = getMaterialByName(name);
 
-            if (material == null) {
-                continue;
-            }
 
-            // Add properties
-            for (String type : types) {
-                switch (type) {
-                    case "ingot":
-                        if (!material.hasProperty(PropertyKey.INGOT)) {
-                            material.setProperty(PropertyKey.INGOT, new IngotProperty());
-                        }
-                        break;
-                    case "dust":
-                        if (!material.hasProperty(PropertyKey.DUST)) {
-                            material.setProperty(PropertyKey.DUST, new DustProperty());
-                        }
-                        break;
-                    case "fluid":
-                        if (!material.hasProperty(PropertyKey.FLUID)) {
-                            FluidProperty fluidProperty = new FluidProperty();
-                            // FluidProperty requires at least one fluid type to be registered
-                            fluidProperty.getStorage().enqueueRegistration(
-                                    com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.LIQUID,
-                                    new com.gregtechceu.gtceu.api.fluids.FluidBuilder());
-                            material.setProperty(PropertyKey.FLUID, fluidProperty);
-                        }
-                        break;
-                }
-            }
-        }
-    }
 
-    private static void addMaterialFlags() {
-        for (Object[] modifier : MATERIAL_MODIFIERS) {
-            String name = (String) modifier[0];
-            MaterialFlag[] flags = (MaterialFlag[]) modifier[1];
-
-            Material material = getMaterialByName(name);
-
-            if (material != null) {
-                material.addFlags(flags);
-            }
-        }
-    }
 
     private static void createComponentDusts() {
         for (Object[] dust : COMPONENT_DUSTS) {
@@ -192,19 +129,5 @@ public class AstroMaterialModification {
         }
     }
 
-    private static Material getMaterialByName(String name) {
-        return switch (name.toLowerCase()) {
-            case "titanium" -> GTMaterials.Titanium;
-            case "neutronium" -> GTMaterials.Neutronium;
-            case "iron" -> GTMaterials.Iron;
-            case "potin" -> GTMaterials.Potin;
-            case "brass" -> GTMaterials.Brass;
-            case "invar" -> GTMaterials.Invar;
-            case "red_alloy" -> GTMaterials.RedAlloy;
-            case "zinc" -> GTMaterials.Zinc;
-            case "nickel" -> GTMaterials.Nickel;
-            case "neptunium" -> GTMaterials.Neptunium;
-            default -> null;
-        };
+
     }
-}

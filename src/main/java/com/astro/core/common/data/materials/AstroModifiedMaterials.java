@@ -1,33 +1,150 @@
 package com.astro.core.common.data.materials;
 
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.FluidPipeProperties;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
+import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.*;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_BOLT_SCREW;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_FOIL;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_RING;
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_ROD;
 
 public class AstroModifiedMaterials {
 
-    public static void init() {
-        GTMaterials.RhodiumPlatedPalladium.setProperty(PropertyKey.FLUID_PIPE,
-                new FluidPipeProperties(5000,
-                        300,
-                        true,
-                        true,
-                        true,
-                        false));
+    private static final Object[][] MATERIAL_MODIFIERS = {
+            { "titanium", new MaterialFlag[] { GENERATE_DENSE } },
+            { "neutronium", new MaterialFlag[] { GENERATE_DENSE } },
+            { "iron", new MaterialFlag[] { GENERATE_FOIL } },
+            { "potin", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING } },
+            { "brass", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING } },
+            { "invar", new MaterialFlag[] { GENERATE_RING, GENERATE_FOIL } },
+            { "red_alloy", new MaterialFlag[] { GENERATE_RING } },
+            { "zinc", new MaterialFlag[] { GENERATE_BOLT_SCREW } },
+            { "nickel", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING, GENERATE_ROD, GENERATE_BOLT_SCREW } }
+    };
 
-        GTMaterials.NaquadahAlloy.setProperty(PropertyKey.FLUID_PIPE,
-                new FluidPipeProperties(10000,
-                        500,
-                        true,
-                        true,
-                        true,
-                        true));
-        GTMaterials.Darmstadtium.setProperty(PropertyKey.FLUID_PIPE,
-                new FluidPipeProperties(50000,
-                        1000,
-                        true,
-                        true,
-                        true,
-                        true));
+
+
+    private static void applyFluidPipeProperties() {
+        setFluidPipe(
+                GTMaterials.RhodiumPlatedPalladium,
+                5000, 300,
+                true, true, true, false
+        );
+
+        setFluidPipe(
+                GTMaterials.NaquadahAlloy,
+                10000, 500,
+                true, true, true, true
+        );
+
+        setFluidPipe(
+                GTMaterials.Darmstadtium,
+                50000, 1_000,
+                true, true, true, true
+        );
     }
+
+    private static void setFluidPipe(
+            Material material,
+            int capacity,
+            int temperature,
+            boolean gas,
+            boolean acid,
+            boolean plasma,
+            boolean cryogenic
+    ) {
+        material.setProperty(
+                PropertyKey.FLUID_PIPE,
+                new FluidPipeProperties(
+                        capacity,
+                        temperature,
+                        gas,
+                        acid,
+                        plasma,
+                        cryogenic
+                )
+        );
+    }
+
+
+
+        private static Material getMaterialByName(String name) {
+        return switch (name.toLowerCase()) {
+            case "titanium" -> GTMaterials.Titanium;
+            case "neutronium" -> GTMaterials.Neutronium;
+            case "iron" -> GTMaterials.Iron;
+            case "potin" -> GTMaterials.Potin;
+            case "brass" -> GTMaterials.Brass;
+            case "invar" -> GTMaterials.Invar;
+            case "red_alloy" -> GTMaterials.RedAlloy;
+            case "zinc" -> GTMaterials.Zinc;
+            case "nickel" -> GTMaterials.Nickel;
+            case "neptunium" -> GTMaterials.Neptunium;
+            default -> null;
+        };
+    }
+
+    private static void addMaterialFlags() {
+        for (Object[] modifier : MATERIAL_MODIFIERS) {
+            String name = (String) modifier[0];
+            MaterialFlag[] flags = (MaterialFlag[]) modifier[1];
+
+            Material material = getMaterialByName(name);
+
+            if (material != null) {
+                material.addFlags(flags);
+            }
+        }
+    }
+    private static final Object[][] PERIODIC_ELEMENTS = {
+            { "neptunium", new String[] { "ingot", "fluid" } }
+    };
+    private static void modifyPeriodicElements() {
+        for (Object[] element : PERIODIC_ELEMENTS) {
+            String name = (String) element[0];
+            String[] types = (String[]) element[1];
+
+            Material material = getMaterialByName(name);
+
+            if (material == null) {
+                continue;
+            }
+
+            // Add properties
+            for (String type : types) {
+                switch (type) {
+                    case "ingot":
+                        if (!material.hasProperty(PropertyKey.INGOT)) {
+                            material.setProperty(PropertyKey.INGOT, new IngotProperty());
+                        }
+                        break;
+                    case "dust":
+                        if (!material.hasProperty(PropertyKey.DUST)) {
+                            material.setProperty(PropertyKey.DUST, new DustProperty());
+                        }
+                        break;
+                    case "fluid":
+                        if (!material.hasProperty(PropertyKey.FLUID)) {
+                            FluidProperty fluidProperty = new FluidProperty();
+                            // FluidProperty requires at least one fluid type to be registered
+                            fluidProperty.getStorage().enqueueRegistration(
+                                    com.gregtechceu.gtceu.api.fluids.store.FluidStorageKeys.LIQUID,
+                                    new com.gregtechceu.gtceu.api.fluids.FluidBuilder());
+                            material.setProperty(PropertyKey.FLUID, fluidProperty);
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
+    public static void init() {
+        modifyPeriodicElements();
+        addMaterialFlags();
+        applyFluidPipeProperties();
+    }
+
 }

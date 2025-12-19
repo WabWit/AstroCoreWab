@@ -127,7 +127,7 @@ public class AstroCore {
      */
     private void modifyMaterials(PostMaterialEvent event) {
         AstroMaterialFlagAddition.register();
-        AstroMaterialModification.modify();
+
     }
 
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
