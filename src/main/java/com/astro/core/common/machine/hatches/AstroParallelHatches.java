@@ -7,8 +7,9 @@ import com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;
 
-import com.astro.core.AstroCore;
 import net.minecraft.network.chat.Component;
+
+import com.astro.core.AstroCore;
 
 import static com.astro.core.common.AstroMachineUtils.registerTieredMachines;
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -20,10 +21,6 @@ public class AstroParallelHatches {
     public static final MachineDefinition[] PARALLEL_HATCH = registerTieredMachines("parallel_hatch",
             ParallelHatchPartMachine::new,
             (tier, builder) -> builder
-                    .langValue(switch (tier) {
-                        case 9 -> "§4Quintessential";
-                        default -> "Simple"; // Should never be hit.
-                    } + " Parallel Control Hatch")
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.PARALLEL_HATCH)
                     .modelProperty(IS_FORMED, false)

@@ -4,13 +4,11 @@ import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
-import com.gregtechceu.gtceu.api.data.chemical.material.registry.MaterialRegistry;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 import com.gregtechceu.gtceu.common.data.GTCreativeModeTabs;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,6 +36,8 @@ import com.astro.core.datagen.AstroDatagen;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.tterrag.registrate.providers.ProviderType;
+import com.astro.core.datagen.lang.AstroLangHandler;
 
 import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
 
@@ -47,6 +47,9 @@ public class AstroCore {
 
     public static final String MOD_ID = "astrogreg";
     public static final Logger LOGGER = LogManager.getLogger();
+    static {
+        REGISTRATE.addDataGenerator(ProviderType.LANG, AstroLangHandler::init);
+    }
     public static RegistryEntry<CreativeModeTab> ASTRO_CREATIVE_TAB = REGISTRATE
             .defaultCreativeTab(AstroCore.MOD_ID,
                     builder -> builder
@@ -62,10 +65,11 @@ public class AstroCore {
         AstroBlocks.init();
         AstroItems.init();
         AstroMaterialFlags.init();
-        AstroDatagen.init();
+
     }
 
     public AstroCore() {
+        AstroDatagen.init();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
