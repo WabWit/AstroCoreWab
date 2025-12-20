@@ -47,7 +47,6 @@ public class AstroCore {
 
     public static final String MOD_ID = "astrogreg";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static MaterialRegistry MATERIAL_REGISTRY;
     public static RegistryEntry<CreativeModeTab> ASTRO_CREATIVE_TAB = REGISTRATE
             .defaultCreativeTab(AstroCore.MOD_ID,
                     builder -> builder
@@ -80,23 +79,14 @@ public class AstroCore {
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         modEventBus.addGenericListener(SoundEntry.class, this::registerSounds);
 
-        // Most other events are fired on Forge's bus.
-        // If we want to use annotations to register event listeners,
-        // we need to register our object like this!
         MinecraftForge.EVENT_BUS.register(this);
 
         REGISTRATE.registerRegistrate();
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
-        });
-    }
+    private void commonSetup(final FMLCommonSetupEvent event) {}
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
-    }
+    private void clientSetup(final FMLClientSetupEvent event) {}
 
     public static ResourceLocation id(String path) {
         return new ResourceLocation(MOD_ID, path);
@@ -106,24 +96,12 @@ public class AstroCore {
         GTCEuAPI.materialManager.createRegistry(AstroCore.MOD_ID);
     }
 
-    /**
-     * You will also need this for registering custom materials
-     * Call init() from your Material class(es) here
-     * 
-     * @param event
-     */
     private void addMaterials(MaterialEvent event) {
         AstroMaterials.register();
         AstroMaterials.init();
         AstroModifiedMaterials.init();
     }
 
-    /**
-     * (Optional) Used to modify pre-existing materials from GregTech
-     * AND create new custom materials
-     * 
-     * @param event
-     */
     private void modifyMaterials(PostMaterialEvent event) {
         AstroMaterialFlagAddition.register();
     }
@@ -132,12 +110,6 @@ public class AstroCore {
         AstroRecipeTypes.init();
     }
 
-    /**
-     * Used to register your own new machines.
-     * Call init() from your Machine class(es) here
-     * 
-     * @param event
-     */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         if (AstroConfigs.INSTANCE == null) {
             AstroConfigs.init();
@@ -149,12 +121,6 @@ public class AstroCore {
         AstroParallelHatches.init();
     }
 
-    /**
-     * Used to register your own new sounds
-     * Call init from your Sound class(es) here
-     * 
-     * @param event
-     */
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {
         AstroSoundEntries.init();
     }

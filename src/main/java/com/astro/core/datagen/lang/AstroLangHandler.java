@@ -1,10 +1,22 @@
 package com.astro.core.datagen.lang;
 
+import com.astro.core.AstroCore;
+import com.astro.core.common.data.configs.AstroConfigs;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
+import dev.toma.configuration.config.value.ConfigValue;
+import dev.toma.configuration.config.value.ObjectValue;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class AstroLangHandler {
 
-    public static void init(RegistrateLangProvider provider) {}
+    public static void init(RegistrateLangProvider provider) {
+        provider.add("astrogreg.machine.parallel_hatch_mk9.tooltip", "Allows to run up to 1024 recipes in parallel.");
+
+    }
+
 
     protected static void multiLang(RegistrateLangProvider provider, String key, String... values) {
         for (var i = 0; i < values.length; i++) {

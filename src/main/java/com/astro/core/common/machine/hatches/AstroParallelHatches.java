@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.common.machine.multiblock.part.ParallelHatchPartMachine;
 
 import com.astro.core.AstroCore;
+import net.minecraft.network.chat.Component;
 
 import static com.astro.core.common.AstroMachineUtils.registerTieredMachines;
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -20,7 +21,7 @@ public class AstroParallelHatches {
             ParallelHatchPartMachine::new,
             (tier, builder) -> builder
                     .langValue(switch (tier) {
-                        case 9 -> "Epic";
+                        case 9 -> "§4Quintessential";
                         default -> "Simple"; // Should never be hit.
                     } + " Parallel Control Hatch")
                     .rotationState(RotationState.ALL)
@@ -32,6 +33,8 @@ public class AstroParallelHatches {
                             .andThen((ctx, prov, model) -> {
                                 model.addReplaceableTextures("bottom", "top", "side");
                             }))
+                    .tooltips(Component.translatable("astrogreg.machine.parallel_hatch_mk" + tier + ".tooltip"),
+                            Component.translatable("gtceu.part_sharing.disabled"))
                     .register(),
             UHV);
 
