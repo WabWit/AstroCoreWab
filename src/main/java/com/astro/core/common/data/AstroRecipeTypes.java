@@ -16,6 +16,7 @@ public class AstroRecipeTypes {
 
     public static GTRecipeType AETHER_ENGINE_RECIPES;
     public static GTRecipeType MANA_BOILER_RECIPES;
+    public static GTRecipeType DEIONIZATION_RECIPES;
 
     public static void init() {
         AETHER_ENGINE_RECIPES = register("aether_engine", MULTIBLOCK)
@@ -30,5 +31,11 @@ public class AstroRecipeTypes {
                 .setProgressBar(AstroGUITextures.PROGRESS_BAR_BOILER_FUEL_MANA, DOWN_TO_UP)
                 .setMaxTooltips(1)
                 .setSound(GTSoundEntries.FURNACE);
+
+        DEIONIZATION_RECIPES = register("deionization", MULTIBLOCK)
+                .setMaxIOSize(2, 0, 1, 1)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.BATH)
+                .setEUIO(IO.IN);
     }
 }

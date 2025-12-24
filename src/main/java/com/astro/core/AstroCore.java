@@ -1,9 +1,13 @@
 package com.astro.core;
 
+import com.astro.core.common.data.materials.*;
+import com.astro.core.common.data.tag.AstroTagPrefix;
+import com.astro.core.common.machine.multiblock.AGEMultiMachines;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
@@ -23,10 +27,6 @@ import com.astro.core.common.data.AstroItems;
 import com.astro.core.common.data.AstroRecipeTypes;
 import com.astro.core.common.data.block.AstroBlocks;
 import com.astro.core.common.data.configs.AstroConfigs;
-import com.astro.core.common.data.materials.AstroMaterialFlagAddition;
-import com.astro.core.common.data.materials.AstroMaterialFlags;
-import com.astro.core.common.data.materials.AstroMaterials;
-import com.astro.core.common.data.materials.AstroModifiedMaterials;
 import com.astro.core.common.machine.crates.AstroCrates;
 import com.astro.core.common.machine.drums.AstroDrums;
 import com.astro.core.common.machine.hatches.AstroParallelHatches;
@@ -40,6 +40,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 @SuppressWarnings({ "all" })
 @Mod(AstroCore.MOD_ID)
@@ -69,6 +70,7 @@ public class AstroCore {
 
     public AstroCore() {
         AstroDatagen.init();
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
@@ -103,9 +105,13 @@ public class AstroCore {
         AstroMaterials.register();
         AstroMaterials.init();
         AstroModifiedMaterials.init();
+        AstroTagPrefix.init();
     }
 
     private void modifyMaterials(PostMaterialEvent event) {
+//        Netherite.setElements(AstroElements.NH);
+        GraniteRed.setMaterialARGB(0xb84a3b);
+        Blackstone.setMaterialARGB(0x383c42);
         AstroMaterialFlagAddition.register();
     }
 
@@ -122,6 +128,7 @@ public class AstroCore {
         AstroDrums.register();
         AstroCrates.register();
         AstroParallelHatches.init();
+        AGEMultiMachines.init();
     }
 
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {

@@ -10,6 +10,7 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_FOIL;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_RING;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_ROD;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.Netherite;
 
 public class AstroModifiedMaterials {
 
@@ -22,7 +23,8 @@ public class AstroModifiedMaterials {
             { "invar", new MaterialFlag[] { GENERATE_RING, GENERATE_FOIL } },
             { "red_alloy", new MaterialFlag[] { GENERATE_RING } },
             { "zinc", new MaterialFlag[] { GENERATE_BOLT_SCREW } },
-            { "nickel", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING, GENERATE_ROD, GENERATE_BOLT_SCREW } }
+            { "nickel", new MaterialFlag[] { GENERATE_FOIL, GENERATE_RING, GENERATE_ROD, GENERATE_BOLT_SCREW } },
+            { "netherite", new MaterialFlag[] { GENERATE_BOLT_SCREW, GENERATE_ROUND, GENERATE_DENSE, GENERATE_ROD, GENERATE_PLATE, GENERATE_GEAR, DISABLE_DECOMPOSITION } }
     };
 
     private static void applyFluidPipeProperties() {
@@ -73,6 +75,7 @@ public class AstroModifiedMaterials {
             case "zinc" -> GTMaterials.Zinc;
             case "nickel" -> GTMaterials.Nickel;
             case "neptunium" -> GTMaterials.Neptunium;
+            case "netherite" -> GTMaterials.Netherite;
             default -> null;
         };
     }
@@ -91,7 +94,9 @@ public class AstroModifiedMaterials {
     }
 
     private static final Object[][] PERIODIC_ELEMENTS = {
-            { "neptunium", new String[] { "ingot", "fluid" } }
+            { "neptunium", new String[] { "ingot", "fluid" } },
+            { "selenium", new String[] {"dust"}},
+            { "netherite", new String[] { "fluid"}}
     };
 
     private static void modifyPeriodicElements() {

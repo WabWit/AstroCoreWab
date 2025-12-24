@@ -17,6 +17,15 @@
     ],
     "subtitle": "astrogreg.subtitle.culinary_fabricator"
   },
+  "manafield_simulator": {
+    "sounds": [
+      {
+        "type": "file",
+        "name": "astrogreg:manafield_simulator"
+      }
+    ],
+    "subtitle": "astrogreg.subtitle.manafield_simulator"
+  },
   "rune_engraver": {
     "sounds": [
       {

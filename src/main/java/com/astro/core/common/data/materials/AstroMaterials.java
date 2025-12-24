@@ -3,19 +3,20 @@ package com.astro.core.common.data.materials;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag;
-import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags;
 import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.BlastProperty;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.astro.core.AstroCore;
 import com.astro.core.common.GTVoltage;
 import com.drd.ad_extendra.common.registry.ModBlocks;
+import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllItems;
 import earth.terrarium.adastra.common.registry.ModItems;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import org.zeith.botanicadds.init.BlocksBA;
 import org.zeith.botanicadds.init.ItemsBA;
 import owmii.powah.block.Blcks;
@@ -23,16 +24,11 @@ import owmii.powah.item.Itms;
 import vazkii.botania.common.block.BotaniaBlocks;
 import vazkii.botania.common.item.BotaniaItems;
 
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_FINE_WIRE;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_FOIL;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_FRAME;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_GEAR;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_LONG_ROD;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_RING;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_ROTOR;
-import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.GENERATE_SMALL_GEAR;
+
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 
 @SuppressWarnings("all")
 public class AstroMaterials {
@@ -41,10 +37,9 @@ public class AstroMaterials {
     private static final int[] VA = GTValues.VA;
 
     public static Material UNKNOWN;
+    public static Material NETHERITE;
+    public static Material ANCIENT_DEBRIS;
     public static Material ANDESITE_ALLOY;
-    public static Material BLAZING_ETRIUM;
-    public static Material NIOTIC_CALORITE;
-    public static Material POLYAMIDE_IMIDE;
     public static Material DESH;
     public static Material CALORITE;
     public static Material OSTRUM;
@@ -69,9 +64,28 @@ public class AstroMaterials {
     public static Material ELEMENTIUM;
     public static Material GAIASTEEL;
     public static Material AETHER;
-
+    public static Material POLYAMIDE_IMIDE;
+    public static Material BLAZING_ETRIUM;
+    public static Material NIOTIC_CALORITE;
+    public static Material DEIONIZED_WATER;
+    public static Material DIVINYLBENZENE;
+    public static Material DIETHYLBENZENE;
+    public static Material ASTEROID_STONE;
+    public static Material MERCURY_STONE;
+    public static Material VENUS_STONE;
+    public static Material MOON_STONE;
+    public static Material MARS_STONE;
+    public static Material CERES_STONE;
+    public static Material JUPITER_STONE;
+    public static Material SATURN_STONE;
+    public static Material URANUS_STONE;
+    public static Material NEPTUNE_STONE;
+    public static Material PLUTO_STONE;
+    public static Material LIVINGROCK;
+    public static Material LIVINGCLAY;
+    public static Material ACORN;
     public static void register() {
-        // Unknown
+        // Misc
         UNKNOWN = new Material.Builder(
                 AstroCore.id("unknown"))
                 .langValue("Unknown")
@@ -79,14 +93,24 @@ public class AstroMaterials {
                 .color(0xffffff)
                 .buildAndRegister();
 
+        ANCIENT_DEBRIS = new Material.Builder(
+                AstroCore.id("ancient_debris"))
+                .langValue("Ancient Debris")
+                .element(AstroElements.AD)
+                .color(0x7B5E57).secondaryColor(0x1F0F0A)
+                .flags(NO_ORE_SMELTING, NO_SMELTING)
+                .iconSet(ROUGH)
+                .ore()
+                .buildAndRegister();
+
         // Create
         ANDESITE_ALLOY = new Material.Builder(
                 AstroCore.id("andesite_alloy"))
                 .langValue("Andesite Alloy")
                 .ingot()
-                .components(GTMaterials.Iron, 1, AstroMaterials.UNKNOWN, 1).formula("Fe?")
-                .color(0xa6a08f).iconSet(MaterialIconSet.ROUGH)
-                .flags(MaterialFlags.DISABLE_DECOMPOSITION)
+                .components(Iron, 1, UNKNOWN, 1).formula("Fe?")
+                .color(0xa6a08f).iconSet(ROUGH)
+                .flags(DISABLE_DECOMPOSITION)
                 .buildAndRegister();
 
         // Ad Astra/Extendra Materials
@@ -95,19 +119,19 @@ public class AstroMaterials {
                 .langValue("Desh")
                 .ingot()
                 .ore()
-                .liquid()
+                .liquid(1650)
                 .element(AstroElements.DE).formula("De")
-                .color(0xD68D4D).secondaryColor(0xba5143).iconSet(MaterialIconSet.DULL)
+                .color(0xD68D4D).secondaryColor(0xba5143).iconSet(DULL)
                 .buildAndRegister();
 
         OSTRUM = new Material.Builder(
                 AstroCore.id("ostrum"))
                 .langValue("Ostrum")
                 .ingot()
-                .liquid()
+                .liquid(1811)
                 .ore()
                 .element(AstroElements.OT).formula("Ot")
-                .color(0xa76b72).iconSet(MaterialIconSet.METALLIC)
+                .color(0xa76b72).iconSet(METALLIC)
                 .buildAndRegister();
 
         CALORITE = new Material.Builder(
@@ -115,63 +139,63 @@ public class AstroMaterials {
                 .langValue("Calorite")
                 .ingot()
                 .element(AstroElements.CT).formula("Ct")
-                .color(0xc94d4e).iconSet(MaterialIconSet.METALLIC)
+                .color(0xc94d4e).iconSet(METALLIC)
                 .buildAndRegister();
 
         ETRIUM = new Material.Builder(
                 AstroCore.id("etrium"))
                 .langValue("Etrium")
                 .ingot()
-                .liquid()
-                .flags(MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_FINE_WIRE)
-                .components(AstroMaterials.OSTRUM, 3, GTMaterials.Electrum, 2).formula("AgAuOt3")
-                .color(0x82dbbb).iconSet(MaterialIconSet.BRIGHT)
+                .liquid(1337)
+                .flags(GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .components(OSTRUM, 3, Electrum, 2).formula("AgAuOt3")
+                .color(0x82dbbb).iconSet(BRIGHT)
                 .buildAndRegister();
 
         SATURLYTE = new Material.Builder(
                 AstroCore.id("saturlyte"))
                 .langValue("Saturlyte")
                 .ingot()
-                .liquid()
-                .flags(MaterialFlags.GENERATE_PLATE)
+                .liquid(2133)
+                .flags(GENERATE_PLATE)
                 .element(AstroElements.SY).formula("Sy")
-                .color(0x9a32e7).iconSet(MaterialIconSet.SHINY)
+                .color(0x9a32e7).iconSet(SHINY)
                 .buildAndRegister();
 
         JUPERIUM = new Material.Builder(
                 AstroCore.id("juperium"))
                 .langValue("Juperium")
                 .ingot()
-                .liquid()
-                .flags(MaterialFlags.GENERATE_PLATE)
+                .liquid(2221)
+                .flags(GENERATE_PLATE)
                 .element(AstroElements.JP).formula("Jp")
-                .color(0x69bbee).iconSet(MaterialIconSet.BRIGHT)
+                .color(0x69bbee).iconSet(BRIGHT)
                 .buildAndRegister();
 
         KRONALIUM = new Material.Builder(
                 AstroCore.id("kronalium"))
                 .langValue("Kronalium")
                 .ore()
-                .components(AstroMaterials.SATURLYTE, 3, AstroMaterials.CALORITE, 4, GTMaterials.Oxygen, 7)
+                .components(SATURLYTE, 3, CALORITE, 4, Oxygen, 7)
                 .formula("Sy3Ct4O7")
-                .color(0x6a1233).iconSet(MaterialIconSet.METALLIC)
+                .color(0x6a1233).iconSet(METALLIC)
                 .buildAndRegister();
 
         JOVITE = new Material.Builder(
                 AstroCore.id("jovite"))
                 .langValue("Jovite")
                 .ore()
-                .components(AstroMaterials.JUPERIUM, 1, AstroMaterials.CALORITE, 1).formula("JpCt")
-                .color(0x196b9e).iconSet(MaterialIconSet.DULL)
+                .components(JUPERIUM, 1, CALORITE, 1).formula("JpCt")
+                .color(0x196b9e).iconSet(DULL)
                 .buildAndRegister();
 
         ELECTROLYTE = new Material.Builder(
                 AstroCore.id("electrolyte"))
                 .langValue("Electrolyte")
                 .ingot()
-                .plasma()
-                .liquid()
-                .color(0x6fd422).iconSet(MaterialIconSet.RADIOACTIVE)
+                .plasma(11656)
+                .liquid(4556)
+                .color(0x6fd422).iconSet(RADIOACTIVE)
                 .element(AstroElements.E).formula("⚡")
                 .buildAndRegister();
 
@@ -180,15 +204,15 @@ public class AstroMaterials {
                 AstroCore.id("energized_steel"))
                 .langValue("Energized Steel")
                 .ingot()
-                .liquid()
-                .color(0xbaa172).iconSet(MaterialIconSet.SHINY)
-                .flags(MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_LONG_ROD,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROD,
-                        MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROTOR,
-                        MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME)
+                .liquid(1412)
+                .color(0xbaa172).iconSet(SHINY)
+                .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD,
+                        GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_ROD,
+                        GENERATE_SMALL_GEAR, GENERATE_ROTOR,
+                        GENERATE_FINE_WIRE, GENERATE_RING, GENERATE_FRAME)
                 .cableProperties(32, 4, 0, true)
                 .rotorStats(150, 130, 3, 12000)
-                .components(AstroMaterials.DESH, 1, GTMaterials.RedAlloy, 1, GTMaterials.Iron, 1)
+                .components(DESH, 1, RedAlloy, 1, Iron, 1)
                 .formula("DeFeCu(Si(FeS2)5(CrAl2O3)Hg3)4")
                 .buildAndRegister();
 
@@ -196,9 +220,9 @@ public class AstroMaterials {
                 AstroCore.id("dielectric"))
                 .langValue("Dielectric")
                 .color(0x000000)
-                .flags(MaterialFlags.DISABLE_MATERIAL_RECIPES, MaterialFlags.DISABLE_DECOMPOSITION)
+                .flags(DISABLE_MATERIAL_RECIPES, DISABLE_DECOMPOSITION)
                 .dust()
-                .components(GTMaterials.Carbon, 3, GTMaterials.Blaze, 1, GTMaterials.Clay, 2)
+                .components(Carbon, 3, Blaze, 1, Clay, 2)
                 .buildAndRegister();
 
         // Applied Energistics
@@ -207,28 +231,29 @@ public class AstroMaterials {
                 .langValue("Sky Stone")
                 .dust()
                 .element(AstroElements.SS).formula("✨")
-                .color(0xffffff).iconSet(MaterialIconSet.ROUGH)
+                .flags(DISABLE_MATERIAL_RECIPES)
+                .color(0xffffff).iconSet(ROUGH)
                 .buildAndRegister();
 
         FLUIX = new Material.Builder(
                 AstroCore.id("fluix"))
                 .langValue("Fluix")
                 .gem()
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_LENS, MaterialFlags.CRYSTALLIZABLE,
-                        MaterialFlags.DISABLE_DECOMPOSITION)
-                .components(GTMaterials.CertusQuartz, 1, GTMaterials.Redstone, 1, GTMaterials.Obsidian, 1)
+                .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE,
+                        DISABLE_DECOMPOSITION)
+                .components(CertusQuartz, 1, Redstone, 1, Obsidian, 1)
                 .formula("(SiO2)(Si(FeS2)5(CrAl2O3)Hg3)(MgFeSi2O4)")
-                .color(0xC090F7).secondaryColor(0x2A1E5A).iconSet(MaterialIconSet.CERTUS)
+                .color(0xC090F7).secondaryColor(0x2A1E5A).iconSet(CERTUS)
                 .buildAndRegister();
 
         FLUIX_PEARL = new Material.Builder(
                 AstroCore.id("fluix_pearl"))
                 .langValue("Fluix Pearl")
                 .gem()
-                .components(AstroMaterials.FLUIX, 8, GTMaterials.EnderEye, 1)
+                .components(FLUIX, 8, EnderEye, 1)
                 .formula("((SiO2)(Si(FeS2)5(CrAl2O3)Hg3)(MgFeSi2O4))8((BeK4N5)(CS))")
-                .flags(MaterialFlags.CRYSTALLIZABLE, MaterialFlags.DISABLE_DECOMPOSITION)
-                .color(0x4E3C95).secondaryColor(0x181F3C).iconSet(MaterialIconSet.OPAL)
+                .flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
+                .color(0x4E3C95).secondaryColor(0x181F3C).iconSet(OPAL)
                 .buildAndRegister();
 
         FUTURA_ALLOY = new Material.Builder(
@@ -237,11 +262,11 @@ public class AstroMaterials {
                 .ingot()
                 .fluid()
                 .blastTemp(1700, BlastProperty.GasTier.LOW, 400, 1200)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_DENSE, MaterialFlags.DISABLE_ALLOY_BLAST,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE,
-                        MaterialFlags.DISABLE_ALLOY_PROPERTY)
-                .color(0xebb7ea).secondaryColor(0x000000).iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.StainlessSteel, 4, AstroMaterials.SKY_STONE, 1)
+                .flags(GENERATE_FRAME, GENERATE_DENSE, DISABLE_ALLOY_BLAST,
+                        GENERATE_PLATE, GENERATE_ROD, MORTAR_GRINDABLE,
+                        DISABLE_ALLOY_PROPERTY)
+                .color(0xebb7ea).secondaryColor(0x000000).iconSet(SHINY)
+                .components(StainlessSteel, 4, SKY_STONE, 1)
                 .formula("(Fe6CrMnNi)4✨")
                 .buildAndRegister();
 
@@ -250,7 +275,7 @@ public class AstroMaterials {
                 AstroCore.id("mana"))
                 .langValue("Mana")
                 .dust()
-                .flags(MaterialFlags.DISABLE_MATERIAL_RECIPES)
+                .flags(DISABLE_MATERIAL_RECIPES)
                 .element(AstroElements.MN).formula("✨")
                 .color(0x00fbff)
                 .buildAndRegister();
@@ -267,20 +292,18 @@ public class AstroMaterials {
                 AstroCore.id("mana_diamond"))
                 .langValue("Mana Diamond")
                 .gem()
-                .flags(MaterialFlags.GENERATE_LENS, MaterialFlags.GENERATE_PLATE, MaterialFlags.CRYSTALLIZABLE,
-                        MaterialFlags.DISABLE_DECOMPOSITION)
-                .components(GTMaterials.Carbon, 1, AstroMaterials.MANA, 1).formula("C✨")
-                .color(0x47eaed).iconSet(MaterialIconSet.DIAMOND)
+                .flags(GENERATE_LENS, GENERATE_PLATE, CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
+                .components(Carbon, 1, MANA, 1).formula("C✨")
+                .color(0x47eaed).iconSet(DIAMOND)
                 .buildAndRegister();
 
         DRAGONSTONE = new Material.Builder(
                 AstroCore.id("dragonstone"))
                 .langValue("Dragonstone")
                 .gem()
-                .flags(MaterialFlags.GENERATE_LENS, MaterialFlags.GENERATE_PLATE, MaterialFlags.CRYSTALLIZABLE,
-                        MaterialFlags.DISABLE_DECOMPOSITION)
-                .components(GTMaterials.Carbon, 1, AstroMaterials.AETHER, 1).formula("C✨")
-                .color(0xed64d4).iconSet(MaterialIconSet.DIAMOND)
+                .flags(GENERATE_LENS, GENERATE_PLATE, CRYSTALLIZABLE, DISABLE_DECOMPOSITION)
+                .components(Carbon, 1, AETHER, 1).formula("C✨")
+                .color(0xed64d4).iconSet(DIAMOND)
                 .buildAndRegister();
 
         MANASTEEL = new Material.Builder(
@@ -289,19 +312,18 @@ public class AstroMaterials {
                 .ingot()
                 .fluid()
                 .blastTemp(1000, BlastProperty.GasTier.LOW, 120, 400)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.MORTAR_GRINDABLE,
-                        MaterialFlags.DISABLE_ALLOY_BLAST, MaterialFlags.DISABLE_ALLOY_PROPERTY)
+                .flags(GENERATE_FRAME, GENERATE_GEAR, DISABLE_DECOMPOSITION, GENERATE_PLATE,
+                        GENERATE_ROD, MORTAR_GRINDABLE, DISABLE_ALLOY_BLAST, DISABLE_ALLOY_PROPERTY)
                 .fluidPipeProperties(1855, 150, true, false, false, false)
-                .color(0x228cc9).iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Steel, 1, AstroMaterials.MANA, 1).formula("Fe✨")
+                .color(0x228cc9).iconSet(SHINY)
+                .components(Steel, 1, MANA, 1).formula("Fe✨")
                 .buildAndRegister();
 
         DORMANT_TERRASTEEL = new Material.Builder(
                 AstroCore.id("dormant_terrasteel"))
                 .langValue("Dormant §2Terrasteel§r")
                 .dust()
-                .components(GTMaterials.Steel, 1, GTMaterials.Beryllium, 1, GTMaterials.Aluminium, 1).formula("FeBeAl")
+                .components(Steel, 1, Beryllium, 1, Aluminium, 1).formula("FeBeAl")
                 .color(0x128719)
                 .buildAndRegister();
 
@@ -311,13 +333,12 @@ public class AstroMaterials {
                 .ingot()
                 .fluid()
                 .blastTemp(1700, BlastProperty.GasTier.LOW, (int) GTVoltage.VA.MV, 800)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST,
-                        MaterialFlags.DISABLE_ALLOY_PROPERTY)
+                .flags(GENERATE_FRAME, GENERATE_GEAR, DISABLE_DECOMPOSITION, GENERATE_PLATE,
+                        GENERATE_ROD, DISABLE_ALLOY_BLAST, DISABLE_ALLOY_PROPERTY)
                 .fluidPipeProperties(2142, 225, true, false, false, false)
-                .color(0x159e1e).iconSet(MaterialIconSet.BRIGHT)
-                .components(GTMaterials.Steel, 1, GTMaterials.Beryllium, 1, GTMaterials.Aluminium, 1,
-                        AstroMaterials.MANA, 1)
+                .color(0x159e1e).iconSet(BRIGHT)
+                .components(Steel, 1, Beryllium, 1, Aluminium, 1,
+                        MANA, 1)
                 .formula("FeBeAl✨")
                 .buildAndRegister();
 
@@ -327,11 +348,10 @@ public class AstroMaterials {
                 .ingot()
                 .fluid()
                 .blastTemp(3500, BlastProperty.GasTier.MID, (int) GTVoltage.VA.IV, 1600)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD)
+                .flags(GENERATE_FRAME, GENERATE_GEAR, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD)
                 .fluidPipeProperties(2426, 300, true, false, false, false)
-                .color(0xed64d4).iconSet(MaterialIconSet.SHINY)
-                .components(GTMaterials.Titanium, 3, GTMaterials.Rhodium, 2, AstroMaterials.DRAGONSTONE, 1)
+                .color(0xed64d4).iconSet(SHINY)
+                .components(Titanium, 3, Rhodium, 2, DRAGONSTONE, 1)
                 .formula("Ti3Rh2C✨")
                 .buildAndRegister();
 
@@ -341,10 +361,9 @@ public class AstroMaterials {
                 .ingot()
                 .fluid()
                 .blastTemp(7100, BlastProperty.GasTier.HIGH, (int) GTVoltage.VA.ZPM, 2400)
-                .flags(MaterialFlags.GENERATE_FRAME, MaterialFlags.GENERATE_GEAR, MaterialFlags.DISABLE_DECOMPOSITION,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.DISABLE_ALLOY_BLAST)
+                .flags(GENERATE_FRAME, GENERATE_GEAR, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, DISABLE_ALLOY_BLAST)
                 .fluidPipeProperties(3776, 400, true, true, true, true)
-                .color(0x8c2929).iconSet(MaterialIconSet.BRIGHT)
+                .color(0x8c2929).iconSet(BRIGHT)
                 // .components().formula()
                 .buildAndRegister();
 
@@ -356,12 +375,11 @@ public class AstroMaterials {
                 .liquid(1600)
                 .dust()
                 .ingot()
-                .flags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_ROD, MaterialFlags.GENERATE_FRAME,
-                        MaterialFlags.GENERATE_FOIL)
+                .flags(GENERATE_PLATE, GENERATE_ROD, GENERATE_FRAME, GENERATE_FOIL)
                 // .toolStats(new ToolProperty(10.0F, 10.0F, 4096, 5,
                 // new GTToolType[] {GTToolType.SOFT_MALLET, GTToolType.PLUNGER}))
                 .fluidPipeProperties(1400, 1000, true, true, true, true)
-                .color(0xd9ac37).secondaryColor(0x54301a).iconSet(MaterialIconSet.DULL)
+                .color(0xd9ac37).secondaryColor(0x54301a).iconSet(DULL)
                 // .components().formula()
                 .buildAndRegister();
 
@@ -369,18 +387,16 @@ public class AstroMaterials {
                 AstroCore.id("blazing_etrium"))
                 .langValue("Blazing Etrium")
                 .ingot()
-                .liquid()
-                .color(0x8ee8ed).secondaryColor(0x00b0ba).iconSet(MaterialIconSet.METALLIC)
+                .liquid(1410)
+                .color(0x8ee8ed).secondaryColor(0x00b0ba).iconSet(METALLIC)
                 .blastTemp(1700, BlastProperty.GasTier.LOW, VA[GTValues.HV], 800)
-                .flags(MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_LONG_ROD,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROD,
-                        MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROTOR,
-                        MaterialFlags.DISABLE_ALLOY_PROPERTY,
-                        MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME,
-                        MaterialFlags.DISABLE_ALLOY_BLAST)
+                .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_PLATE,
+                        GENERATE_SMALL_GEAR, GENERATE_ROD, GENERATE_SMALL_GEAR, GENERATE_ROTOR,
+                        DISABLE_ALLOY_PROPERTY, GENERATE_FINE_WIRE, GENERATE_RING, GENERATE_FRAME,
+                        DISABLE_ALLOY_BLAST)
                 .cableProperties(V[GTValues.MV], 8, 0, true)
                 .rotorStats(150, 130, 3, 14000)
-                .components(AstroMaterials.ETRIUM, 2, GTMaterials.Blaze, 1)
+                .components(ETRIUM, 2, Blaze, 1)
                 .formula("(Ot3(AgAu))CS")
                 .buildAndRegister();
 
@@ -388,152 +404,180 @@ public class AstroMaterials {
                 AstroCore.id("niotic_calorite"))
                 .langValue("Niotic Calorite")
                 .ingot()
-                .liquid()
-                .color(0xe4eb60).secondaryColor(0x9ea334).iconSet(MaterialIconSet.BRIGHT)
+                .liquid(1780)
+                .color(0xe4eb60).secondaryColor(0x9ea334).iconSet(BRIGHT)
                 .blastTemp(1700, BlastProperty.GasTier.LOW, VA[GTValues.EV], 1000)
-                .flags(MaterialFlags.GENERATE_FOIL, MaterialFlags.GENERATE_GEAR, MaterialFlags.GENERATE_LONG_ROD,
-                        MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROD,
-                        MaterialFlags.GENERATE_SMALL_GEAR, MaterialFlags.GENERATE_ROTOR,
-                        MaterialFlags.DISABLE_ALLOY_PROPERTY,
-                        MaterialFlags.GENERATE_FINE_WIRE, MaterialFlags.GENERATE_RING, MaterialFlags.GENERATE_FRAME,
-                        MaterialFlags.DISABLE_ALLOY_BLAST)
+                .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD,
+                        GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_ROD,
+                        GENERATE_SMALL_GEAR, GENERATE_ROTOR, DISABLE_ALLOY_PROPERTY,
+                        GENERATE_FINE_WIRE, GENERATE_RING, GENERATE_FRAME, DISABLE_ALLOY_BLAST)
                 .cableProperties(V[GTValues.HV], 16, 0, true)
                 .rotorStats(220, 170, 3, 16000)
                 // .components()
                 // .formula("")
                 .buildAndRegister();
 
+        DEIONIZED_WATER = new Material.Builder(
+                AstroCore.id("deionized_water"))
+                .flags(DISABLE_DECOMPOSITION)
+                .liquid(new FluidBuilder().customStill().temperature(273))
+                .components(Water, 1)
+                .buildAndRegister();
+
+        DIETHYLBENZENE = new Material.Builder(
+                AstroCore.id("diethylbenzene"))
+                .liquid(450)
+                .flags(DISABLE_DECOMPOSITION)
+                .color(0xf0ee92)
+                .buildAndRegister().setFormula("C10H14", true);
+
+        DIVINYLBENZENE = new Material.Builder(
+                AstroCore.id("divinylbenzene"))
+                .dust()
+                .flags(DISABLE_DECOMPOSITION)
+                .color(0xebe99d).secondaryColor(0x96943f)
+                .buildAndRegister().setFormula("C10H10", true);
+
         createComponentDusts();
         createSuperConductors();
     }
 
     public static void init() {
+        //vanilla
+        block.setIgnored(Netherite, Blocks.NETHERITE_BLOCK);
+
+        rawOreBlock.setIgnored(ANCIENT_DEBRIS, Blocks.ANCIENT_DEBRIS);
+        rawOre.setIgnored(ANCIENT_DEBRIS, Items.NETHERITE_SCRAP);
+
         // create
-        ingot.setIgnored(AstroMaterials.ANDESITE_ALLOY, () -> AllItems.ANDESITE_ALLOY.get());
-        block.setIgnored(AstroMaterials.ANDESITE_ALLOY, () -> AllBlocks.ANDESITE_ALLOY_BLOCK.get());
+        ingot.setIgnored(ANDESITE_ALLOY, () -> AllItems.ANDESITE_ALLOY.get());
+        block.setIgnored(ANDESITE_ALLOY, () -> AllBlocks.ANDESITE_ALLOY_BLOCK.get());
 
         // ad astra/extendra
-        rawOre.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH);
-        rawOreBlock.setIgnored(AstroMaterials.DESH, ModItems.RAW_DESH_BLOCK);
-        block.setIgnored(AstroMaterials.DESH, ModItems.DESH_BLOCK);
-        ingot.setIgnored(AstroMaterials.DESH, ModItems.DESH_INGOT);
-        nugget.setIgnored(AstroMaterials.DESH, ModItems.DESH_NUGGET);
+        rawOre.setIgnored(DESH, ModItems.RAW_DESH);
+        rawOreBlock.setIgnored(DESH, ModItems.RAW_DESH_BLOCK);
+        block.setIgnored(DESH, ModItems.DESH_BLOCK);
+        ingot.setIgnored(DESH, ModItems.DESH_INGOT);
+        nugget.setIgnored(DESH, ModItems.DESH_NUGGET);
 
-        rawOre.setIgnored(AstroMaterials.OSTRUM, ModItems.RAW_OSTRUM);
-        rawOreBlock.setIgnored(AstroMaterials.OSTRUM, ModItems.RAW_OSTRUM_BLOCK);
-        block.setIgnored(AstroMaterials.OSTRUM, ModItems.OSTRUM_BLOCK);
-        ingot.setIgnored(AstroMaterials.OSTRUM, ModItems.OSTRUM_INGOT);
-        nugget.setIgnored(AstroMaterials.OSTRUM, ModItems.OSTRUM_NUGGET);
+        rawOre.setIgnored(OSTRUM, ModItems.RAW_OSTRUM);
+        rawOreBlock.setIgnored(OSTRUM, ModItems.RAW_OSTRUM_BLOCK);
+        block.setIgnored(OSTRUM, ModItems.OSTRUM_BLOCK);
+        ingot.setIgnored(OSTRUM, ModItems.OSTRUM_INGOT);
+        nugget.setIgnored(OSTRUM, ModItems.OSTRUM_NUGGET);
 
-        rawOre.setIgnored(AstroMaterials.CALORITE, ModItems.RAW_CALORITE);
-        rawOreBlock.setIgnored(AstroMaterials.CALORITE, ModItems.RAW_CALORITE_BLOCK);
-        block.setIgnored(AstroMaterials.CALORITE, ModItems.CALORITE_BLOCK);
-        ingot.setIgnored(AstroMaterials.CALORITE, ModItems.CALORITE_INGOT);
-        nugget.setIgnored(AstroMaterials.CALORITE, ModItems.CALORITE_NUGGET);
+        rawOre.setIgnored(CALORITE, ModItems.RAW_CALORITE);
+        rawOreBlock.setIgnored(CALORITE, ModItems.RAW_CALORITE_BLOCK);
+        block.setIgnored(CALORITE, ModItems.CALORITE_BLOCK);
+        ingot.setIgnored(CALORITE, ModItems.CALORITE_INGOT);
+        nugget.setIgnored(CALORITE, ModItems.CALORITE_NUGGET);
 
-        block.setIgnored(AstroMaterials.ETRIUM, ModItems.ETRIUM_BLOCK);
-        ingot.setIgnored(AstroMaterials.ETRIUM, ModItems.ETRIUM_INGOT);
-        nugget.setIgnored(AstroMaterials.ETRIUM, ModItems.ETRIUM_NUGGET);
+        block.setIgnored(ETRIUM, ModItems.ETRIUM_BLOCK);
+        ingot.setIgnored(ETRIUM, ModItems.ETRIUM_INGOT);
+        nugget.setIgnored(ETRIUM, ModItems.ETRIUM_NUGGET);
 
-        block.setIgnored(AstroMaterials.JUPERIUM, ModBlocks.JUPERIUM_BLOCK);
-        nugget.setIgnored(AstroMaterials.JUPERIUM, com.drd.ad_extendra.common.registry.ModItems.JUPERIUM_NUGGET);
+        block.setIgnored(JUPERIUM, ModBlocks.JUPERIUM_BLOCK);
+        nugget.setIgnored(JUPERIUM, com.drd.ad_extendra.common.registry.ModItems.JUPERIUM_NUGGET);
 
-        block.setIgnored(AstroMaterials.SATURLYTE, ModBlocks.SATURLYTE_BLOCK);
-        nugget.setIgnored(AstroMaterials.SATURLYTE, com.drd.ad_extendra.common.registry.ModItems.SATURLYTE_NUGGET);
+        block.setIgnored(SATURLYTE, ModBlocks.SATURLYTE_BLOCK);
+        nugget.setIgnored(SATURLYTE, com.drd.ad_extendra.common.registry.ModItems.SATURLYTE_NUGGET);
 
         // powah
-        ingot.setIgnored(AstroMaterials.ENERGIZED_STEEL, Itms.ENERGIZED_STEEL);
-        block.setIgnored(AstroMaterials.ENERGIZED_STEEL, Blcks.ENERGIZED_STEEL);
+        ingot.setIgnored(ENERGIZED_STEEL, Itms.ENERGIZED_STEEL);
+        block.setIgnored(ENERGIZED_STEEL, Blcks.ENERGIZED_STEEL);
 
-        dust.setIgnored(AstroMaterials.DIELECTRIC, () -> Itms.DIELECTRIC_PASTE.get());
+        dust.setIgnored(DIELECTRIC, () -> Itms.DIELECTRIC_PASTE.get());
 
         // ae2
-        dust.setIgnored(AstroMaterials.SKY_STONE, AEItems.SKY_DUST);
+        dust.setIgnored(SKY_STONE, AEItems.SKY_DUST);
 
-        block.setIgnored(AstroMaterials.FLUIX, AEBlocks.FLUIX_BLOCK);
-        dust.setIgnored(AstroMaterials.FLUIX, AEItems.FLUIX_DUST);
-        gem.setIgnored(AstroMaterials.FLUIX, AEItems.FLUIX_CRYSTAL);
+        block.setIgnored(FLUIX, AEBlocks.FLUIX_BLOCK);
+        dust.setIgnored(FLUIX, AEItems.FLUIX_DUST);
+        gem.setIgnored(FLUIX, AEItems.FLUIX_CRYSTAL);
 
-        gem.setIgnored(AstroMaterials.FLUIX_PEARL, AEItems.FLUIX_PEARL);
+        gem.setIgnored(FLUIX_PEARL, AEItems.FLUIX_PEARL);
+
+        gem.setIgnored(CertusQuartz, AEItems.CERTUS_QUARTZ_CRYSTAL);
+        block.setIgnored(CertusQuartz, AEBlocks.QUARTZ_BLOCK);
 
         // botania/additions
-        dust.setIgnored(AstroMaterials.MANA, () -> BotaniaItems.manaPowder);
+        dust.setIgnored(MANA, () -> BotaniaItems.manaPowder);
 
-        gem.setIgnored(AstroMaterials.MANA_DIAMOND, () -> BotaniaItems.manaDiamond);
-        block.setIgnored(AstroMaterials.MANA_DIAMOND, () -> BotaniaBlocks.manaDiamondBlock);
+        gem.setIgnored(MANA_DIAMOND, () -> BotaniaItems.manaDiamond);
+        block.setIgnored(MANA_DIAMOND, () -> BotaniaBlocks.manaDiamondBlock);
 
-        gem.setIgnored(AstroMaterials.DRAGONSTONE, () -> BotaniaItems.dragonstone);
-        block.setIgnored(AstroMaterials.DRAGONSTONE, () -> BotaniaBlocks.dragonstoneBlock);
+        gem.setIgnored(DRAGONSTONE, () -> BotaniaItems.dragonstone);
+        block.setIgnored(DRAGONSTONE, () -> BotaniaBlocks.dragonstoneBlock);
 
-        ingot.setIgnored(AstroMaterials.MANASTEEL, () -> BotaniaItems.manaSteel);
-        nugget.setIgnored(AstroMaterials.MANASTEEL, () -> BotaniaItems.manasteelNugget);
-        block.setIgnored(AstroMaterials.MANASTEEL, () -> BotaniaBlocks.manasteelBlock);
+        ingot.setIgnored(MANASTEEL, () -> BotaniaItems.manaSteel);
+        nugget.setIgnored(MANASTEEL, () -> BotaniaItems.manasteelNugget);
+        block.setIgnored(MANASTEEL, () -> BotaniaBlocks.manasteelBlock);
 
-        ingot.setIgnored(AstroMaterials.TERRASTEEL, () -> BotaniaItems.terrasteel);
-        block.setIgnored(AstroMaterials.TERRASTEEL, () -> BotaniaBlocks.terrasteelBlock);
-        nugget.setIgnored(AstroMaterials.TERRASTEEL, () -> BotaniaItems.terrasteelNugget);
+        ingot.setIgnored(TERRASTEEL, () -> BotaniaItems.terrasteel);
+        block.setIgnored(TERRASTEEL, () -> BotaniaBlocks.terrasteelBlock);
+        nugget.setIgnored(TERRASTEEL, () -> BotaniaItems.terrasteelNugget);
 
-        ingot.setIgnored(AstroMaterials.ELEMENTIUM, () -> BotaniaItems.elementium);
-        block.setIgnored(AstroMaterials.ELEMENTIUM, () -> BotaniaBlocks.elementiumBlock);
-        nugget.setIgnored(AstroMaterials.ELEMENTIUM, () -> BotaniaItems.elementium);
+        ingot.setIgnored(ELEMENTIUM, () -> BotaniaItems.elementium);
+        block.setIgnored(ELEMENTIUM, () -> BotaniaBlocks.elementiumBlock);
+        nugget.setIgnored(ELEMENTIUM, () -> BotaniaItems.elementium);
 
-        ingot.setIgnored(AstroMaterials.GAIASTEEL, ItemsBA.GAIASTEEL_INGOT);
-        nugget.setIgnored(AstroMaterials.GAIASTEEL, ItemsBA.GAIASTEEL_NUGGET);
-        block.setIgnored(AstroMaterials.GAIASTEEL, BlocksBA.GAIASTEEL_BLOCK);
+        ingot.setIgnored(GAIASTEEL, ItemsBA.GAIASTEEL_INGOT);
+        nugget.setIgnored(GAIASTEEL, ItemsBA.GAIASTEEL_NUGGET);
+        block.setIgnored(GAIASTEEL, BlocksBA.GAIASTEEL_BLOCK);
     }
 
     // ID, Color 1, Color 2, Icon Set, Material Flags
     private static final Object[][] COMPONENT_DUSTS = {
-            { "asteroid_stone", 0x964491, 0x70276b, MaterialIconSet.ROUGH,
+            { "asteroid_stone", 0x964491, 0x70276b, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "mercury_stone", 0x844751, 0x4a263b, MaterialIconSet.ROUGH,
+            { "mercury_stone", 0x844751, 0x4a263b, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "venus_stone", 0xdfb271, 0xb3763e, MaterialIconSet.ROUGH,
+            { "venus_stone", 0xdfb271, 0xb3763e, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "moon_stone", 0x506869, 0x3f474c, MaterialIconSet.ROUGH,
+            { "moon_stone", 0x506869, 0x3f474c, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "mars_stone", 0xcd9360, 0xb76f53, MaterialIconSet.ROUGH,
+            { "mars_stone", 0xcd9360, 0xb76f53, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "ceres_stone", 0x7b7b7b, 0x4d4d4d, MaterialIconSet.ROUGH,
+            { "ceres_stone", 0x7b7b7b, 0x4d4d4d, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "jupiter_stone", 0xd5af97, 0x9f7961, MaterialIconSet.ROUGH,
+            { "jupiter_stone", 0xd5af97, 0x9f7961, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "saturn_stone", 0xfeeeb8, 0xd9b975, MaterialIconSet.ROUGH,
+            { "saturn_stone", 0xfeeeb8, 0xd9b975, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "uranus_stone", 0x79adda, 0xaff4ff, MaterialIconSet.ROUGH,
+            { "uranus_stone", 0x79adda, 0xaff4ff, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "neptune_stone", 0x8092d2, 0x343ea5, MaterialIconSet.ROUGH,
+            { "neptune_stone", 0x8092d2, 0x343ea5, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "pluto_stone", 0xf0b467, 0xffd682, MaterialIconSet.ROUGH,
+            { "pluto_stone", 0xf0b467, 0xffd682, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "livingrock", 0xc9c2b1, 0x948e7f, MaterialIconSet.ROUGH,
+            { "livingrock", 0xc9c2b1, 0x948e7f, ROUGH,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "livingclay", 0xc9c2e7, 0x4eaeb5, MaterialIconSet.FINE,
+            { "livingclay", 0xc9c2e7, 0x4eaeb5, FINE,
                     new MaterialFlag[] { DISABLE_DECOMPOSITION } },
-            { "acorn", 0xe0b677, 0x734d15, MaterialIconSet.FINE,
-                    new MaterialFlag[] { DISABLE_DECOMPOSITION } }
+            { "acorn", 0xe0b677, 0x734d15, FINE,
+                    new MaterialFlag[] { DISABLE_DECOMPOSITION } },
     };
 
     // SuperCons: ID, Name, Color 1, Color 2, Icon Set, Blast Properties, Cable Properties, Rotor Properties
     private static final Object[][] SUPERCONDUCTORS = {
-            { "spirited_uranium", "Spirited Uranium", 0xcb74cc, 0xffebff, MaterialIconSet.RADIOACTIVE,
+            { "spirited_uranium", "Spirited Uranium", 0xcb74cc, 0xffebff, RADIOACTIVE,
                     new Object[] { 3500, BlastProperty.GasTier.LOW, 7680, 1200 },
                     new Object[] { V[GTValues.EV], 24, 0, true },
                     new Object[] { 300, 190, 3, 18000 } },
-            { "nitro_flux", "Nitro-Flux", 0x332f94, 0x110c9c, MaterialIconSet.SHINY,
+            { "nitro_flux", "Nitro-Flux", 0x332f94, 0x110c9c, SHINY,
                     new Object[] { 4400, BlastProperty.GasTier.MID, 30720, 1400 },
                     new Object[] { V[GTValues.IV], 32, 0, true },
                     new Object[] { 450, 220, 3, 20000 } },
-            { "juperiosaturlytide", "Juperio-Saturlytide", 0xf66999, 0xfa3779, MaterialIconSet.BRIGHT,
+            { "juperiosaturlytide", "Juperio-Saturlytide", 0xf66999, 0xfa3779, BRIGHT,
                     new Object[] { 5300, BlastProperty.GasTier.MID, 122880, 1600 },
                     new Object[] { V[GTValues.LuV], 48, 0, true },
                     new Object[] { 700, 260, 3, 24000 } },
-            { "gaiaforged_naquadah", "Gaia-Forged Naquadah", 0x7a1d29, 0x000000, MaterialIconSet.SHINY,
+            { "gaiaforged_naquadah", "Gaia-Forged Naquadah", 0x7a1d29, 0x000000, SHINY,
                     new Object[] { 7100, BlastProperty.GasTier.HIGH, 491520, 1800 },
                     new Object[] { V[GTValues.ZPM], 64, 0, true },
                     new Object[] { 1100, 380, 3, 32000 } },
             { "neptunium_molybdenum_selenide", "Neptunium Molybdenum Selenide", 0x088a5c, 0x65f4fc,
-                    MaterialIconSet.RADIOACTIVE,
+                    RADIOACTIVE,
                     new Object[] { 10000, BlastProperty.GasTier.HIGHER, 1966080, 2000 },
                     new Object[] { V[GTValues.UV], 96, 0, true },
                     new Object[] { 2000, 550, 3, 48000 } }
@@ -547,14 +591,30 @@ public class AstroMaterials {
             MaterialIconSet icon = (MaterialIconSet) dust[3];
             MaterialFlag[] flags = (MaterialFlag[]) dust[4];
 
-            // Create materials without components for now
-            new Material.Builder(AstroCore.id(name))
+            Material material = new Material.Builder(AstroCore.id(name))
                     .dust()
                     .color(color)
                     .secondaryColor(color2)
                     .iconSet(icon)
                     .flags(flags)
                     .buildAndRegister();
+
+            switch (name) {
+                case "asteroid_stone" -> ASTEROID_STONE = material;
+                case "mercury_stone" -> MERCURY_STONE = material;
+                case "venus_stone" -> VENUS_STONE = material;
+                case "moon_stone" -> MOON_STONE = material;
+                case "mars_stone" -> MARS_STONE = material;
+                case "ceres_stone" -> CERES_STONE = material;
+                case "jupiter_stone" -> JUPITER_STONE = material;
+                case "saturn_stone" -> SATURN_STONE = material;
+                case "uranus_stone" -> URANUS_STONE = material;
+                case "neptune_stone" -> NEPTUNE_STONE = material;
+                case "pluto_stone" -> PLUTO_STONE = material;
+                case "livingrock" -> LIVINGROCK = material;
+                case "livingclay" -> LIVINGCLAY = material;
+                case "acorn" -> ACORN = material;
+            }
         }
     }
 
