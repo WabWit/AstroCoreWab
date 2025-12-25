@@ -1,5 +1,6 @@
 package com.astro.core;
 
+import com.astro.core.common.data.tag.AstroTagPrefix;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
@@ -37,7 +38,9 @@ public class AstroGregGTAddon implements IGTAddon {
     }
 
     @Override
-    public void registerTagPrefixes() {}
+    public void registerTagPrefixes() {
+        AstroTagPrefix.init();
+    }
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {

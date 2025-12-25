@@ -1,13 +1,11 @@
 package com.astro.core;
 
 import com.astro.core.common.data.materials.*;
-import com.astro.core.common.data.tag.AstroTagPrefix;
 import com.astro.core.common.machine.multiblock.AGEMultiMachines;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.MaterialRegistryEvent;
 import com.gregtechceu.gtceu.api.data.chemical.material.event.PostMaterialEvent;
-import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
@@ -105,7 +103,6 @@ public class AstroCore {
         AstroMaterials.register();
         AstroMaterials.init();
         AstroModifiedMaterials.init();
-        AstroTagPrefix.init();
     }
 
     private void modifyMaterials(PostMaterialEvent event) {
