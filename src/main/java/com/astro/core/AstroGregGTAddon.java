@@ -28,18 +28,14 @@ public class AstroGregGTAddon implements IGTAddon {
     }
 
     @Override
-    public void initializeAddon() {
-        AstroBlocks.init();
-    }
+    public void initializeAddon() {AstroBlocks.init();}
+
+    @Override
+    public void registerTagPrefixes() {AstroTagPrefix.init();}
 
     @Override
     public String addonModId() {
         return AstroCore.MOD_ID;
-    }
-
-    @Override
-    public void registerTagPrefixes() {
-        AstroTagPrefix.init();
     }
 
     @Override
