@@ -46,7 +46,9 @@ public class AstroCore {
 
     public static final String MOD_ID = "astrogreg";
     public static final Logger LOGGER = LogManager.getLogger();
-    static { REGISTRATE.addDataGenerator(ProviderType.LANG, AstroLangHandler::init); }
+    static {
+        REGISTRATE.addDataGenerator(ProviderType.LANG, AstroLangHandler::init);
+    }
     public static RegistryEntry<CreativeModeTab> ASTRO_CREATIVE_TAB = REGISTRATE
             .defaultCreativeTab(AstroCore.MOD_ID,
                     builder -> builder

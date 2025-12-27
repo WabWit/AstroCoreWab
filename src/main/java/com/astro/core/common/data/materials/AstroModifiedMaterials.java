@@ -23,13 +23,14 @@ public class AstroModifiedMaterials {
             { "netherite",
                     new MaterialFlag[] { GENERATE_BOLT_SCREW, GENERATE_ROUND, GENERATE_DENSE, GENERATE_ROD,
                             GENERATE_PLATE, GENERATE_GEAR, GENERATE_LONG_ROD, DISABLE_DECOMPOSITION } },
-            {"tin", new MaterialFlag[] { GENERATE_SLEEVE } },
-            {"steel", new MaterialFlag[] { GENERATE_SLEEVE } },
-            {"stainless_steel", new MaterialFlag[] { GENERATE_SLEEVE } },
-            {"tungsten_carbide", new MaterialFlag[] { GENERATE_SLEEVE } },
-            {"hsse", new MaterialFlag[] { GENERATE_SLEEVE } },
-            {"osmiridium", new MaterialFlag[] { GENERATE_SLEEVE } },
-            {"tritanium", new MaterialFlag[] { GENERATE_SLEEVE } }
+            { "tin", new MaterialFlag[] { GENERATE_SLEEVE } },
+            { "steel", new MaterialFlag[] { GENERATE_SLEEVE } },
+            { "stainless_steel", new MaterialFlag[] { GENERATE_SLEEVE } },
+            { "tungsten_carbide", new MaterialFlag[] { GENERATE_SLEEVE } },
+            { "hsss", new MaterialFlag[] { GENERATE_SLEEVE } },
+            { "osmiridium", new MaterialFlag[] { GENERATE_SLEEVE } },
+            { "tritanium", new MaterialFlag[] { GENERATE_SLEEVE } },
+            { "graphene", new MaterialFlag[] { GENERATE_FINE_WIRE } }
     };
 
     private static void applyFluidPipeProperties() {
@@ -85,9 +86,10 @@ public class AstroModifiedMaterials {
             case "steel" -> GTMaterials.Steel;
             case "stainless_steel" -> GTMaterials.StainlessSteel;
             case "tungsten_carbide" -> GTMaterials.TungstenCarbide;
-            case "hsse" -> GTMaterials.HSSE;
+            case "hsss" -> GTMaterials.HSSS;
             case "osmiridium" -> GTMaterials.Osmiridium;
             case "tritanium" -> GTMaterials.Tritanium;
+            case "graphene" -> GTMaterials.Graphene;
             default -> null;
         };
     }

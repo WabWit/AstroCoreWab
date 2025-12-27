@@ -1,6 +1,5 @@
 package com.astro.core;
 
-import com.astro.core.common.data.recipe.run.AstroSleeveRecipeRunner;
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
@@ -10,6 +9,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import com.astro.core.common.data.AstroMachineRecipes;
 import com.astro.core.common.data.block.AstroBlocks;
 import com.astro.core.common.data.materials.AstroElements;
+import com.astro.core.common.data.recipe.run.AstroSleeveRecipeRunner;
 import com.astro.core.common.data.recipe.run.AstroWireRecipeRunner;
 import com.astro.core.common.data.tag.AstroTagPrefix;
 import com.astro.core.common.machine.crates.AstroCrateRecipes;

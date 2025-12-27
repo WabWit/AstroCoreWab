@@ -1,9 +1,11 @@
 package com.astro.core.common.data.recipe.run;
 
-import com.astro.core.common.data.recipe.generated.AstroSleeveRecipeHandler;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
 import net.minecraft.data.recipes.FinishedRecipe;
+
+import com.astro.core.common.data.recipe.generated.AstroSleeveRecipeHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
