@@ -89,6 +89,10 @@ public class AstroLangHandler {
         provider.add("astrogreg.machine.kinetic_machine.su_input", "Stress Demand: %s / %s Available");
         provider.add("config.jade.plugin_astrogreg.kinetic_steam_engine_info", "Kinetic Steam Engine Info");
 
+        provider.add("gtceu.kinetic_combustion_generator", "Kinetic Combustion");
+        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip",
+                "Produces 600,000 §6Stress Units§r at 256 RPM while running recipes.");
+
         // custom hatch tooltips
         provider.add("astrogreg.machine.water_hatch.tooltip", "§eAccepted Fluid:§r Water");
 

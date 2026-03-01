@@ -23,8 +23,10 @@ import org.slf4j.LoggerFactory;
 import java.util.Locale;
 import java.util.function.Consumer;
 
+import static com.astro.core.common.data.recipe.AstroRecipeTypes.KINETIC_COMBUSTION_RECIPES;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.CRYSTALLIZABLE;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
+import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.AUTOCLAVE_RECIPES;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ORE_WASHER_RECIPES;
 
@@ -50,6 +52,81 @@ public class AstroRecipes {
                 processCrushedOre(provider, property, material);
             }
         });
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("naphtha")
+                .inputFluids(Naphtha.getFluid(1))
+                .duration(40)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("sulfuric_light_fuel")
+                .inputFluids(SulfuricLightFuel.getFluid(4))
+                .duration(20)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("methanol")
+                .inputFluids(Methanol.getFluid(4))
+                .duration(32)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("ethanol")
+                .inputFluids(Ethanol.getFluid(1))
+                .duration(24)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("octane")
+                .inputFluids(Octane.getFluid(2))
+                .duration(20)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("biodiesel")
+                .inputFluids(BioDiesel.getFluid(1))
+                .duration(32)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("light_fuel")
+                .inputFluids(LightFuel.getFluid(1))
+                .duration(40)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("diesel")
+                .inputFluids(Diesel.getFluid(1))
+                .duration(60)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("cetane_diesel")
+                .inputFluids(CetaneBoostedDiesel.getFluid(2))
+                .duration(180)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("rocket_fuel")
+                .inputFluids(RocketFuel.getFluid(16))
+                .duration(500)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("gasoline")
+                .inputFluids(Gasoline.getFluid(1))
+                .duration(200)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("high_octane_gasoline")
+                .inputFluids(HighOctaneGasoline.getFluid(1))
+                .duration(400)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("toluene")
+                .inputFluids(Toluene.getFluid(1))
+                .duration(40)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("light_oil")
+                .inputFluids(OilLight.getFluid(32))
+                .duration(20)
+                .save(provider);
+
+        KINETIC_COMBUSTION_RECIPES.recipeBuilder("raw_oil")
+                .inputFluids(RawOil.getFluid(64))
+                .duration(60)
+                .save(provider);
     }
 
     // steam blast furnace recipe builder

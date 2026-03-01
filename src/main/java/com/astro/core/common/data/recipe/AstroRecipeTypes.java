@@ -17,6 +17,7 @@ import com.astro.core.client.AstroSoundEntries;
 
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.DOWN_TO_UP;
+import static com.lowdragmc.lowdraglib.gui.texture.ProgressTexture.FillDirection.LEFT_TO_RIGHT;
 
 public class AstroRecipeTypes {
 
@@ -26,12 +27,13 @@ public class AstroRecipeTypes {
     public static GTRecipeType RUNE_INSCRIPTION_RECIPES;
     public static GTRecipeType STEAM_BLAST_FURNACE_RECIPES;
     public static GTRecipeType FARADAY_GENERATOR_RECIPES;
+    public static GTRecipeType KINETIC_COMBUSTION_RECIPES;
 
     public static void init() {
         AETHER_ENGINE_RECIPES = register("aether_engine", MULTIBLOCK)
                 .setMaxIOSize(0, 0, 1, 1)
                 .setSlotOverlay(false, false, GuiTextures.BOX_OVERLAY)
-                .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR, LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.TURBINE)
                 .setEUIO(IO.OUT);
 
@@ -43,7 +45,7 @@ public class AstroRecipeTypes {
 
         DEIONIZATION_RECIPES = register("deionization", MULTIBLOCK)
                 .setMaxIOSize(2, 0, 1, 1)
-                .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.BATH)
                 .setEUIO(IO.IN)
                 .setIconSupplier(() -> {
@@ -60,7 +62,7 @@ public class AstroRecipeTypes {
         RUNE_INSCRIPTION_RECIPES = register("rune_inscription", MULTIBLOCK) // Bgame was Here
                 .setEUIO(IO.IN)
                 .setMaxIOSize(9, 1, 3, 0)
-                .setProgressBar(AstroGUITextures.PROGRESS_BAR_RUNE, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setProgressBar(AstroGUITextures.PROGRESS_BAR_RUNE, LEFT_TO_RIGHT)
                 .setSound(AstroSoundEntries.RUNE_ENGRAVER)
                 .setIconSupplier(() -> {
                     try {
@@ -76,7 +78,7 @@ public class AstroRecipeTypes {
         STEAM_BLAST_FURNACE_RECIPES = register("steam_blast_furnace", MULTIBLOCK)
                 .setMaxIOSize(1, 1, 0, 0)
                 .setProgressBar(GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR,
-                        ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                        LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.FURNACE)
                 .setEUIO(IO.IN)
                 .setIconSupplier(() -> {
@@ -92,8 +94,15 @@ public class AstroRecipeTypes {
 
         FARADAY_GENERATOR_RECIPES = register("faraday_generator", MULTIBLOCK)
                 .setMaxIOSize(1, 1, 0, 0)
-                .setProgressBar(GuiTextures.PROGRESS_BAR_MAGNET, ProgressTexture.FillDirection.LEFT_TO_RIGHT)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_MAGNET, LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.REPLICATOR)
+                .setEUIO(IO.OUT);
+        
+        KINETIC_COMBUSTION_RECIPES = register("kinetic_combustion_generator", MULTIBLOCK)
+                .setMaxIOSize(0, 0, 1, 0)
+                .setSlotOverlay(false, true, true, GuiTextures.FURNACE_OVERLAY_2)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.COMBUSTION)
                 .setEUIO(IO.OUT);
     }
 }

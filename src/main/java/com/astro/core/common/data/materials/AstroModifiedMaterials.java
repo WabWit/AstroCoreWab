@@ -48,7 +48,8 @@ public class AstroModifiedMaterials {
             { "pvc", new MaterialFlag[] { GENERATE_FRAME } },
             { "magneo", new MaterialFlag[] { GENERATE_PLATE } },
             { "samarium", new MaterialFlag[] { GENERATE_PLATE } },
-            { "magsam", new MaterialFlag[] { GENERATE_PLATE } }
+            { "magsam", new MaterialFlag[] { GENERATE_PLATE } },
+            { "wrought_iron", new MaterialFlag[] { GENERATE_ROTOR } }
 
     };
 

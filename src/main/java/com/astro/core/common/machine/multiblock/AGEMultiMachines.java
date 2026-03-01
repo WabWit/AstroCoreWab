@@ -1,5 +1,6 @@
 package com.astro.core.common.machine.multiblock;
 
+import com.astro.core.common.machine.multiblock.kinetic.KineticCombustionEngineMachine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.capability.recipe.ItemRecipeCapability;
@@ -337,6 +338,34 @@ public class AGEMultiMachines {
                     AstroCore.id("block/multiblock/mixer"))
                     .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::makeRecipeFluidAreaRender)))
             .register();
+
+    public static final MultiblockMachineDefinition KINETIC_COMBUSTION_ENGINE = REGISTRATE
+            .multiblock("kinetic_combustion_engine", KineticCombustionEngineMachine::new)
+            .langValue("Kinetic Combustion Engine")
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(AstroRecipeTypes.KINETIC_COMBUSTION_RECIPES)
+            .recipeModifier(GTRecipeModifiers.BATCH_MODE)
+            .appearanceBlock(CASING_TITANIUM_STABLE)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXX", "XKX", "XXX")
+                    .aisle("XHX", "HGH", "XHX")
+                    .aisle("XHX", "HGH", "XHX")
+                    .aisle("EEE", "E@E", "EEE")
+                    .where("@", controller(blocks(definition.get())))
+                    .where("H", blocks(CASING_TITANIUM_STABLE.get())
+                            .or(abilities(MAINTENANCE).setExactLimit(1))
+                            .or(abilities(IMPORT_FLUIDS).setMaxGlobalLimited(2))
+                            .or(abilities(MUFFLER).setExactLimit(1)))
+                    .where("E", blocks(CASING_ENGINE_INTAKE.get()))
+                    .where("K", blocks(KINETIC_OUTPUT_HATCH.get()))
+                    .where("X", blocks(CASING_TITANIUM_STABLE.get()))
+                    .where("G", blocks(CASING_TITANIUM_GEARBOX.get()))
+                    .build())
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
+                    GTCEu.id("block/multiblock/generator/large_combustion_engine"))
+//            .tooltips(Component.translatable("astrogreg.machine.kinetic_combustion_engine.tooltip"))
+            .register();
+
 
     // Industrial Processing Machines
     public static final MultiblockMachineDefinition INDUSTRIAL_AUTOCLAVE = REGISTRATE
