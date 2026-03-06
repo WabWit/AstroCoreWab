@@ -93,8 +93,12 @@ public class AstroLangHandler {
         provider.add("astrogreg.machine.kinetic_machine.su_input", "Stress Demand: %s / %s Available");
         provider.add("config.jade.plugin_astrogreg.kinetic_steam_engine_info", "Kinetic Steam Engine Info");
 
-        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip",
-                "Produces 600,000 §6Stress Units§r at 256 RPM while running recipes.");
+        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_0", "Combustion Torque Generator");
+        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_1", "§eBase Production:§r 450,000 §6Stress Units");
+        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_2", "Supply 20mB/s §7of Oxygen to produce up to§r 1,000,000 §6Stress Units§r§7 at§r 2x §7fuel consumption.");
+        provider.add("config.jade.plugin_astrogreg.kinetic_combustion_engine_info", "Kinetic Combustion Engine Info");
+
+        provider.add("astrogreg.machine.overdrive_combustion_engine.tooltip", "Overdriven Chemical Ignition Manifold");
 
         // custom hatch tooltips
         provider.add("astrogreg.machine.water_hatch.tooltip", "§eAccepted Fluid:§r Water");
@@ -139,6 +143,13 @@ public class AstroLangHandler {
         provider.add("astrogreg.machine.cwu_generator.inactive.no_power_lube", "§cInactive:§r No Power & No Lubricant");
         provider.add("astrogreg.machine.cwu_generator.inactive.no_power", "§cInactive:§r Insufficient Power");
         provider.add("astrogreg.machine.cwu_generator.inactive.no_lube", "§cInactive:§r No Lubricant");
+
+        // item lang
+        provider.add("item.astrogreg.fluix_boule.tooltip", "§7Raw Circuit");
+        provider.add("item.astrogreg.fluix_wafer.tooltip", "§7Raw Circuit");
+        provider.add("item.astrogreg.ae_wafer.tooltip", "§7Raw Arithmetic Circuit");
+        provider.add("item.astrogreg.ae_chip.tooltip", "§7Applied Energistics Chip");
+        provider.add("item.astrogreg.fluix_arithmetic_core.tooltip", "§7Arithmetic Processing Unit");
 
         // miscellaneous
         multilineLang(provider, "astrogreg.gui.configurator_slot.tooltip",

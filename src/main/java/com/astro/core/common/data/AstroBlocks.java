@@ -57,6 +57,8 @@ public class AstroBlocks {
     public static BlockEntry<Block> MACHINE_CASING_ULTIMET;
     public static BlockEntry<Block> MACHINE_CASING_ROSE_GOLD;
 
+    public static BlockEntry<ActiveBlock> FUTURA_COMPUTER_CASING;
+
     public static BlockEntry<Block> INDUSTRIAL_PROCESSING_CORE_MK1;
     public static BlockEntry<Block> INDUSTRIAL_PROCESSING_CORE_MK2;
     public static BlockEntry<Block> INDUSTRIAL_PROCESSING_CORE_MK3;
@@ -136,6 +138,8 @@ public class AstroBlocks {
                 "casings/industrial_casings/machine_casing_bismuth_bronze", "Industrial Bismuth Bronze Casing");
         MACHINE_CASING_COBALT_BRASS = createCasing("industrial_cobalt_brass_casing",
                 "casings/industrial_casings/machine_casing_cobalt_brass", "Industrial Cobalt Brass Casing");
+        FUTURA_COMPUTER_CASING = createEmissiveFunctionalCasing("futura_computer_housing",
+                "astrogreg:functional_casings/futura_computer_housing", "Futura Computer Casing");
         MACHINE_CASING_RHODIUM_PLATED_PALLADIUM = createCasing(
                 "machine_casing_pristine_rhodium_plated_palladium",
                 "casings/machine_casing_pristine_rhodium_plated_palladium",
@@ -194,6 +198,7 @@ public class AstroBlocks {
                 "Bronze Crushing Wheels");
         ULTIMATE_INTAKE_CASING = createFunctionalCasing("machine_casing_ultimate_engine_intake",
                 "astrogreg:functional_casings/machine_casing_ultimate_engine_intake", "Ultimate Engine Intake Casing");
+
 
         // 6. Solar Cells
         SOLAR_CELL = createSolar("solar_cell_silver", "Solar Cell MK I");
@@ -268,6 +273,7 @@ public class AstroBlocks {
         return REGISTRATE.block(info.name + "_casing", ActiveBlock::new)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .addLayer(() -> RenderType::cutoutMipped)
+                .addLayer(() -> RenderType::translucent)
                 .blockstate((ctx, prov) -> {
                     ModelFile inactive = prov.models().cubeBottomTop(ctx.getName(), info.side, info.bottom, info.top);
                     ModelFile active = prov.models()
@@ -290,21 +296,54 @@ public class AstroBlocks {
                 "block/casings/" + (sideTexture.contains(":") ? sideTexture.split(":")[1] : sideTexture));
         return REGISTRATE.block(id, ActiveBlock::new)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate((ctx, prov) -> {
                     ModelFile inactive = prov.models()
-                            .cube(ctx.getName(), side, AstroCore.id("block/casings/functional_casings/" + id), side,
-                                    side, side, side)
+                            .cube(ctx.getName(), side, AstroCore.id("block/casings/functional_casings/" + id), side, side, side, side)
                             .texture("particle", side);
                     ModelFile active = prov.models()
                             .cube(ctx.getName() + "_active", side,
-                                    AstroCore.id("block/casings/functional_casings/" + id + "_active"), side, side,
-                                    side, side)
+                                    AstroCore.id("block/casings/functional_casings/" + id + "_active"), side, side, side, side)
                             .texture("particle", side);
                     prov.getVariantBuilder(ctx.getEntry())
                             .partialState().with(GTBlockStateProperties.ACTIVE, false).modelForState()
                             .modelFile(inactive).addModel()
                             .partialState().with(GTBlockStateProperties.ACTIVE, true).modelForState()
                             .modelFile(active).addModel();
+                })
+                .lang(name)
+                .item(BlockItem::new).build().register();
+    }
+
+    private static BlockEntry<ActiveBlock> createEmissiveFunctionalCasing(String id, String sideTexture, String name) {
+        ResourceLocation side = new ResourceLocation(sideTexture.contains(":") ? sideTexture.split(":")[0] : "gtceu",
+                "block/casings/" + (sideTexture.contains(":") ? sideTexture.split(":")[1] : sideTexture));
+        ResourceLocation funcTex = AstroCore.id("block/casings/functional_casings/" + id);
+        ResourceLocation funcTexActive = AstroCore.id("block/casings/functional_casings/" + id + "_active");
+        ResourceLocation funcTexEmissive = AstroCore.id("block/casings/functional_casings/" + id + "_active_emissive");
+
+        return REGISTRATE.block(id, ActiveBlock::new)
+                .initialProperties(() -> Blocks.IRON_BLOCK)
+                .addLayer(() -> RenderType::cutoutMipped)
+                .blockstate((ctx, prov) -> {
+                    ModelFile inactive = prov.models()
+                            .cube(ctx.getName(), side, side, funcTex, funcTex, funcTex, funcTex)
+                            .texture("particle", side);
+
+                    ModelFile active = prov.models().cubeAll(ctx.getName() + "_active", funcTexActive);
+
+                    ModelFile emissive = prov.models()
+                            .getBuilder(ctx.getName() + "_active_emissive")
+                            .parent(new ModelFile.UncheckedModelFile(AstroCore.id("block/cube_emissive")))
+                            .texture("all", funcTexEmissive.toString());
+
+                    prov.getMultipartBuilder(ctx.getEntry())
+                            .part().modelFile(inactive).addModel()
+                            .condition(GTBlockStateProperties.ACTIVE, false).end()
+                            .part().modelFile(active).addModel()
+                            .condition(GTBlockStateProperties.ACTIVE, true).end()
+                            .part().modelFile(emissive).addModel()
+                            .condition(GTBlockStateProperties.ACTIVE, true).end();
                 })
                 .lang(name)
                 .item(BlockItem::new).build().register();

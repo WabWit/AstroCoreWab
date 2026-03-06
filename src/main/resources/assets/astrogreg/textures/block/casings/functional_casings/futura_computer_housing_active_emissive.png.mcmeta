@@ -1,0 +1,12 @@
+{
+  "ldlib": {
+    "connection": "astrogreg:block/casings/functional_casings/futura_computer_housing_active_emissive_ctm"
+  },
+  "forge_data": {
+    "block_light": 15
+  },
+  "animation": {
+    "interpolate": true,
+    "frametime": 25
+  }
+}

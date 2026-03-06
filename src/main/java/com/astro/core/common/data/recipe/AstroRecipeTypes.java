@@ -3,6 +3,7 @@ package com.astro.core.common.data.recipe;
 import com.gregtechceu.gtceu.api.capability.recipe.IO;
 import com.gregtechceu.gtceu.api.gui.GuiTextures;
 import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
+import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
@@ -30,6 +31,7 @@ public class AstroRecipeTypes {
     public static GTRecipeType FARADAY_GENERATOR_RECIPES;
     public static GTRecipeType KINETIC_COMBUSTION_RECIPES;
     public static GTRecipeType CONCRETE_PLANT;
+    public static GTRecipeType INSCRIPTION;
 
     public static void init() {
         AETHER_ENGINE_RECIPES = register("aether_engine", MULTIBLOCK)
@@ -112,6 +114,12 @@ public class AstroRecipeTypes {
                 .setProgressBar(GuiTextures.PROGRESS_BAR_MIXER, LEFT_TO_RIGHT)
                 .setSound(GTSoundEntries.MIXER)
                 .setEUIO(IO.IN);
+
+        INSCRIPTION = register("inscription", MULTIBLOCK)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(6, 1, 3, 0)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.REPLICATOR);
 
     }
 }

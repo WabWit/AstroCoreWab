@@ -1,5 +1,6 @@
 package com.astro.core.common.data.recipe;
 
+import com.astro.core.common.data.AstroItems;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
@@ -17,12 +18,11 @@ import net.minecraft.world.item.ItemStack;
 
 import com.astro.core.common.data.materials.AstroMaterials;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
 import java.util.function.Consumer;
 
+import static com.astro.core.common.data.recipe.AstroRecipeTypes.INSCRIPTION;
 import static com.astro.core.common.data.recipe.AstroRecipeTypes.KINETIC_COMBUSTION_RECIPES;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.CRYSTALLIZABLE;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -32,8 +32,6 @@ import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.ORE_WASHER_RECIPES
 
 @SuppressWarnings("all")
 public class AstroRecipes {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger("AstroSteamBlastFurnaceRecipes");
 
     public static void init(Consumer<FinishedRecipe> provider) {
         // output, input, duration in seconds
@@ -126,6 +124,12 @@ public class AstroRecipes {
         KINETIC_COMBUSTION_RECIPES.recipeBuilder("raw_oil")
                 .inputFluids(RawOil.getFluid(64))
                 .duration(60)
+                .save(provider);
+
+        INSCRIPTION.recipeBuilder("test")
+                .inputItems(AstroItems.DATA_DISK)
+                .outputItems(AstroItems.RUNE_TABLET)
+                .duration(100)
                 .save(provider);
     }
 

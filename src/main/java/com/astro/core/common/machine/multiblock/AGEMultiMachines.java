@@ -1,5 +1,6 @@
 package com.astro.core.common.machine.multiblock;
 
+import com.astro.core.client.renderer.machine.AEMultiblockPartRender;
 import com.astro.core.common.machine.multiblock.kinetic.KineticCombustionEngineMachine;
 import com.astro.core.common.machine.multiblock.kinetic.KineticParallelMultiblockMachine;
 import com.gregtechceu.gtceu.GTCEu;
@@ -42,6 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.astro.core.common.data.AstroBlocks.*;
+import static com.astro.core.common.data.materials.AstroMaterials.FUTURA_ALLOY;
 import static com.astro.core.common.machine.hatches.AstroHatches.*;
 import static com.astro.core.common.registry.AstroRegistry.REGISTRATE;
 import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
@@ -354,10 +356,10 @@ public class AGEMultiMachines {
             .recipeModifier(KineticParallelMultiblockMachine::recipeModifier, true)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle(" XXX ", "XXXXX", "XXKXX", "XXXXX", " XXX ")
-                    .aisle(" XXX ", "X   X", "X P X", "X   X", " XXX ")
-                    .aisle(" XXX ", "X G X", "XGPGX", "X G X", " XXX ")
-                    .aisle(" XXX ", "X   X", "X P X", "X   X", " XXX ")
-                    .aisle(" XXX ", "XXXXX", "XXXXX", "XXXXX", " XXX ")
+                    .aisle(" XXX ", "X###X", "X#P#X", "X###X", " XXX ")
+                    .aisle(" XXX ", "X#G#X", "XGPGX", "X#G#X", " XXX ")
+                    .aisle(" XXX ", "X###X", "X#P#X", "X###X", " XXX ")
+                    .aisle(" XXX ", "XX#XX", "XXXXX", "XXXXX", " XXX ")
                     .aisle(" XXX ", " X@X ", "  X  ", "     ", "     ")
                     .where("@", controller(blocks(definition.get())))
                     .where("K", abilities(AstroPartAbility.KINETIC_INPUT))
@@ -365,7 +367,7 @@ public class AGEMultiMachines {
                             .or(abilities(IMPORT_FLUIDS).setMaxGlobalLimited(2).setPreviewCount(1))
                             .or(abilities(IMPORT_ITEMS).setMaxGlobalLimited(2).setPreviewCount(1))
                             .or(abilities(EXPORT_FLUIDS).setMaxGlobalLimited(2).setPreviewCount(1))
-                            .or(abilities(EXPORT_ITEMS)).setMaxGlobalLimited(2).setPreviewCount(1))
+                            .or(abilities(EXPORT_ITEMS).setMaxGlobalLimited(2).setPreviewCount(1)))
                     .where("G", blocks(CASING_BRONZE_GEARBOX.get()))
                     .where("P", blocks(CASING_BRONZE_PIPE.get()))
                     .where("#", air())
@@ -382,7 +384,7 @@ public class AGEMultiMachines {
             .langValue("Kinetic Combustion Engine")
             .rotationState(RotationState.NON_Y_AXIS)
             .recipeType(AstroRecipeTypes.KINETIC_COMBUSTION_RECIPES)
-            .recipeModifier(BATCH_MODE)
+            .recipeModifiers(KineticCombustionEngineMachine::recipeModifier, BATCH_MODE)
             .appearanceBlock(CASING_TITANIUM_STABLE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("XXX", "XKX", "XXX")
@@ -392,7 +394,7 @@ public class AGEMultiMachines {
                     .where("@", controller(blocks(definition.get())))
                     .where("H", blocks(CASING_TITANIUM_STABLE.get())
                             .or(abilities(MAINTENANCE).setExactLimit(1))
-                            .or(abilities(IMPORT_FLUIDS).setMaxGlobalLimited(2))
+                            .or(abilities(IMPORT_FLUIDS).setMaxGlobalLimited(4).setPreviewCount(1))
                             .or(abilities(MUFFLER).setExactLimit(1)))
                     .where("E", blocks(CASING_ENGINE_INTAKE.get()))
                     .where("K", blocks(KINETIC_OUTPUT_HATCH.get()))
@@ -401,6 +403,11 @@ public class AGEMultiMachines {
                     .build())
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_stable_titanium"),
                     GTCEu.id("block/multiblock/generator/large_combustion_engine"))
+            .tooltips(Component.translatable("astrogreg.machine.kinetic_combustion_engine.tooltip_0"),
+                    Component.translatable("astrogreg.machine.kinetic_combustion_engine.tooltip_1"),
+                    Component.translatable("gtceu.universal.tooltip.uses_per_hour_lubricant",
+                            KineticCombustionEngineMachine.LUBRICANT_MB_PER_HOUR),
+                    Component.translatable("astrogreg.machine.kinetic_combustion_engine.tooltip_2"))
             .register();
     
     // Pre-Industrial Multiblocks
@@ -413,10 +420,10 @@ public class AGEMultiMachines {
             .recipeModifiers(OC_NON_PERFECT_SUBTICK, PARALLEL_HATCH, BATCH_MODE)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle(" XXX ", "XXXXX", "XXXXX", "XXXXX", " XXX ")
-                    .aisle(" XXX ", "X   X", "X P X", "X   X", " XXX ")
-                    .aisle(" XXX ", "X G X", "XGPGX", "X G X", " XXX ")
-                    .aisle(" XXX ", "X   X", "X P X", "X   X", " XXX ")
-                    .aisle(" XXX ", "XXXXX", "XXXXX", "XXXXX", " XXX ")
+                    .aisle(" XXX ", "X###X", "X#P#X", "X###X", " XXX ")
+                    .aisle(" XXX ", "X#G#X", "XGPGX", "X#G#X", " XXX ")
+                    .aisle(" XXX ", "X###X", "X#P#X", "X###X", " XXX ")
+                    .aisle(" XXX ", "XX#XX", "XXXXX", "XXXXX", " XXX ")
                     .aisle(" XXX ", " X@X ", "  X  ", "     ", "     ")
                     .where("@", controller(blocks(definition.get())))
                     .where("X", blocks(CASING_STEEL_SOLID.get()).setMinGlobalLimited(50)
@@ -814,7 +821,41 @@ public class AGEMultiMachines {
                     AstroCore.id("block/multiblock/wiremill"))
             .register();
 
-    // Drills
+    // Post-Industrial Multiblocks
+    public static final MultiblockMachineDefinition INSCRIPTION_MATRIX = REGISTRATE
+            .multiblock("inscription_matrix", WorkableElectricMultiblockMachine::new)
+            .langValue("ME Inscription Matrix")
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeType(AstroRecipeTypes.INSCRIPTION)
+            .recipeModifiers(OC_PERFECT_SUBTICK, BATCH_MODE)
+            .appearanceBlock(FUTURA_COMPUTER_CASING)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("F###F", "AAAAA", "AAAAA", "#AAA#")
+                    .aisle("#####", "AAAAA", "A#P#A", "AAAAA")
+                    .aisle("#####", "AAAAA", "AP#PA", "AAAAA")
+                    .aisle("#####", "AAAAA", "A#P#A", "AAAAA")
+                    .aisle("F###F", "AAAAA", "AA@AA", "#AAA#")
+                    .where('@', controller(blocks(definition.get())))
+                    .where('A', blocks(FUTURA_COMPUTER_CASING.get()).setMinGlobalLimited(40)
+                            .or(abilities(IMPORT_ITEMS).setPreviewCount(1))
+                            .or(abilities(EXPORT_ITEMS).setPreviewCount(1))
+                            .or(abilities(IMPORT_FLUIDS).setPreviewCount(1))
+                            .or(abilities(INPUT_ENERGY).setPreviewCount(1).setExactLimit(1))
+                            .or(abilities(MAINTENANCE).setExactLimit(1)))
+                    .where('F', frames(FUTURA_ALLOY))
+                    .where('P', blocks(CASING_STEEL_PIPE.get()))
+                    .where('#', any())
+                    .build())
+            .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+            .model(createWorkableCasingMachineModel(
+                    AstroCore.id("block/casings/functional_casings/futura_computer_housing"),
+                    GTCEu.id("block/machines/laser_engraver"))
+                    .andThen(b -> {
+                        b.addTextureOverride("all", AstroCore.id("block/casings/functional_casings/futura_computer_housing"));
+                        b.addDynamicRenderer(() -> new AEMultiblockPartRender());
+                    }))
+            .register();
+
     public static final MultiblockMachineDefinition FLUID_DRILLING_RIG_IV = REGISTRATE
             .multiblock("fluid_drilling_rig_iv", holder -> new FluidDrillMachine(holder, GTValues.IV))
             .rotationState(RotationState.ALL)

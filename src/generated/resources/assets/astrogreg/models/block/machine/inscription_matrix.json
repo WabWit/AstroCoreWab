@@ -1,0 +1,95 @@
+{
+  "parent": "minecraft:block/block",
+  "dynamic_renders": [
+    {
+      "type": "astrogreg:ae_multiblock_render"
+    }
+  ],
+  "loader": "gtceu:machine",
+  "machine": "astrogreg:inscription_matrix",
+  "texture_overrides": {
+    "all": "astrogreg:block/casings/functional_casings/futura_computer_housing"
+  },
+  "variants": {
+    "is_formed=false,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_emissive"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_emissive"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front_active",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_active_emissive"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front_active",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_active_emissive"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_emissive"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_emissive"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front_active",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_active_emissive"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+          "overlay_front": "gtceu:block/machines/laser_engraver/overlay_front_active",
+          "overlay_front_emissive": "gtceu:block/machines/laser_engraver/overlay_front_active_emissive"
+        }
+      }
+    }
+  }
+}

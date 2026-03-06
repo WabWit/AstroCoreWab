@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "east": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "north": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "particle": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "south": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "up": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "west": "astrogreg:block/casings/functional_casings/futura_computer_housing"
+  }
+}

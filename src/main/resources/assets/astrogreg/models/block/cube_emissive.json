@@ -1,0 +1,20 @@
+{
+  "parent": "block/block",
+  "render_type": "translucent",
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "forge_data": { "block_light": 15, "sky_light": 15 },
+      "shade": false,
+      "faces": {
+        "down":  { "texture": "#all", "cullface": "down",  "tintindex": -101 },
+        "up":    { "texture": "#all", "cullface": "up",    "tintindex": -101 },
+        "north": { "texture": "#all", "cullface": "north", "tintindex": -101 },
+        "south": { "texture": "#all", "cullface": "south", "tintindex": -101 },
+        "west":  { "texture": "#all", "cullface": "west",  "tintindex": -101 },
+        "east":  { "texture": "#all", "cullface": "east",  "tintindex": -101 }
+      }
+    }
+  ]
+}

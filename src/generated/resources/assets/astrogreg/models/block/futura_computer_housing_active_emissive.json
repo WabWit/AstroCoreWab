@@ -1,0 +1,6 @@
+{
+  "parent": "astrogreg:block/cube_emissive",
+  "textures": {
+    "all": "astrogreg:block/casings/functional_casings/futura_computer_housing_active_emissive"
+  }
+}

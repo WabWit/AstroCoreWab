@@ -43,6 +43,7 @@ import java.util.List;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+@SuppressWarnings("all")
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class AstroOverdriveCombustionEngine extends WorkableElectricMultiblockMachine implements ITieredMachine {
@@ -50,9 +51,9 @@ public class AstroOverdriveCombustionEngine extends WorkableElectricMultiblockMa
     protected static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(
             AstroOverdriveCombustionEngine.class, WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
 
-    private static final FluidStack OXYGEN_STACK = GTMaterials.Oxygen.getFluid(1);
+    private static final FluidStack OXYGEN_STACK = GTMaterials.Oxygen.getFluid(4);
     private static final FluidStack LIQUID_OXYGEN_STACK = GTMaterials.Oxygen.getFluid(FluidStorageKeys.LIQUID, 4);
-    private static final FluidStack LUBRICANT_STACK = GTMaterials.Lubricant.getFluid(100);
+    private static final FluidStack LUBRICANT_STACK = GTMaterials.Lubricant.getFluid(10);
 
     @Getter
     private final int tier;

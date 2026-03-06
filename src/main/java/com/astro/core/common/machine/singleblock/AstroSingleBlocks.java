@@ -11,7 +11,6 @@ import net.minecraft.network.chat.Component;
 
 import static com.astro.core.common.AstroMachineUtils.registerTieredMachines;
 import static com.gregtechceu.gtceu.api.GTValues.*;
-import static com.gregtechceu.gtceu.api.machine.property.GTMachineModelProperties.IS_FORMED;
 import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableTieredHullMachineModel;
 
 @SuppressWarnings("all")

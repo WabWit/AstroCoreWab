@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "astrogreg:block/casings/functional_casings/futura_computer_housing_active"
+  }
+}

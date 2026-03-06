@@ -177,12 +177,9 @@ public class AstroGeneratorRegistry {
                 .tooltips(
                         Component.translatable("gtceu.universal.tooltip.base_production_eut", V[tier]),
                         Component.translatable("gtceu.universal.tooltip.uses_per_hour_lubricant",
-                                FluidType.BUCKET_VOLUME * 100),
-                        tier > ZPM ?
-                                Component.translatable("gtceu.machine.large_combustion_engine.tooltip.boost_extreme",
-                                        V[tier] * 16) :
-                                Component.translatable("gtceu.machine.large_combustion_engine.tooltip.boost_regular",
-                                        V[tier] * 12))
+                                FluidType.BUCKET_VOLUME * 10),
+                        Component.translatable("gtceu.machine.large_combustion_engine.tooltip.boost_extreme",
+                                V[tier] * 16))
                 .register();
     }
 
