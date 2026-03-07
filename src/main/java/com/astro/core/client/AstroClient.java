@@ -1,6 +1,6 @@
 package com.astro.core.client;
 
-import com.astro.core.client.renderer.machine.AEMultiblockPartRender;
+import com.astro.core.client.renderer.machine.AEMultiPartRender;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
 
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,6 +20,6 @@ public class AstroClient {
     public static void init(IEventBus modBus) {
         DynamicRenderManager.register(AstroCore.id("astro_fluid_render"), AstroFluidRender.TYPE);
         DynamicRenderManager.register(AstroCore.id("astro_boiler_render"), AstroBoilerMultiPartRender.TYPE);
-        DynamicRenderManager.register(AstroCore.id("ae_multiblock_render"), AEMultiblockPartRender.TYPE);
+        DynamicRenderManager.register(AstroCore.id("ae_multi_parts"), AEMultiPartRender.TYPE);
     }
 }

@@ -1,6 +1,6 @@
 package com.astro.core.common.machine.multiblock;
 
-import com.astro.core.client.renderer.machine.AEMultiblockPartRender;
+import com.astro.core.client.renderer.machine.AEMultiPartRender;
 import com.astro.core.common.machine.multiblock.kinetic.KineticCombustionEngineMachine;
 import com.astro.core.common.machine.multiblock.kinetic.KineticParallelMultiblockMachine;
 import com.gregtechceu.gtceu.GTCEu;
@@ -21,6 +21,7 @@ import com.gregtechceu.gtceu.common.block.BoilerFireboxType;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.machine.multiblock.steam.SteamParallelMultiblockMachine;
 
+import earth.terrarium.adastra.common.registry.ModBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Blocks;
@@ -51,8 +52,7 @@ import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_INDUSTRIAL_STEAM;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.GTMachines.COKE_OVEN_HATCH;
-import static com.gregtechceu.gtceu.common.data.GTMachines.STEAM_HATCH;
+import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.PARALLEL_HATCH;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.COKE_OVEN_RECIPES;
@@ -821,6 +821,147 @@ public class AGEMultiMachines {
                     AstroCore.id("block/multiblock/wiremill"))
             .register();
 
+//    public static final MultiblockMachineDefinition INDUSTRIAL_ASTROPORT = REGISTRATE
+//            .multiblock("industrial_astroport", IndustrialAstroPortMachine::new)
+//            .langValue("Industrial Astroport")
+//            .rotationState(RotationState.NON_Y_AXIS)
+//            .allowFlip(false)
+//            .recipeModifier(IndustrialAstroPortMachine::recipeModifier, true)
+//            .appearanceBlock(CASING_STEEL_SOLID)
+//            .recipeType(ASTROPORT_RECIPES)
+//            .pattern(definition -> FactoryBlockPattern.start()
+//                    .aisle("     XXXXXXXXXXX     ", "     XAAXXXXXAAX     ", "     XXAXG@GXAXX     ", "      XXXGHGXXX      ",
+//                            "       XXTHTXX       ", "       XXTHTXX       ", "        XXXXX        ", "         X X         ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("   XXXXXXXXXXXXXXX   ", "   XX           XX   ", "    X           X    ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "         X X         ", "         X X         ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("  XXXXXXXGXGXXXXXXX  ", "  X                X ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "         X X         ", "         XXX         ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle(" XXXX   XGXGX   XXXX ", " X                 X ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "         X X         ", "         XAX         ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle(" XXXXXF XGXGX FXXXXX ", " X    F       F    X ", " X    F       F    X ", "      F       F      ",
+//                            "      F       F      ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "         XAX         ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("XXX XXX XXXXX XXX XXX", "X                   X", "X                   X", "                     ",
+//                            "     X         X     ", "     X         X     ", "     X         X     ", "     X         X     ",
+//                            "     X         X     ", "                     ", "        XXXXX        ", "         XXX         ",
+//                            "         XAX         ", "         XXX         ", "          X          ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("XXX FXXXXAXAXXXXF XXX", "A   F           F   A", "X   F           F   X", "X   F           F   X",
+//                            "    F           F    ", "                     ", "                     ", "                     ",
+//                            "                     ", "      F       F      ", "       XFFFFFX       ", "       X     X       ",
+//                            "                     ", "                     ", "         XXX         ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("XXX   XXXGXGXXX   XXX", "A                   A", "A                   A", "X                   X",
+//                            "X                   X", "X                   X", "                     ", "                     ",
+//                            "                     ", "                     ", "      XF     FX      ", "      XF     FX      ",
+//                            "       F     F       ", "       F     F       ", "       FXX XXF       ", "        FFFFF        ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("XXXXXXXXFAXAFXXXXXXXX", "X       F   F       X", "X       F   F       X", "X       F   F       X",
+//                            "X       F   F       X", "X       F   F       X", "X       F   F       X", "X       F   F       X",
+//                            "        F   F        ", "        F   F        ", "     XF F   F FX     ", "        F   F        ,
+//                            "        F   F        ", "        F   F        ", "       XF   FX       ", "       FF   FF       ",
+//                            "        F   F        ", "        F   F        ", "        F   F        ", "         FFF         ")
+//                    .aisle("XXGGGXAAACXCAAAXGGGXX", "X                   X", "G        ###        G", "G        ###        G",
+//                            "G        ###        G", "G        ###        G", "G        ###        G", "X        ###        X",
+//                            "XX       ###       XX", " XX      ###      XX ", "  XXXXF  ###  FXXXX  ", "     X   ###   X     ",
+//                            "     X   ###   X     ", "     X   ###   X     ", "      XX ### XX      ", "       F ### F       ",
+//                            "                     ", "                     ", "                     ", "        F###F        ")
+//                    .aisle("XXXXXXXXXXXXXXXXXXXXX", "X        #P#        X", "I        ###        I", "I        ###        I",
+//                            "I        ###        I", "I        ###        I", "I        ###        I", "X        ###        X",
+//                            "         ###         ", "         ###         ", "  XAAXF       FXAAX  ", "         ###         ",
+//                            "         ###         ", "         ###         ", "       X ### X       ", "       F ### F       ",
+//                            "         ###         ", "         ###         ", "         ###         ", "        F###F        ")
+//                    .aisle("XXGGGXAAACXCAAAXGGGXX", "X                   X", "G        ###        G", "G        ###        G",
+//                            "G        ###        G", "G        ###        G", "G        ###        G", "X        ###        X",
+//                            "XX       ###       XX", " XX      ###      XX ", "  XXXXF  ###  FXXXX  ", "     X   ###   X     ",
+//                            "     X   ###   X     ", "     X   ###   X     ", "      XX ### XX      ", "       F ### F       ",
+//                            "                     ", "                     ", "                     ", "        F###F        ")
+//                    .aisle("XXXXXXXXFAXAFXXXXXXXX", "X       F   F       X", "X       F   F       X", "X       F   F       X",
+//                            "X       F   F       X", "X       F   F       X", "X       F   F       X", "X       F   F       X",
+//                            "        F   F        ", "        F   F        ", "     XF F   F FX     ", "        F   F        ,
+//                            "        F   F        ", "        F   F        ", "       XF   FX       ", "       FF   FF       ",
+//                            "        F   F        ", "        F   F        ", "        F   F        ", "         FFF         ")
+//                    .aisle("XXX   XXXGXGXXX   XXX", "A                   A", "A                   A", "X                   X",
+//                            "X                   X", "X                   X", "                     ", "                     ",
+//                            "                     ", "                     ", "      XF     FX      ", "      XF     FX      ",
+//                            "       F     F       ", "       F     F       ", "       FXX XXF       ", "        FFFFF        ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("XXX FXXXXAXAXXXXF XXX", "A   F           F   A", "X   F           F   X", "X   F           F   X",
+//                            "    F           F    ", "                     ", "                     ", "                     ",
+//                            "                     ", "      F       F      ", "       XFFFFFX       ", "       X     X       ",
+//                            "                     ", "                     ", "         XXX         ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("XXX XXX XXXXX XXX XXX", "X                   X", "X                   X", "                     ",
+//                            "     X         X     ", "     X         X     ", "     X         X     ", "     X         X     ",
+//                            "     X         X     ", "                     ", "        XXXXX        ", "         XXX         ",
+//                            "         XAX         ", "         XXX         ", "          X          ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle(" XXXXXF XGXGX FXXXXX ", " X    F       F    X ", " X    F       F    X ", "      F       F      ",
+//                            "      F       F      ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "         XAX         ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle(" XXXX   XGXGX   XXXX ", " X                 X ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "         X X         ", "         XAX         ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("  XXXXXXXGXGXXXXXXX  ", "  X                X ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "         X X         ", "         XXX         ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("   XXXXXXXXXXXXXXX   ", "   XX           XX   ", "    X           X    ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "         X X         ", "         X X         ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .aisle("     XXXXXXXXXXX     ", "     XAAX   XAAX     ", "     XXAX   XAXX     ", "      XXX   XXX      ",
+//                            "       XX   XX       ", "       XXXXXXX       ", "        XAAAX        ", "        XXXXX        ",
+//                            "         X X         ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ",
+//                            "                     ", "                     ", "                     ", "                     ")
+//                    .where("@", controller(blocks(definition.get())))
+//                    .where("X", blocks(CASING_STEEL_SOLID.get())
+//                            .or(abilities(INPUT_ENERGY)).setPreviewCount(2).setMinGlobalLimited(1).setMaxGlobalLimited(2))
+//                    .where("H", blocks(CASING_STEEL_SOLID.get())
+//                            .or(abilities(DATA_ACCESS)).setExactLimit(1)
+//                            .or(abilities(MAINTENANCE)).setExactLimit(1)
+//                            .or(abilities(IMPORT_FLUIDS)).setExactLimit(1)
+//                            .or(abilities(EXPORT_ITEMS)).setExactLimit(1))
+//                    .where("G", blocks(CASING_STEEL_GEARBOX.get()))
+//                    .where("A", blocks(CASING_GRATE.get()))
+//                    .where("I", blocks(ITEM_IMPORT_BUS[0].getBlock()))
+//                    .where("T", blocks(CASING_TEMPERED_GLASS.get()))
+//                    .where("F", frames(GTMaterials.Steel))
+//                    .where("C", blocks(INDUSTRIAL_PROCESSING_CORE_MK1.get())
+//                            .or(blocks(INDUSTRIAL_PROCESSING_CORE_MK2.get()))
+//                            .or(blocks(INDUSTRIAL_PROCESSING_CORE_MK3.get())))
+//                    .where("P", blocks(ModBlocks.LAUNCH_PAD.get()))
+//                    .where(" ", any())
+//                    .where("#", any())
+//                    .build())
+//            .partSorter(IndustrialAstroPortMachine::partSorter)
+//            .tooltips(Component.translatable("astrogreg.machine.industrial_core.tooltip"))
+//            .workableCasingModel(GTCEu.id("blocks/casings/solid/machine_casing_solid_steel"),
+//                    GTCEu.id("blocks/multiblock/fusion_reactor"))
+//            .register();
+
+
     // Post-Industrial Multiblocks
     public static final MultiblockMachineDefinition INSCRIPTION_MATRIX = REGISTRATE
             .multiblock("inscription_matrix", WorkableElectricMultiblockMachine::new)
@@ -829,6 +970,7 @@ public class AGEMultiMachines {
             .recipeType(AstroRecipeTypes.INSCRIPTION)
             .recipeModifiers(OC_PERFECT_SUBTICK, BATCH_MODE)
             .appearanceBlock(FUTURA_COMPUTER_CASING)
+            .hasBER(true)
             .pattern(definition -> FactoryBlockPattern.start()
                     .aisle("F###F", "AAAAA", "AAAAA", "#AAA#")
                     .aisle("#####", "AAAAA", "A#P#A", "AAAAA")
@@ -847,13 +989,15 @@ public class AGEMultiMachines {
                     .where('#', any())
                     .build())
             .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+            .tooltips(Component.translatable("gtceu.multiblock.exact_hatch_1.tooltip"))
             .model(createWorkableCasingMachineModel(
                     AstroCore.id("block/casings/functional_casings/futura_computer_housing"),
                     GTCEu.id("block/machines/laser_engraver"))
-                    .andThen(b -> {
-                        b.addTextureOverride("all", AstroCore.id("block/casings/functional_casings/futura_computer_housing"));
-                        b.addDynamicRenderer(() -> new AEMultiblockPartRender());
-                    }))
+                    .andThen(b -> b
+                    .addTextureOverride("side", AstroCore.id("block/casings/functional_casings/futura_computer_housing"))
+                    .addTextureOverride("top", AstroCore.id("block/casings/functional_casings/futura_computer_housing"))
+                    .addTextureOverride("bottom", AstroCore.id("block/casings/functional_casings/futura_computer_housing"))
+                    .addDynamicRenderer(() -> new AEMultiPartRender(FUTURA_COMPUTER_CASING))))
             .register();
 
     public static final MultiblockMachineDefinition FLUID_DRILLING_RIG_IV = REGISTRATE

@@ -2,13 +2,22 @@
   "parent": "minecraft:block/block",
   "dynamic_renders": [
     {
-      "type": "astrogreg:ae_multiblock_render"
+      "type": "astrogreg:ae_multi_parts",
+      "value": {
+        "Name": "astrogreg:futura_computer_housing",
+        "Properties": {
+          "active": "false"
+        }
+      }
     }
   ],
   "loader": "gtceu:machine",
   "machine": "astrogreg:inscription_matrix",
   "texture_overrides": {
-    "all": "astrogreg:block/casings/functional_casings/futura_computer_housing"
+    "all": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "bottom": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "side": "astrogreg:block/casings/functional_casings/futura_computer_housing",
+    "top": "astrogreg:block/casings/functional_casings/futura_computer_housing"
   },
   "variants": {
     "is_formed=false,recipe_logic_status=idle": {

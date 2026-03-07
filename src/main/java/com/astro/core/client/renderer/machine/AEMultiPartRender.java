@@ -9,42 +9,49 @@ import com.gregtechceu.gtceu.client.model.machine.IControllerModelRenderer;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRender;
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderType;
 import com.gregtechceu.gtceu.client.util.ModelUtils;
-
-import com.astro.core.common.data.AstroBlocks;
-
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.Codec;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.ModelData;
-
-import com.mojang.blaze3d.vertex.PoseStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @SuppressWarnings("all")
-public class AEMultiblockPartRender extends DynamicRender<MultiblockControllerMachine, AEMultiblockPartRender>
+public class AEMultiPartRender extends DynamicRender<MultiblockControllerMachine, AEMultiPartRender>
         implements IControllerModelRenderer {
 
-    public static final DynamicRenderType<MultiblockControllerMachine, AEMultiblockPartRender> TYPE =
-            new DynamicRenderType<>(Codec.unit(AEMultiblockPartRender::new));
+    public static final Codec<AEMultiPartRender> CODEC =
+            BlockState.CODEC.xmap(AEMultiPartRender::new, r -> r.idleState);
+    public static final DynamicRenderType<MultiblockControllerMachine, AEMultiPartRender> TYPE =
+            new DynamicRenderType<>(CODEC);
 
-    private BakedModel activeModel;
-    private BakedModel inactiveModel;
+    private final BlockState idleState;
+    private final BlockState activeState;
+
+    private BakedModel idleModel, activeModel;
+
+    public AEMultiPartRender(Supplier<? extends Block> casingBlock) {
+        this(casingBlock.get().defaultBlockState());
+    }
+
+    public AEMultiPartRender(BlockState idleState) {
+        this.idleState = idleState;
+        this.activeState = idleState.setValue(GTBlockStateProperties.ACTIVE, true);
+    }
 
     @Override
-    public DynamicRenderType<MultiblockControllerMachine, AEMultiblockPartRender> getType() {
+    public DynamicRenderType<MultiblockControllerMachine, AEMultiPartRender> getType() {
         return TYPE;
     }
 
@@ -63,34 +70,20 @@ public class AEMultiblockPartRender extends DynamicRender<MultiblockControllerMa
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void renderPartModel(List<BakedQuad> quads, IMultiController controller, IMultiPart part,
                                 Direction frontFacing, @Nullable Direction side, RandomSource rand,
                                 @NotNull ModelData modelData, @Nullable RenderType renderType) {
-        boolean active = controller instanceof IRecipeLogicMachine rlm && rlm.getRecipeLogic().isWorking();
 
-        BlockState activeState = AstroBlocks.FUTURA_COMPUTER_CASING.get().defaultBlockState()
-                .setValue(GTBlockStateProperties.ACTIVE, true);
-        BlockState inactiveState = AstroBlocks.FUTURA_COMPUTER_CASING.get().defaultBlockState()
-                .setValue(GTBlockStateProperties.ACTIVE, false);
-
+        if (idleModel == null) idleModel = ModelUtils.getModelForState(idleState);
         if (activeModel == null) activeModel = ModelUtils.getModelForState(activeState);
-        if (inactiveModel == null) inactiveModel = ModelUtils.getModelForState(inactiveState);
 
-        BlockState state = active ? activeState : inactiveState;
-        BakedModel model = active ? activeModel : inactiveModel;
-        if (model == null) return;
+        boolean working = controller instanceof IRecipeLogicMachine rlm && rlm.getRecipeLogic().isWorking();
+        BakedModel model = working ? activeModel : idleModel;
+        BlockState state = working ? activeState : idleState;
 
-        MultiblockControllerMachine machine = controller.self();
-        emitQuads(quads, model, machine.getLevel(), part.self().getPos(), state, side, rand, modelData, renderType);
-    }
-
-    private static void emitQuads(List<BakedQuad> quads, @Nullable BakedModel model,
-                                  BlockAndTintGetter level, BlockPos pos, BlockState state,
-                                  @Nullable Direction side, RandomSource rand,
-                                  ModelData modelData, @Nullable RenderType renderType) {
-        if (model == null) return;
-        modelData = model.getModelData(level, pos, state, modelData);
+        if (controller.self().getLevel() != null) {
+            modelData = model.getModelData(controller.self().getLevel(), part.self().getPos(), state, modelData);
+        }
         quads.addAll(model.getQuads(state, side, rand, modelData, renderType));
     }
 }

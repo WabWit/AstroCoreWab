@@ -53,7 +53,7 @@ public class AstroLangHandler {
         provider.add("astrogreg.machine.faraday_generator_magnets.tooltip",
                 "Higher tiers of §bFaraday Generator Magnet§r rows §7increase§r EU/t by §a400%§r for that §r§eMagnet Ring§r.");
         provider.add("astrogreg.machine.faraday_generator_fluids.tooltip",
-                "Consumes 1mB §6Lubricant§r §7and either§r§f 100mB §r§bLiquid Oxygen§r§7 or§r 25mB §eLiquid Helium§r per second for each §eMagnet Ring§r.");
+                "Consumes 1mB §6Lubricant§r §7and either§r§f 100mB §r§bLiquid Oxygen§r§7 or§r 25mB §eLiquid Helium§r§f per second for each §eMagnet Ring.§r");
         provider.add("astrogreg.machine.faraday_generator_returns.tooltip",
                 "Returns §a40%§r§7 of §rCoolant§7 back in§r Gaseous §7form.");
         provider.add("astrogreg.machine.faraday_generator_springs.tooltip",
@@ -150,6 +150,9 @@ public class AstroLangHandler {
         provider.add("item.astrogreg.ae_wafer.tooltip", "§7Raw Arithmetic Circuit");
         provider.add("item.astrogreg.ae_chip.tooltip", "§7Applied Energistics Chip");
         provider.add("item.astrogreg.fluix_arithmetic_core.tooltip", "§7Arithmetic Processing Unit");
+
+        provider.add("item.astrogreg.unfired_rune_tablet.tooltip", "§7Shaped Livingclay");
+        provider.add("item.astrogreg.rune_tablet.tooltip", "§7It's kind of like a Silicon Wafer but magical.§r");
 
         // miscellaneous
         multilineLang(provider, "astrogreg.gui.configurator_slot.tooltip",
