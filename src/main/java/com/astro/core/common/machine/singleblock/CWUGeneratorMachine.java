@@ -15,6 +15,7 @@ import com.gregtechceu.gtceu.api.machine.trait.NotifiableEnergyContainer;
 import com.gregtechceu.gtceu.api.machine.trait.NotifiableFluidTank;
 import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 
+import com.gregtechceu.gtceu.common.data.GTMaterials;
 import com.lowdragmc.lowdraglib.gui.modular.ModularUI;
 import com.lowdragmc.lowdraglib.gui.widget.LabelWidget;
 
@@ -126,11 +127,17 @@ public class CWUGeneratorMachine extends MetaMachine implements ILocalCWUProvide
 
         if (getOffsetTimer() % 20 == 0) {
             boolean hasEnergy = energyContainer.getEnergyStored() >= euPerTick * 20L;
-
             FluidStack inTank = lubeTank.getFluidInTank(0);
             boolean hasLube = !inTank.isEmpty()
-                    && inTank.isFluidEqual(new FluidStack(com.gregtechceu.gtceu.common.data.GTMaterials.Lubricant.getFluid(), 1))
+                    && inTank.isFluidEqual(new FluidStack(GTMaterials.Lubricant.getFluid(), 1))
                     && inTank.getAmount() >= lubePerCycle;
+
+            System.out.println("[CWU] energy=" + energyContainer.getEnergyStored()
+                    + " needed=" + (euPerTick * 20L)
+                    + " hasEnergy=" + hasEnergy
+                    + " lubeAmt=" + inTank.getAmount()
+                    + " lubeFluid=" + (inTank.isEmpty() ? "empty" : inTank.getFluid().toString())
+                    + " hasLube=" + hasLube);
 
             if (hasEnergy && hasLube) {
                 energyContainer.removeEnergy(euPerTick * 20L);

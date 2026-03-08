@@ -125,12 +125,6 @@ public class AstroRecipes {
                 .inputFluids(RawOil.getFluid(64))
                 .duration(60)
                 .save(provider);
-
-        INSCRIPTION.recipeBuilder("test")
-                .inputItems(AstroItems.DATA_DISK)
-                .outputItems(AstroItems.RUNE_TABLET)
-                .duration(100)
-                .save(provider);
     }
 
     // steam blast furnace recipe builder

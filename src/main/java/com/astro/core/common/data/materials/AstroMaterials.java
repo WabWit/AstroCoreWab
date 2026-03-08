@@ -24,7 +24,7 @@ import owmii.powah.item.Itms;
 import sonar.fluxnetworks.register.RegistryItems;
 
 import static com.astro.core.common.data.materials.AstroMaterialFlags.GENERATE_COMPRESSED_SPRING;
-import static com.astro.core.common.data.materials.AstroMaterialSet.DULL_MAGNETIC;
+import static com.astro.core.common.data.materials.AstroMaterialSet.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet.*;
 import static com.gregtechceu.gtceu.api.data.tag.TagPrefix.*;
@@ -233,7 +233,7 @@ public class AstroMaterials {
                         GENERATE_RING, GENERATE_SPRING, GENERATE_COMPRESSED_SPRING)
                 .cableProperties(2097152, 128, 0, true)
                 .rotorStats(3200, 720, 3, 100000)
-                .color(0xfad64a).secondaryColor(0x752802).iconSet(SHINY)
+                .color(0xfad64a).secondaryColor(0x752802).iconSet(SHINY_SUPER)
                 .element(AstroElements.E).formula("⚡")
                 .buildAndRegister();
 
@@ -341,7 +341,7 @@ public class AstroMaterials {
                 .langValue("Blazing Etrium")
                 .ingot()
                 .liquid(1410)
-                .color(0x8ee8ed).secondaryColor(0x00b0ba).iconSet(METALLIC)
+                .color(0x8ee8ed).secondaryColor(0x00b0ba).iconSet(METALLIC_SUPER)
                 .blastTemp(1700, BlastProperty.GasTier.LOW, VA[GTValues.HV], 800)
                 .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_PLATE,
                         GENERATE_SMALL_GEAR, GENERATE_ROD, GENERATE_SMALL_GEAR, GENERATE_ROTOR,
@@ -358,7 +358,7 @@ public class AstroMaterials {
                 .langValue("Niotic Calorite")
                 .ingot()
                 .liquid(1780)
-                .color(0xe4eb60).secondaryColor(0x9ea334).iconSet(BRIGHT)
+                .color(0xe4eb60).secondaryColor(0x9ea334).iconSet(BRIGHT_SUPER)
                 .blastTemp(1700, BlastProperty.GasTier.LOW, VA[GTValues.EV], 1000)
                 .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_SPRING,
                         GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_ROD, GENERATE_COMPRESSED_SPRING,
@@ -376,7 +376,7 @@ public class AstroMaterials {
                 .cableProperties(V[GTValues.EV], 24, 0, true)
                 .blastTemp(3500, BlastProperty.GasTier.LOW, 7680, 1200)
                 .rotorStats(300, 190, 3, 18000)
-                .color(0xcb74cc).secondaryColor(0xffebff).iconSet(RADIOACTIVE)
+                .color(0xcb74cc).secondaryColor(0xffebff).iconSet(RADIOACTIVE_SUPER)
                 .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_SPRING,
                         GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_ROD, GENERATE_COMPRESSED_SPRING,
                         GENERATE_SMALL_GEAR, GENERATE_ROTOR, DISABLE_ALLOY_PROPERTY,
@@ -392,7 +392,7 @@ public class AstroMaterials {
                 .cableProperties(V[GTValues.IV], 32, 0, true)
                 .blastTemp(4400, BlastProperty.GasTier.MID, 30720, 1400)
                 .rotorStats(450, 220, 3, 20000)
-                .color(0x332f94).secondaryColor(0x110c9c).iconSet(SHINY)
+                .color(0x332f94).secondaryColor(0x110c9c).iconSet(SHINY_SUPER)
                 .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_SPRING,
                         GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_ROD, GENERATE_COMPRESSED_SPRING,
                         GENERATE_SMALL_GEAR, GENERATE_ROTOR, DISABLE_ALLOY_PROPERTY,
@@ -407,7 +407,7 @@ public class AstroMaterials {
                 .cableProperties(V[GTValues.LuV], 48, 0, true)
                 .blastTemp(5300, BlastProperty.GasTier.MID, 122880, 1600)
                 .rotorStats(700, 260, 3, 24000)
-                .color(0xf66999).secondaryColor(0xfa3779).iconSet(BRIGHT)
+                .color(0xf66999).secondaryColor(0xfa3779).iconSet(BRIGHT_SUPER)
                 .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_COMPRESSED_SPRING,
                         GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_ROD, GENERATE_SPRING,
                         GENERATE_SMALL_GEAR, GENERATE_ROTOR, DISABLE_ALLOY_PROPERTY,
@@ -423,7 +423,7 @@ public class AstroMaterials {
                 .cableProperties(V[GTValues.UV], 96, 0, true)
                 .blastTemp(10000, BlastProperty.GasTier.HIGHER, 1966080, 2000)
                 .rotorStats(2000, 550, 3, 48000)
-                .color(0x088a5c).secondaryColor(0x65f4fc).iconSet(RADIOACTIVE)
+                .color(0x088a5c).secondaryColor(0x65f4fc).iconSet(RADIOACTIVE_SUPER)
                 .flags(GENERATE_FOIL, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_SPRING,
                         GENERATE_PLATE, GENERATE_SMALL_GEAR, GENERATE_ROD, GENERATE_COMPRESSED_SPRING,
                         GENERATE_SMALL_GEAR, GENERATE_ROTOR, DISABLE_ALLOY_PROPERTY,
