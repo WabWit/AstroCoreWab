@@ -1,5 +1,6 @@
 package com.astro.core.common.data;
 
+import com.astro.core.common.data.block.AstroApothecaryBlock;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -53,6 +54,8 @@ public class AstroBlocks {
     public static BlockEntry<AstroFallingBlock> ASTEROID_GRAVEL;
     public static BlockEntry<Block> COBBLED_ASTEROID_STONE;
     public static BlockEntry<Block> SMOOTH_ASTEROID_STONE;
+    public static BlockEntry<Block> ASTEROID_STONE_BRICKS;
+    public static BlockEntry<AstroApothecaryBlock> ASTEROID_APOTHECARY;
 
     public static BlockEntry<KuiperSlimeBlock> KUIPER_SLIME;
     public static BlockEntry<Block> LIVINGBRICKS;
@@ -217,6 +220,21 @@ public class AstroBlocks {
                         prov.models().cubeAll(ctx.getName(), AstroCore.id("block/rocks/polished_asteroid_stone"))))
                 .tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .lang("Smooth Asteroid Stone")
+                .item(BlockItem::new).build().register();
+        ASTEROID_STONE_BRICKS = createStone("asteroid_stone_bricks", "Asteroid Stone Bricks",
+                "rocks/asteroid_stone_bricks", MapColor.TERRACOTTA_PURPLE, 4.0F);
+
+        ASTEROID_APOTHECARY = REGISTRATE.block("asteroid_apothecary", AstroApothecaryBlock::new)
+                .initialProperties(() -> Blocks.STONE)
+                .properties(p -> p.mapColor(MapColor.TERRACOTTA_PURPLE).strength(3.5F)
+                        .sound(SoundType.STONE).requiresCorrectToolForDrops())
+                .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(),
+                        prov.models().withExistingParent(ctx.getName(),
+                                        AstroCore.id("block/petal_apothecary"))
+                                .texture("side", AstroCore.id("block/apothecaries/apothecary_asteroid_side"))
+                                .texture("top", AstroCore.id("block/apothecaries/apothecary_asteroid_top"))
+                                .texture("bottom", AstroCore.id("block/apothecaries/apothecary_asteroid_bottom"))))
+                .lang("Asteroid Stone Petal Apothecary")
                 .item(BlockItem::new).build().register();
 
         KUIPER_SLIME = REGISTRATE.block("kuiper_slime_block", KuiperSlimeBlock::new)
@@ -608,6 +626,7 @@ public class AstroBlocks {
                             .partialState().with(GTBlockStateProperties.ACTIVE, true).modelForState()
                             .modelFile(active).addModel();
                 })
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
                 .lang(name)
                 .item(BlockItem::new).build().register();
     }
@@ -641,6 +660,7 @@ public class AstroBlocks {
                             .modelFile(active).addModel();
                 })
                 .lang(name)
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
                 .item(BlockItem::new).build().register();
     }
 
@@ -654,6 +674,7 @@ public class AstroBlocks {
                                         side)
                                 .texture("particle", side)))
                 .lang(name)
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
                 .item(BlockItem::new).build().register();
     }
 
@@ -668,6 +689,7 @@ public class AstroBlocks {
                                 .cubeBottomTop(ctx.getName(), side, bottom, top)
                                 .texture("side", side).texture("bottom", bottom).texture("top", top)))
                 .lang(name)
+                .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
                 .item(BlockItem::new).build().register();
     }
 
