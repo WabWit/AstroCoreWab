@@ -70,39 +70,38 @@ public class CorruptDaisyBlockEntity extends SpecialFlowerBlockEntity {
             return;
         }
 
-        positionAt++;
-        if (positionAt == POSITIONS.length) positionAt = 0;
+        for (int i = 0; i < POSITIONS.length; i++) {
+            BlockPos coords = getEffectivePos().offset(POSITIONS[i]);
 
-        BlockPos coords = getEffectivePos().offset(POSITIONS[positionAt]);
+            if (!world.isEmptyBlock(coords)) {
+                world.getProfiler().push("findCorruptDaisyRecipe");
+                PureDaisyRecipe recipe = findRecipe(world, coords);
+                world.getProfiler().pop();
 
-        if (!world.isEmptyBlock(coords)) {
-            world.getProfiler().push("findCorruptDaisyRecipe");
-            PureDaisyRecipe recipe = findRecipe(world, coords);
-            world.getProfiler().pop();
-
-            if (recipe != null) {
-                if (ticksRemaining[positionAt] == -1) {
-                    ticksRemaining[positionAt] = recipe.getTime();
-                }
-                ticksRemaining[positionAt]--;
-
-                if (ticksRemaining[positionAt] <= 0) {
-                    ticksRemaining[positionAt] = -1;
-                    if (recipe.set(world, coords, this)) {
-                        if (BotaniaConfig.common().blockBreakParticles()) {
-                            world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK,
-                                    coords, Block.getId(recipe.getOutputState()));
-                        }
-                        world.gameEvent(null, GameEvent.BLOCK_CHANGE, coords);
-                        world.blockEvent(getBlockPos(), getBlockState().getBlock(),
-                                RECIPE_COMPLETE_EVENT, positionAt);
+                if (recipe != null) {
+                    if (ticksRemaining[i] == -1) {
+                        ticksRemaining[i] = recipe.getTime();
                     }
+                    ticksRemaining[i]--;
+
+                    if (ticksRemaining[i] <= 0) {
+                        ticksRemaining[i] = -1;
+                        if (recipe.set(world, coords, this)) {
+                            if (BotaniaConfig.common().blockBreakParticles()) {
+                                world.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK,
+                                        coords, Block.getId(recipe.getOutputState()));
+                            }
+                            world.gameEvent(null, GameEvent.BLOCK_CHANGE, coords);
+                            world.blockEvent(getBlockPos(), getBlockState().getBlock(),
+                                    RECIPE_COMPLETE_EVENT, i);
+                        }
+                    }
+                } else {
+                    ticksRemaining[i] = -1;
                 }
             } else {
-                ticksRemaining[positionAt] = -1;
+                ticksRemaining[i] = -1;
             }
-        } else {
-            ticksRemaining[positionAt] = -1;
         }
 
         if (!Arrays.equals(ticksRemaining, prevTicksRemaining)) {
