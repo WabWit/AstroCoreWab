@@ -4,9 +4,11 @@
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
+    "accessor.BlockEntityTypeAccessor",
     "accessor.BotaniaEmiRecipeAccessor",
     "accessor.RunicAltarBlockEntityAccessor",
     "accessor.TorquePropagatorAccessor",
+    "ApothecaryBlockEntityMixin",
     "DataItemBehaviorMixin",
     "DataItemRenderMixin",
     "EnvironmentEffectsMixin",

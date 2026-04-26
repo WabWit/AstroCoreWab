@@ -1,0 +1,8 @@
+{
+  "parent": "astrogreg:block/petal_apothecary",
+  "textures": {
+    "bottom": "astrogreg:block/apothecaries/apothecary_asteroid_bottom",
+    "side": "astrogreg:block/apothecaries/apothecary_asteroid_side",
+    "top": "astrogreg:block/apothecaries/apothecary_asteroid_top"
+  }
+}
