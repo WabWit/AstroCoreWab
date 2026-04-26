@@ -11,7 +11,7 @@ public class AstroMaterialFlagAddition {
 
     public static void register() {
         OreProperty Desh = DESH.getProperty(PropertyKey.ORE);
-        Desh.setOreByProducts(Iron, OSTRUM, Iron, OSTRUM);
+        Desh.setOreByProducts(Iron, OSTRUM, VanadiumMagnetite, OSTRUM);
         Desh.setWashedIn(SodiumPersulfate);
         Desh.setSeparatedInto(OSTRUM);
 
