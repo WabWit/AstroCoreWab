@@ -38,6 +38,7 @@
     "WaterWheelStressPenaltyMixin",
     "WaterWheelSyncMixin",
     "WaterWheelTooltipMixin",
+    "WireTypeMixin",
     "WorkableBlockProviderMixin"
   ],
   "injectors": {
