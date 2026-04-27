@@ -1,6 +1,5 @@
 package com.astro.core.common.data;
 
-import com.astro.core.common.data.block.AstroApothecaryBlock;
 import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.property.GTBlockStateProperties;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
@@ -33,6 +32,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.Tags;
 
 import com.astro.core.AstroCore;
+import com.astro.core.common.data.block.AstroApothecaryBlock;
 import com.astro.core.common.data.block.AstroFallingBlock;
 import com.astro.core.common.data.block.KuiperSlimeBlock;
 import com.astro.core.common.data.block.foliage.CryoGrassBlock;
@@ -230,7 +230,7 @@ public class AstroBlocks {
                         .sound(SoundType.STONE).requiresCorrectToolForDrops())
                 .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(),
                         prov.models().withExistingParent(ctx.getName(),
-                                        AstroCore.id("block/petal_apothecary"))
+                                AstroCore.id("block/petal_apothecary"))
                                 .texture("side", AstroCore.id("block/apothecaries/apothecary_asteroid_side"))
                                 .texture("top", AstroCore.id("block/apothecaries/apothecary_asteroid_top"))
                                 .texture("bottom", AstroCore.id("block/apothecaries/apothecary_asteroid_bottom"))))
