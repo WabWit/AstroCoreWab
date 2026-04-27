@@ -21,6 +21,8 @@ public class AstroLangHandler {
                 "Making better fuels for Steel and Power Generation");
         provider.add("astrogreg.machine.coke_oven_parallels.tooltip",
                 "Gains Parallels for each layer in length added for up to 16 Parallels total");
+        provider.add("astrogreg.machine.coke_oven_duration.tooltip",
+                "Each Parallel increases recipe duration by 25% of the original duration");
 
         provider.add("astrogreg.machine.steam_blast_furnace.steam_usage", "Using %s mB/t Steam (%s mB/t x %s)");
         provider.add("astrogreg.machine.steam_blast_furnace.parallels", "Parallels: %s");

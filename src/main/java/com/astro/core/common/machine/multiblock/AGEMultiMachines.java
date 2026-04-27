@@ -142,9 +142,12 @@ public class AGEMultiMachines {
                 return shapeInfos;
             })
             .tooltipBuilder((stack, tooltip) -> {
-                tooltip.add(Component.translatable("astrogreg.machine.coke_oven_description.tooltip"));
+                tooltip.add(Component
+                        .translatable("astrogreg.machine.coke_oven_description.tooltip"));
                 tooltip.add(Component
                         .translatable("astrogreg.machine.coke_oven_parallels.tooltip"));
+                tooltip.add(Component
+                        .translatable("astrogreg.machine.coke_oven_duration.tooltip"));
             })
             .workableCasingModel(GTCEu.id("block/casings/solid/machine_coke_bricks"),
                     GTCEu.id("block/multiblock/coke_oven"))

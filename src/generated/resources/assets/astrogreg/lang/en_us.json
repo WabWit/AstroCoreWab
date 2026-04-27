@@ -20,6 +20,7 @@
   "astrogreg.machine.astroport.tooltip.inputs": "Requires ordered item inputs starting with the top left input bus, proceeding downwards, then continuing on the right column.",
   "astrogreg.machine.astroport.tooltip.research": "Requires §6Planetary Research Data§r from an §9Observatory§r.",
   "astrogreg.machine.coke_oven_description.tooltip": "Making better fuels for Steel and Power Generation",
+  "astrogreg.machine.coke_oven_duration.tooltip": "Each Parallel increases recipe duration by 25% of the original duration",
   "astrogreg.machine.coke_oven_parallels.tooltip": "Gains Parallels for each layer in length added for up to 16 Parallels total",
   "astrogreg.machine.cwu_generator.inactive.no_lube": "§cInactive:§r No Lubricant",
   "astrogreg.machine.cwu_generator.inactive.no_power": "§cInactive:§r Insufficient Power",

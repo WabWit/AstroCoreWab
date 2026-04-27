@@ -163,9 +163,12 @@ public class CokeOvenMachine extends PrimitiveWorkableMachine implements IUIMach
                 return ModifierFunction.IDENTITY;
             }
 
+            double durationMultiplier = 1.0 + (actualParallel - 1) * 0.25;
+
             return ModifierFunction.builder()
                     .inputModifier(ContentModifier.multiplier(actualParallel))
                     .outputModifier(ContentModifier.multiplier(actualParallel))
+                    .durationMultiplier(durationMultiplier)
                     .parallels(actualParallel)
                     .build();
         }
