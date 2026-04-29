@@ -44,6 +44,7 @@ public class AstroRecipeTypes {
     public static GTRecipeType ASTROPORT_RECIPES;
     public static GTRecipeType OBSERVATORY_RECIPES;
     public static GTRecipeType CORRUPT_DAISY_RECIPES;
+    public static GTRecipeType LARGE_ROCK_CRUSHER_RECIPES;
 
     public static final String OBSERVATORY_SCAN_ITEM_KEY = "observatory_scan_item";
     public static final String OBSERVATORY_CWUT_KEY = "observatory_cwut";
@@ -57,9 +58,16 @@ public class AstroRecipeTypes {
     public static final String OBSERVATORY_RESEARCH_ITEM_TYPE_KEY = "observatory_research_item_type";
 
     public static void init() {
+
         COMPOSTER_RECIPES = register("composter", MULTIBLOCK)
                 .setMaxIOSize(1, 1, 0, 0)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT);
+
+        LARGE_ROCK_CRUSHER_RECIPES = register("large_rock_crusher", MULTIBLOCK)
+                .setEUIO(IO.IN)
+                .setMaxIOSize(2, 1, 2, 0)
+                .setProgressBar(GuiTextures.PROGRESS_BAR_MACERATE, LEFT_TO_RIGHT)
+                .setSound(GTSoundEntries.FORGE_HAMMER);
 
         AETHER_ENGINE_RECIPES = register("aether_engine", ELECTRIC)
                 .setMaxIOSize(0, 0, 1, 1)

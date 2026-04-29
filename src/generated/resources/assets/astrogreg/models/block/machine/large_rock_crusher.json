@@ -1,0 +1,102 @@
+{
+  "parent": "minecraft:block/block",
+  "dynamic_renders": [
+    {
+      "type": "gtceu:boiler_multi_parts",
+      "casing_block": {
+        "Name": "gtceu:stress_proof_casing"
+      },
+      "firebox_active": {
+        "Name": "gtceu:tungstensteel_firebox_casing",
+        "Properties": {
+          "active": "true"
+        }
+      },
+      "firebox_idle": {
+        "Name": "gtceu:tungstensteel_firebox_casing",
+        "Properties": {
+          "active": "false"
+        }
+      }
+    }
+  ],
+  "loader": "gtceu:machine",
+  "machine": "astrogreg:large_rock_crusher",
+  "texture_overrides": {
+    "all": "gtceu:block/casings/gcym/stress_proof_casing"
+  },
+  "variants": {
+    "is_formed=false,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=false,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front_active"
+        }
+      }
+    },
+    "is_formed=true,recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/machine/template/cube_all/sided",
+        "textures": {
+          "all": "gtceu:block/casings/gcym/stress_proof_casing",
+          "overlay_front": "gtceu:block/machines/rock_crusher/overlay_front_active"
+        }
+      }
+    }
+  }
+}

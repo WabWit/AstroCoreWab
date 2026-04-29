@@ -12,6 +12,7 @@ public class AstroLangHandler {
         provider.add("gtceu.astroport", "Astroport");
         provider.add("gtceu.observatory", "Observatory");
         provider.add("gtceu.composter", "Composting");
+        provider.add("gtceu.large_rock_crusher", "Large Rock Crusher");
 
         // multiblock tooltips
         provider.add("astrogreg.machine.recipe_progress.tooltip", "Progress: %1$ss / %2$ss (%3$s%%)");
@@ -148,6 +149,9 @@ public class AstroLangHandler {
                 "§o§7A more efficient way to get bone meal.");
 
         // custom hatch tooltips
+        provider.add("astrogreg.machine.muffler_hatch.efficiency_bonus",
+                "§aEU Efficiency Bonus:§r %s%% EU/t");
+
         provider.add("astrogreg.machine.water_hatch.tooltip", "§eAccepted Fluid:§r Water");
 
         provider.add("astrogreg.machine.mana_input_hatch.tooltip", "Exotic Matter Input for Multiblocks");

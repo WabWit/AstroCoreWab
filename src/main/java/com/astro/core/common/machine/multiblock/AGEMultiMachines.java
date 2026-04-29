@@ -56,6 +56,7 @@ import static com.gregtechceu.gtceu.api.machine.multiblock.PartAbility.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.api.pattern.util.RelativeDirection.*;
 import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_INDUSTRIAL_STEAM;
+import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_STRESS_PROOF;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeModifiers.*;
@@ -296,6 +297,44 @@ public class AGEMultiMachines {
             .model(createWorkableCasingMachineModel(GTCEu.id("block/casings/gcym/industrial_steam_casing"),
                     AstroCore.id("block/multiblock/steam_ore_washer"))
                     .andThen(b -> b.addDynamicRenderer(DynamicRenderHelper::makeRecipeFluidAreaRender)))
+            .register();
+
+    public static final MultiblockMachineDefinition STEAM_ROCK_CRUSHER = REGISTRATE
+            .multiblock("large_steam_rock_crusher", SteamParallelMultiblockMachine::new)
+            .langValue("Large Steam Rock Crusher")
+            .rotationState(RotationState.NON_Y_AXIS)
+            .recipeModifier(SteamParallelMultiblockMachine::recipeModifier, true)
+            .allowFlip(false)
+            .recipeType(LARGE_ROCK_CRUSHER_RECIPES)
+            .appearanceBlock(CASING_BRONZE_BRICKS)
+            .allowExtendedFacing(true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" FFF ", " XXX ", "  X  ", "     ", "     ", "     ")
+                    .aisle("FXXXF", "X   X", " X X ", " XXX ", "  X  ", "  C  ")
+                    .aisle("FXXXF", "XPGPX", "X   X", " X X ", " X X ", " C C ")
+                    .aisle("FXXXF", "X   X", " X X ", " XXX ", "  X  ", "  C  ")
+                    .aisle(" FFF ", " X@X ", "  X  ", "     ", "     ", "     ")
+                    .where('@', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_BRONZE_BRICKS.get()).setMinGlobalLimited(30)
+                            .or(abilities(STEAM).setExactLimit(1))
+                            .or(abilities(STEAM_IMPORT_ITEMS).setPreviewCount(1).setMinGlobalLimited(1)
+                                    .setMaxGlobalLimited(3))
+                            .or(abilities(STEAM_EXPORT_ITEMS).setPreviewCount(1).setMinGlobalLimited(1)
+                                    .setMaxGlobalLimited(3))
+                            .or(blocks(WATER_HATCH.get()).setMaxGlobalLimited(1).setPreviewCount(0))
+                            .or(abilities(IMPORT_FLUIDS).setMaxGlobalLimited(2).setPreviewCount(0)))
+                    .where('F', blocks(FIREBOX_BRONZE.get()))
+                    .where('P', blocks(CASING_BRONZE_PIPE.get()))
+                    .where('G', blocks(CASING_BRONZE_GEARBOX.get()))
+                    .where('C', blocks(BRONZE_HULL.get()))
+                    .build())
+            .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+            .model(createWorkableCasingMachineModel(
+                    GTCEu.id("block/casings/solid/machine_casing_bronze_plated_bricks"),
+                    GTCEu.id("block/machines/rock_crusher"))
+                    .andThen(b -> b.addDynamicRenderer(
+                            () -> new BoilerMultiPartRender(
+                                    BoilerFireboxType.BRONZE_FIREBOX, CASING_BRONZE_BRICKS))))
             .register();
 
     public static final MultiblockMachineDefinition STEAM_MINER = REGISTRATE
@@ -1557,12 +1596,53 @@ public class AGEMultiMachines {
                     .andThen(b -> b.addDynamicRenderer(() -> new AEMultiPartRender(FUTURA_COMPUTER_CASING))))
             .register();
 
+    public static final MultiblockMachineDefinition LARGE_ROCK_CRUSHER = REGISTRATE
+            .multiblock("large_rock_crusher", WorkableElectricMultiblockMachine::new)
+            .langValue("Large Rock Crusher")
+            .rotationState(RotationState.NON_Y_AXIS)
+            .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
+            .tooltips(Component.translatable("gtceu.machine.available_recipe_map_1.tooltip",
+                    Component.translatable("gtceu.large_rock_crusher")))
+            .recipeModifiers(BATCH_MODE, PARALLEL_HATCH)
+            .allowFlip(false)
+            .recipeType(LARGE_ROCK_CRUSHER_RECIPES)
+            .appearanceBlock(CASING_STRESS_PROOF)
+            .allowExtendedFacing(true)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle(" FFF ", " XXX ", "  X  ", "     ", "     ", "     ")
+                    .aisle("FXXXF", "X   X", " X X ", " XXX ", "  X  ", "  C  ")
+                    .aisle("FXXXF", "XPGPX", "X   X", " X X ", " X X ", " CMC ")
+                    .aisle("FXXXF", "X   X", " X X ", " XXX ", "  X  ", "  C  ")
+                    .aisle(" FFF ", " X@X ", "  X  ", "     ", "     ", "     ")
+                    .where('@', controller(blocks(definition.get())))
+                    .where('X', blocks(CASING_STRESS_PROOF.get()).setMinGlobalLimited(30)
+                            .or(abilities(INPUT_ENERGY).setMinGlobalLimited(1).setMaxGlobalLimited(2))
+                            .or(abilities(IMPORT_ITEMS))
+                            .or(abilities(IMPORT_FLUIDS))
+                            .or(abilities(EXPORT_FLUIDS))
+                            .or(abilities(PartAbility.PARALLEL_HATCH).setMaxGlobalLimited(1))
+                            .or(abilities(MAINTENANCE).setExactLimit(1)))
+                    .where('F', blocks(FIREBOX_TUNGSTENSTEEL.get()))
+                    .where('P', blocks(CASING_TUNGSTENSTEEL_PIPE.get()))
+                    .where('G', blocks(CASING_TUNGSTENSTEEL_GEARBOX.get()))
+                    .where('C', blocks(STEEL_HULL.get()))
+                    .where('M', abilities(MUFFLER))
+                    .build())
+            .modelProperty(GTMachineModelProperties.RECIPE_LOGIC_STATUS, RecipeLogic.Status.IDLE)
+            .model(createWorkableCasingMachineModel(
+                    GTCEu.id("block/casings/gcym/stress_proof_casing"),
+                    GTCEu.id("block/machines/rock_crusher"))
+                    .andThen(b -> b.addDynamicRenderer(
+                            () -> new BoilerMultiPartRender(
+                                    BoilerFireboxType.TUNGSTENSTEEL_FIREBOX, CASING_STRESS_PROOF))))
+            .register();
+
     public static final MultiblockMachineDefinition LARGE_GAS_COLLECTOR = REGISTRATE
             .multiblock("large_gas_collector", WorkableElectricMultiblockMachine::new)
             .rotationState(RotationState.ALL)
             .langValue("Large Gas Collection Unit")
             .recipeTypes(GTRecipeTypes.GAS_COLLECTOR_RECIPES, GTRecipeTypes.AIR_SCRUBBER_RECIPES)
-            .recipeModifier(BATCH_MODE)
+            .recipeModifiers(BATCH_MODE, PARALLEL_HATCH)
             .tooltips(Component.translatable("gtceu.multiblock.parallelizable.tooltip"))
             .tooltips(Component.translatable("gtceu.machine.available_recipe_map_2.tooltip",
                     Component.translatable("gtceu.gas_collector"), Component.translatable("gtceu.air_scrubber")))
