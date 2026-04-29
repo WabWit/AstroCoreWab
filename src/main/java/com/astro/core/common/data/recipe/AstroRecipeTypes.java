@@ -58,7 +58,6 @@ public class AstroRecipeTypes {
     public static final String OBSERVATORY_RESEARCH_ITEM_TYPE_KEY = "observatory_research_item_type";
 
     public static void init() {
-
         COMPOSTER_RECIPES = register("composter", MULTIBLOCK)
                 .setMaxIOSize(1, 1, 0, 0)
                 .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, LEFT_TO_RIGHT);
