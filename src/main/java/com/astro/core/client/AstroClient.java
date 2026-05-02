@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import com.astro.core.AstroCore;
 import com.astro.core.client.model.GlaciodilloModel;
+import com.astro.core.client.renderer.AstroWaystoneRenderer;
 import com.astro.core.client.renderer.entity.GlaciodilloModelLayers;
 import com.astro.core.client.renderer.entity.GlaciodilloRenderer;
 import com.astro.core.client.renderer.entity.KuiperSlimeRenderer;
@@ -18,6 +19,7 @@ import com.astro.core.client.renderer.machine.AEMultiPartRender;
 import com.astro.core.client.renderer.machine.AstroBoilerMultiPartRender;
 import com.astro.core.client.renderer.machine.AstroFluidRender;
 import com.astro.core.common.data.AstroEntities;
+import com.astro.core.common.data.block.waystone.AstroWaystoneBlockEntities;
 
 @SuppressWarnings("all")
 @Mod.EventBusSubscriber(modid = AstroCore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -36,6 +38,9 @@ public class AstroClient {
         event.registerEntityRenderer(AstroEntities.KUIPER_SLIME.get(), KuiperSlimeRenderer::new);
         event.registerEntityRenderer(AstroEntities.SPIG.get(), SpigRenderer::new);
         event.registerEntityRenderer(AstroEntities.GLACIODILLO.get(), GlaciodilloRenderer::new);
+        event.registerBlockEntityRenderer(
+                AstroWaystoneBlockEntities.ASTEROID_WAYSTONE.get(),
+                AstroWaystoneRenderer::new);
     }
 
     @SubscribeEvent

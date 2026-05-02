@@ -25,7 +25,6 @@
     "OxygenLoaderMixin",
     "RecipeLogicMixin",
     "RocketFuelMixin",
-    "RecipeLogicMixin",
     "RunicAltarBlockEntityMixin",
     "RunicAltarEmiRecipeMixin",
     "RunicAltarHudMixin",

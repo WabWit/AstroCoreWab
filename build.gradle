@@ -239,8 +239,12 @@ dependencies {
 
     //Botania, addons and dependencies
     modImplementation("vazkii.botania:Botania:${minecraft_version}-${botania_version}-FORGE")
-    modImplementation("curios:Curios:forge-${curios_version}+${minecraft_version}")
     modImplementation("patchouli:Patchouli:${minecraft_version}-${patchouli_version}-FORGE")
+    modImplementation("curios:Curios:forge-${curios_version}+${minecraft_version}")
+
+    //Waystones
+    modImplementation("curse.maven:balm-531761:7420617")
+    modImplementation("curse.maven:waystones-245755:7682270")
 
     //Apply Mixin AP
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'

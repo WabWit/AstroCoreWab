@@ -30,6 +30,8 @@ import com.astro.core.common.data.AstroBlocks;
 import com.astro.core.common.data.AstroEntities;
 import com.astro.core.common.data.AstroItems;
 import com.astro.core.common.data.block.flower.AstroFlowerBlocks;
+import com.astro.core.common.data.block.waystone.AstroWaystoneBlockEntities;
+import com.astro.core.common.data.block.waystone.AstroWaystoneBlocks;
 import com.astro.core.common.data.configs.AstroConfigs;
 import com.astro.core.common.data.machine.AstroRecipeConditions;
 import com.astro.core.common.data.materials.*;
@@ -87,11 +89,15 @@ public class AstroCore {
         AstroEntities.ENTITY_TYPES.register(modEventBus);
         AstroBiomes.BIOMES.register(modEventBus);
         AstroFeatures.FEATURES.register(modEventBus);
-
+        AstroWaystoneBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
+        AstroWaystoneBlocks.BLOCKS.register(modEventBus);
+        AstroWaystoneBlocks.ITEMS.register(modEventBus);
         AstroFlowerBlocks.register(modEventBus);
+
         modEventBus.addListener((BuildCreativeModeTabContentsEvent event) -> {
             if (event.getTabKey() == ASTRO_CREATIVE_TAB.getKey()) {
                 event.accept(AstroFlowerBlocks.CORRUPT_DAISY_ITEM.get());
+                event.accept(AstroWaystoneBlocks.ASTEROID_WAYSTONE_ITEM.get()); // add this
             }
         });
 
@@ -123,6 +129,7 @@ public class AstroCore {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             AstroKineticMachineUtils.registerAllStressValues();
+            AstroWaystoneBlocks.registerStyle();
         });
     }
 

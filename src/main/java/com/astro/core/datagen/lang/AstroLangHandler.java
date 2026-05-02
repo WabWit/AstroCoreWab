@@ -249,6 +249,8 @@ public class AstroLangHandler {
         multilineLang(provider, "astrogreg.gui.configurator_slot.tooltip",
                 "§fConfigurator Slot§r\n§7Place a §6Programmed Circuit§7 in this slot to\n§7change its configured value.\n§aA Programmed Circuit in this slot is also valid for recipe inputs.§r");
 
+        provider.add("block.astrogreg.asteroid_waystone", "Asteroid Waystone");
+
         provider.add("astrogreg.recipe_condition.oxygenated.requires", "Requires Oxygenated Environment.");
         provider.add("astrogreg.recipe_condition.oxygenated.requires_not", "Requires Unoxygenated Environment.");
         provider.add("recipe.capability.cwu.name", "Requires CWU Input");
