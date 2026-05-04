@@ -2,14 +2,22 @@ package com.astro.core.common.data;
 
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import appeng.api.stacks.AEFluidKey;
+import appeng.api.stacks.AEItemKey;
+import appeng.api.stacks.AEKey;
 import com.astro.core.common.data.item.foliage.*;
 import com.astro.core.common.data.item.research.DataDiskItem;
+import com.glodblock.github.extendedae.common.items.InfinityCell;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -149,6 +157,41 @@ public class AstroItems {
     public static ItemEntry<AstroItem> URANUS = REGISTRATE
             .item("uranus", AstroItem::new)
             .lang("Uranus")
+            .register();
+
+    // inf cells
+    public static class FixedInfinityCell extends InfinityCell {
+
+        private final java.util.function.Supplier<AEKey> fixed;
+
+        public FixedInfinityCell(java.util.function.Supplier<AEKey> fixed) {
+            this.fixed = fixed;
+        }
+
+        @Override
+        public @NotNull AEKey getRecord(ItemStack stack) {
+            return fixed.get();
+        }
+    }
+
+    public static ItemEntry<FixedInfinityCell> INFINITE_GRAVEL_CELL = REGISTRATE
+            .item("infinite_gravel_cell", p -> new FixedInfinityCell(() -> AEItemKey.of(Blocks.GRAVEL)))
+            .lang("Infinite Gravel Cell")
+            .model((ctx, prov) -> {})
+            .register();
+
+    public static ItemEntry<FixedInfinityCell> INFINITE_SAND_CELL = REGISTRATE
+            .item("infinite_sand_cell", p -> new FixedInfinityCell(() -> AEItemKey.of(Blocks.SAND)))
+            .lang("Infinite Sand Cell")
+            .model((ctx, prov) -> {})
+            .register();
+
+    public static ItemEntry<FixedInfinityCell> INFINITE_OXYGEN_CELL = REGISTRATE
+            .item("infinite_oxygen_cell", p -> new FixedInfinityCell(
+                    () -> AEFluidKey.of(ForgeRegistries.FLUIDS.getValue(
+                            new ResourceLocation("gtceu", "oxygen")))))
+            .lang("Infinite Oxygen Cell")
+            .model((ctx, prov) -> {})
             .register();
 
     public static class AstroItem extends Item {
