@@ -186,6 +186,14 @@ public class AstroItems {
             .model((ctx, prov) -> {})
             .register();
 
+    public static ItemEntry<FixedInfinityCell> INFINITE_LAVA_CELL = REGISTRATE
+            .item("infinite_lava_cell", p -> new FixedInfinityCell(
+                    () -> AEFluidKey.of(ForgeRegistries.FLUIDS.getValue(
+                            new ResourceLocation("minecraft", "lava")))))
+            .lang("Infinite Lava Cell")
+            .model((ctx, prov) -> {})
+            .register();
+
     public static ItemEntry<FixedInfinityCell> INFINITE_OXYGEN_CELL = REGISTRATE
             .item("infinite_oxygen_cell", p -> new FixedInfinityCell(
                     () -> AEFluidKey.of(ForgeRegistries.FLUIDS.getValue(
