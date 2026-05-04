@@ -227,7 +227,7 @@ dependencies {
     //AE2 and dependencies
     modImplementation("org.appliedenergistics:appliedenergistics2-forge-${ae_version}")
     modImplementation("org.appliedenergistics:guideme-${guide_version}")
-    compileOnly("curse.maven:ex-pattern-provider-892005:7248944")
+    compileOnly("curse.maven:ex-pattern-provider-892005:7986603")
     compileOnly("curse.maven:glodium-957920:5226922")
 
     //Powah and dependencies
