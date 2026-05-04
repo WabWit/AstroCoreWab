@@ -208,7 +208,7 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         int currentEUt = recipeLogic.isWorking() ? parallels * EU_PER_PARALLEL : 0;
         int availableSU = (int) getAvailableSU();
         int maxSU = (int) (clampParallel(targetParallel) * SU_PER_PARALLEL);
-        int maxEUt = 48;
+        int maxEUt = 64;
         int tier = getOutputTier();
 
         textList.add(Component.translatable("gtceu.multiblock.max_energy_per_tick",
