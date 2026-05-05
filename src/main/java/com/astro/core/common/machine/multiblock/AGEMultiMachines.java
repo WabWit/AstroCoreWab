@@ -514,28 +514,6 @@ public class AGEMultiMachines {
                     AstroCore.id("block/multiblock/concrete_mixer"))
             .register();
 
-    public static final MultiblockMachineDefinition KINETIC_LARGE_ALTERNATOR = REGISTRATE
-            .multiblock("large_kinetic_alternator", KineticAlternatorMachine::new)
-            .langValue("Large Kinetic Alternator")
-            .rotationState(RotationState.ALL)
-            .recipeType(DUMMY_RECIPES)
-            .appearanceBlock(MACHINE_CASING_KINETIC)
-            .pattern(definition -> FactoryBlockPattern.start()
-                    .aisle("XXXX", "XXXX", "XXXX")
-                    .aisle("XXXX", "HGGH", "XXXX")
-                    .aisle("XXXX", "X@XX", "XXXX")
-                    .where("@", controller(blocks(definition.get())))
-                    .where("X", blocks(MACHINE_CASING_KINETIC.get()))
-                    .where("G", blocks(CASING_BRONZE_GEARBOX.get()))
-                    .where("H", abilities(AstroPartAbility.KINETIC_INPUT).setExactLimit(1)
-                            .or(abilities(OUTPUT_ENERGY).setExactLimit(1)))
-                    .build())
-            .tooltips(Component.translatable("astrogreg.machine.large_kinetic_alternator_production.tooltip"),
-                    Component.translatable("astrogreg.machine.large_kinetic_alternator_max_production.tooltip"))
-            .workableCasingModel(AstroCore.id("block/casings/machine_casing_kinetic"),
-                    AstroCore.id("block/multiblock/kinetic_alternator"))
-            .register();
-
     public static final MultiblockMachineDefinition KINETIC_MINER = REGISTRATE
             .multiblock("large_kinetic_miner", KineticMinerMachine::new)
             .langValue("Large Kinetic Miner")
@@ -585,6 +563,53 @@ public class AGEMultiMachines {
                         KineticMinerMachine.CHUNK_RADIUS * 2 + 1,
                         KineticMinerMachine.CHUNK_RADIUS * 2 + 1));
             })
+            .register();
+
+    public static final MultiblockMachineDefinition KINETIC_LARGE_ALTERNATOR = REGISTRATE
+            .multiblock("large_bronze_kinetic_alternator", KineticAlternatorMachine::new)
+            .langValue("Large Primitive Kinetic Alternator")
+            .rotationState(RotationState.ALL)
+            .recipeType(DUMMY_RECIPES)
+            .appearanceBlock(MACHINE_CASING_KINETIC)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXXX", "XXXX", "XXXX")
+                    .aisle("XXXX", "HGGH", "XXXX")
+                    .aisle("XXXX", "X@XX", "XXXX")
+                    .where("@", controller(blocks(definition.get())))
+                    .where("X", blocks(MACHINE_CASING_KINETIC.get()))
+                    .where("G", blocks(CASING_BRONZE_GEARBOX.get()))
+                    .where("H", abilities(AstroPartAbility.KINETIC_INPUT).setExactLimit(1)
+                            .or(abilities(OUTPUT_ENERGY).setExactLimit(1)))
+                    .build())
+            .tooltips(Component.translatable("astrogreg.machine.large_kinetic_alternator.bronze.production.tooltip"),
+                    Component.translatable("astrogreg.machine.large_kinetic_alternator.bronze.max_production.tooltip"))
+            .workableCasingModel(AstroCore.id("block/casings/machine_casing_kinetic"),
+                    AstroCore.id("block/multiblock/kinetic_alternator"))
+            .register();
+
+    public static final MultiblockMachineDefinition KINETIC_LARGE_STEEL_ALTERNATOR = REGISTRATE
+            .multiblock("large_steel_kinetic_alternator", KineticSteelAlternatorMachine::new)
+            .langValue("Large Advanced Kinetic Alternator")
+            .rotationState(RotationState.ALL)
+            .recipeType(DUMMY_RECIPES)
+            .appearanceBlock(CASING_STEEL_SOLID)
+            .pattern(definition -> FactoryBlockPattern.start()
+                    .aisle("XXXX", "XXXX", "XXXX")
+                    .aisle("XXXX", "HGGH", "XXXX")
+                    .aisle("XXXX", "X@XX", "XXXX")
+                    .where("@", controller(blocks(definition.get())))
+                    .where("X", blocks(CASING_STEEL_SOLID.get())
+                            .or(abilities(IMPORT_FLUIDS).setMaxGlobalLimited(1).setPreviewCount(1)))
+                    .where("G", blocks(CASING_STEEL_GEARBOX.get()))
+                    .where("H", abilities(AstroPartAbility.KINETIC_INPUT).setExactLimit(1)
+                            .or(abilities(OUTPUT_ENERGY).setExactLimit(1)))
+                    .build())
+            .tooltips(Component.translatable("astrogreg.machine.large_kinetic_steel_alternator.production.tooltip"),
+                    Component.translatable("astrogreg.machine.large_kinetic_steel_alternator.max_production.tooltip"),
+                    Component.translatable("gtceu.universal.tooltip.uses_per_hour_lubricant",
+                            KineticSteelAlternatorMachine.LUBRICANT_MB_PER_HOUR))
+            .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_solid_steel"),
+                    AstroCore.id("block/multiblock/kinetic_steel_alternator"))
             .register();
 
     public static final MultiblockMachineDefinition KINETIC_COMBUSTION_ENGINE = REGISTRATE

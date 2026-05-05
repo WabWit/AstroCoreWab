@@ -13,6 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import com.astro.core.AstroCore;
 import com.astro.core.common.machine.multiblock.kinetic.KineticAlternatorMachine;
+import com.astro.core.common.machine.multiblock.kinetic.KineticSteelAlternatorMachine;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.IServerDataProvider;
@@ -36,6 +37,7 @@ public class KineticAlternatorProvider implements IBlockComponentProvider, IServ
         int parallels = data.getInt("parallels");
         long currentEU = data.getLong("currentEU");
         long outputVoltage = data.getLong("outputVoltage");
+        int euPerParallel = data.getInt("euPerParallel");
 
         if (currentEU > 0 && outputVoltage > 0) {
             int tier = GTUtil.getTierByVoltage(outputVoltage);
@@ -48,21 +50,21 @@ public class KineticAlternatorProvider implements IBlockComponentProvider, IServ
                     .append(Component.literal(GTValues.VNF[tier])
                             .withStyle(style -> style.withColor(GTValues.VC[tier])))
                     .append(Component.translatable("gtceu.universal.padded_parentheses",
-                            Component.translatable("gtceu.recipe.eu.total",
-                                    FormattingUtil.formatNumbers(currentEU)))
+                                    Component.translatable("gtceu.recipe.eu.total",
+                                            FormattingUtil.formatNumbers(currentEU)))
                             .withStyle(ChatFormatting.WHITE));
 
             tooltip.add(Component.translatable("gtceu.top.energy_production").append(" ").append(text));
         }
 
         tooltip.add(Component.translatable("gtceu.multiblock.total_runs",
-                Component.literal(FormattingUtil.formatNumbers(parallels))
-                        .withStyle(ChatFormatting.DARK_PURPLE))
+                        Component.literal(FormattingUtil.formatNumbers(parallels))
+                                .withStyle(ChatFormatting.DARK_PURPLE))
                 .withStyle(ChatFormatting.GRAY));
 
         tooltip.add(Component.translatable("gtceu.multiblock.parallel.exact",
-                Component.literal(FormattingUtil.formatNumbers(parallels))
-                        .withStyle(ChatFormatting.DARK_PURPLE))
+                        Component.literal(FormattingUtil.formatNumbers(parallels))
+                                .withStyle(ChatFormatting.DARK_PURPLE))
                 .withStyle(ChatFormatting.GRAY));
     }
 
@@ -76,10 +78,15 @@ public class KineticAlternatorProvider implements IBlockComponentProvider, IServ
             if (machine.isFormed()) {
                 int parallels = machine.getAvailableParallels();
                 long outputVoltage = machine.getOutputVoltage();
+                int euPerParallel = machine instanceof KineticSteelAlternatorMachine
+                        ? KineticSteelAlternatorMachine.EU_PER_PARALLEL
+                        : KineticAlternatorMachine.EU_PER_PARALLEL;
+
                 compoundTag.putInt("parallels", parallels);
+                compoundTag.putInt("euPerParallel", euPerParallel);
                 compoundTag.putLong("currentEU",
                         machine.getRecipeLogic().isWorking() ?
-                                (long) parallels * KineticAlternatorMachine.EU_PER_PARALLEL : 0L);
+                                (long) parallels * euPerParallel : 0L);
                 compoundTag.putLong("outputVoltage", outputVoltage);
             }
         }

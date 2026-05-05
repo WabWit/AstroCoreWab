@@ -1,5 +1,7 @@
 package com.astro.core.integration.create;
 
+import com.astro.core.common.machine.multiblock.kinetic.KineticSteelAlternatorMachine;
+import com.astro.core.common.machine.part.KineticInputHatch;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
@@ -119,7 +121,26 @@ public class AstroKineticMachineBlockEntity extends GeneratingKineticBlockEntity
         return workingCapacityPerRPM;
     }
 
-    // ======== Tick Subscription ========
+    @Override
+    public float calculateStressApplied() {
+        var block = getBlockState().getBlock();
+        if (block != AstroHatches.KINETIC_INPUT_HATCH.getBlock()) {
+            return super.calculateStressApplied();
+        }
+
+        if (metaMachine instanceof KineticInputHatch hatch) {
+            var controllers = hatch.getControllers();
+            if (!controllers.isEmpty() && controllers.first() instanceof KineticSteelAlternatorMachine) {
+                this.lastStressApplied = 128.0f;
+                return 128.0f;
+            }
+        }
+
+        this.lastStressApplied = 32.0f;
+        return 32.0f;
+    }
+
+    // tick subscription
 
     public TickableSubscription subscribeServerTick(Runnable runnable) {
         var subscription = new TickableSubscription(runnable);
@@ -146,7 +167,7 @@ public class AstroKineticMachineBlockEntity extends GeneratingKineticBlockEntity
         }
     }
 
-    // ======== Misc ========
+    // misc
 
     @Override
     public AstroKineticMachineDefinition getDefinition() {
@@ -215,7 +236,7 @@ public class AstroKineticMachineBlockEntity extends GeneratingKineticBlockEntity
         return false;
     }
 
-    // ======== NBT ========
+    // nbt data
 
     @Override
     protected void write(CompoundTag compound, boolean clientPacket) {

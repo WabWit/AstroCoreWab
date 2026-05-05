@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/block",
   "loader": "gtceu:machine",
-  "machine": "astrogreg:large_kinetic_alternator",
+  "machine": "astrogreg:large_bronze_kinetic_alternator",
   "texture_overrides": {
     "all": "astrogreg:block/casings/machine_casing_kinetic"
   },

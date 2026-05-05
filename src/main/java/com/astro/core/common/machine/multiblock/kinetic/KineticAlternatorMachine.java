@@ -48,7 +48,7 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
     public static final float REQUIRED_RPM = KineticInputHatch.REQUIRED_RPM;
 
     @Persisted
-    private int targetParallel = MAX_PARALLELS;
+    protected int targetParallel = MAX_PARALLELS;
 
     public KineticAlternatorMachine(IMachineBlockEntity holder, Object... args) {
         super(holder);
@@ -68,9 +68,9 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         }
     }
 
-    // ======== Kinetic Input ========
+    // Kinetic Input
 
-    private float getAvailableSU() {
+    protected float getAvailableSU() {
         for (var part : getParts()) {
             if (part instanceof KineticInputHatch hatch) {
                 return Math.abs(hatch.getKineticHolder().getSpeed()) * SU_PER_PARALLEL / REQUIRED_RPM;
@@ -85,9 +85,9 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         return Math.max(0, Math.min(targetParallel, parallels));
     }
 
-    // ======== Energy Output ========
+    // Energy Output
 
-    private NotifiableEnergyContainer getOutputEnergyContainer() {
+    protected NotifiableEnergyContainer getOutputEnergyContainer() {
         for (var part : getParts()) {
             if (!PartAbility.OUTPUT_ENERGY.isApplicable(part.self().getDefinition().getBlock())) continue;
             for (var handlerList : part.getRecipeHandlers()) {
@@ -112,7 +112,7 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         return container != null ? container.getOutputVoltage() : 0;
     }
 
-    private int getOutputTier() {
+    protected int getOutputTier() {
         var container = getOutputEnergyContainer();
         if (container == null) return GTValues.ULV;
         long voltage = container.getOutputVoltage();
@@ -122,7 +122,7 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         return GTValues.ULV;
     }
 
-    private void pushEnergyToHatches(int euPerTick) {
+    protected void pushEnergyToHatches(int euPerTick) {
         var container = getOutputEnergyContainer();
         if (container == null) return;
         long space = container.getEnergyCapacity() - container.getEnergyStored();
@@ -130,9 +130,9 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         container.addEnergy(Math.min(euPerTick, space));
     }
 
-    // ======== Tick ========
+    // Tick
 
-    private void alternatorTick() {
+    protected void alternatorTick() {
         if (!isFormed() || !isWorkingEnabled()) {
             setIdleStatus();
             return;
@@ -149,15 +149,15 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         recipeLogic.setStatus(RecipeLogic.Status.WORKING);
     }
 
-    private void setIdleStatus() {
+    protected void setIdleStatus() {
         if (recipeLogic.getStatus() != RecipeLogic.Status.IDLE) {
             recipeLogic.setWaiting(null);
         }
     }
 
-    // ======== GUI ========
+    // GUI
 
-    private static int clampParallel(int v) {
+    protected static int clampParallel(int v) {
         return Math.min(MAX_PARALLELS, Math.max(1, v));
     }
 
@@ -208,26 +208,26 @@ public class KineticAlternatorMachine extends WorkableMultiblockMachine implemen
         int currentEUt = recipeLogic.isWorking() ? parallels * EU_PER_PARALLEL : 0;
         int availableSU = (int) getAvailableSU();
         int maxSU = (int) (clampParallel(targetParallel) * SU_PER_PARALLEL);
-        int maxEUt = 64;
+        int maxEUt = MAX_PARALLELS * EU_PER_PARALLEL;
         int tier = getOutputTier();
 
         textList.add(Component.translatable("gtceu.multiblock.max_energy_per_tick",
-                FormattingUtil.formatNumbers(maxEUt), GTValues.VNF[tier])
+                        FormattingUtil.formatNumbers(maxEUt), GTValues.VNF[tier])
                 .withStyle(ChatFormatting.GRAY));
 
         textList.add(Component.translatable("gtceu.multiblock.max_recipe_tier",
-                GTValues.VNF[GTValues.ULV])
+                        GTValues.VNF[GTValues.ULV])
                 .withStyle(ChatFormatting.GRAY));
 
         textList.add(Component.translatable("astrogreg.machine.kinetic_machine.su_input",
-                availableSU, maxSU)
+                        availableSU, maxSU)
                 .withStyle(ChatFormatting.AQUA));
 
         textList.add(Component.translatable("gtceu.multiblock.turbine.energy_per_tick",
                 FormattingUtil.formatNumbers(currentEUt), FormattingUtil.formatNumbers(maxEUt)));
 
         textList.add(Component.translatable("astrogreg.machine.steam_blast_furnace.parallels",
-                clampParallel(targetParallel), parallels)
+                        clampParallel(targetParallel), parallels)
                 .append(ComponentPanelWidget.withButton(Component.literal(" [-] "), "parallelSub"))
                 .append(ComponentPanelWidget.withButton(Component.literal("[+]"), "parallelAdd")));
 
