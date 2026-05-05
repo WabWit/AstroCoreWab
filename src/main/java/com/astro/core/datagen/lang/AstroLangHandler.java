@@ -1,287 +1,287 @@
-    package com.astro.core.datagen.lang;
-    
-    import com.tterrag.registrate.providers.RegistrateLangProvider;
-    
-    @SuppressWarnings("all")
-    public class AstroLangHandler {
-    
-        public static void init(RegistrateLangProvider provider) {
-            // recipe types
-            provider.add("gtceu.kinetic_combustion_generator", "Kinetic Combustion");
-            provider.add("gtceu.concrete_plant", "Concrete Plant");
-            provider.add("gtceu.astroport", "Astroport");
-            provider.add("gtceu.observatory", "Observatory");
-            provider.add("gtceu.composter", "Composting");
-            provider.add("gtceu.large_rock_crusher", "Large Rock Crusher");
-    
-            // multiblock tooltips
-            provider.add("astrogreg.machine.recipe_progress.tooltip", "Progress: %1$ss / %2$ss (%3$s%%)");
-            provider.add("astrogreg.machine.parallels", "Active Parallels: %s");
-    
-            provider.add("astrogreg.machine.coke_oven_description.tooltip",
-                    "Making better fuels for Steel and Power Generation");
-            provider.add("astrogreg.machine.coke_oven_parallels.tooltip",
-                    "Gains Parallels for each layer in length added for up to 16 Parallels total");
-            provider.add("astrogreg.machine.coke_oven_duration.tooltip",
-                    "Each Parallel increases recipe duration by 25% of the original duration");
-    
-            provider.add("astrogreg.machine.steam_blast_furnace.steam_usage", "Using %s mB/t Steam (%s mB/t x %s)");
-            provider.add("astrogreg.machine.steam_blast_furnace.parallels", "Parallels: %s");
-    
-            provider.add("astrogreg.machine.steam_miner.water_usage", "§bWater Demand: %s mB/t");
-            provider.add("astrogreg.machine.steam_miner.tooltip.description", "Steam-Powered Multiblock Ore Miner.");
-            provider.add("astrogreg.machine.steam_miner.tooltip.steam",
-                    "Uses 16mB/t §bSteam§r §7per§r Parallel §7and takes§r 12s§7 per block, divided by the number of§r Active Parallels");
-    
-            provider.add("astrogreg.machine.kinetic_miner.tooltip.description", "Stress-Powered Multiblock Ore Miner");
-            provider.add("astrogreg.machine.kinetic_miner.tooltip.rpm",
-                    "Uses 1024 §6Stress Units§r§7 at§r 32 RPM §7per§r Parallel§7 and takes§r 24s§7 per block, divided by the number of§r Active Parallels");
-    
-            provider.add("astrogreg.machine.miner.tooltip.bonus",
-                    "Produces 2x§7 more crushed ore than a§r Macerator §7when provided with§r Drilling Fluid.");
-            provider.add("astrogreg.machine.miner.tooltip.fluids",
-                    "Uses 6mB/t §7of§r Water §7or§r Drilling Fluid §7per§r Parallel");
-            provider.add("astrogreg.machine.miner.drilling_fluid_usage", "Drilling Fluid Usage: %s mB");
-            provider.add("astrogreg.machine.miner.fluid_conflict", "Remove Water or Drilling Fluid — cannot use both!");
-    
-            provider.add("astrogreg.machine.solar_boiler_array_sunlit_info.tooltip",
-                    "Cells must be exposed to direct sunlight to work properly.");
-            provider.add("astrogreg.machine.solar_boiler_array_heat_speed.tooltip",
-                    "Heating speed scales with distance from the Sun.");
-            provider.add("astrogreg.machine.solar_boiler_array_heat_scaling.tooltip",
-                    "Heat scaling: §e−1 K/s per Cell below 40 or +1% heating speed per sunlit Cell above 40");
-            provider.add("astrogreg.machine.solar_boiler_array_max_cells.tooltip",
-                    "Max Cell Count: §e33 x 33 (1089 Cells)");
-            provider.add("astrogreg.machine.solar_boiler_array.solar_intensity", "Solar Intensity: %s%%");
-            provider.add("astrogreg.machine.solar_boiler_array.temperature", "Temperature: %s°C");
-            provider.add("astrogreg.machine.solar_boiler_array.thermal_efficiency", "Thermal Efficiency: %s%%");
-            provider.add("astrogreg.machine.solar_boiler_array.cell_quality", "Cell Quality: %sx");
-            provider.add("astrogreg.machine.solar_boiler_array.sunlit_cells", "Sunlit Cells: %s");
-            provider.add("astrogreg.machine.solar_boiler_array.steam_output", "Steam Output: %s mB/t");
-            provider.add("astrogreg.machine.solar_boiler_array.danger_explosive", "DANGER: EXPLOSIVE!");
-            provider.add("astrogreg.machine.solar_boiler_array.danger_no_water", "DO NOT ADD WATER!");
-            provider.add("astrogreg.machine.solar_boiler_array.danger_cool_first", "Wait for the array to cool first.");
-            provider.add("astrogreg.machine.solar_boiler_array.hold_shift", "§o§7Hold Shift for details");
-            provider.add("config.jade.plugin_astrogreg.solar_boiler_info", "Solar Boiler Array Info");
-    
-            provider.add("astrogreg.machine.industrial_core.tooltip",
-                    "Maximum EU/t for this machine is limited by the tier of its §bIndustrial Processing Core§r.");
-            provider.add("astrogreg.machine.processing_core.core", "§bProcessing Core:§r %s");
-            provider.add("astrogreg.machine.processing_core.max_eut", "§eMax EU/t:§r§f %s (%s)");
-            provider.add("config.jade.plugin_astrogreg.processing_core_info", "§aIndustrial Processing Core Info§r");
-    
-            provider.add("astrogreg.machine.processing_cores_uniform.tooltip",
-                    "All four §bIndustrial Processing Cores§r must be of the same tier in order to operate.");
-    
-            provider.add("astrogreg.machine.observatory.tooltip.cwu",
-                    "Accepts CWU from §bResearch Computers§r adjacent to §aComputation Input Hatches§r.");
-            provider.add("astrogreg.machine.observatory.tooltip.research_items",
-                    "Insert §6Data Storage§r and §dResearch Subject§r items into the §9Observatory Research Panel§r.");
-            provider.add("config.jade.plugin_astrogreg.observatory_info", "Observatory Info");
-    
-            provider.add("astrogreg.machine.astroport.tooltip.inputs",
-                    "Requires ordered item inputs starting with the top left input bus, proceeding downwards, then continuing on the right column.");
-            provider.add("astrogreg.machine.astroport.tooltip.research",
-                    "Requires §6Planetary Research Data§r from an §9Observatory§r.");
-    
-            provider.add("astrogreg.machine.faraday_generator_expanding.tooltip",
-                    "§eBase Production:§r§f 4096 EU/t (§a2A§r §5EV§r) §7per§r §eMagnet Ring§r.");
-            provider.add("astrogreg.machine.faraday_generator_magnets.tooltip",
-                    "Higher tiers of §bFaraday Generator Magnet§r rows §7increase§r EU/t by §a400%§r for that §r§eMagnet Ring§r.");
-            provider.add("astrogreg.machine.faraday_generator_fluids.tooltip",
-                    "Consumes 1mB §6Lubricant§r §7and either§r§f 100mB §r§bLiquid Oxygen§r§7 or§r 25mB §eLiquid Helium§r§f per second for each §eMagnet Ring.§r");
-            provider.add("astrogreg.machine.faraday_generator_returns.tooltip",
-                    "Returns §a40%§r§7 of §rCoolant§7 back in§r Gaseous §7form.");
-            provider.add("astrogreg.machine.faraday_generator_springs.tooltip",
-                    "§dCompressed Superconductor Springs§r above §9IV§r §7increase§r the EU/t output by §a5%§r per tier.");
-            provider.add("astrogreg.machine.faraday_generator_max_length.tooltip", "§aMax Length:§r§e 64 Magnet Rings");
-            provider.add("astrogreg.machine.faraday_generator.magnet_rows", "Magnet Rings: %s");
-            provider.add("astrogreg.machine.faraday_generator.hold_shift", "§o§7Hold Shift for details");
-            provider.add("astrogreg.machine.faraday_generator.total_output", "Total Output: %s EU/t");
-            provider.add("astrogreg.machine.faraday_generator.lubricant_usage", "Lubricant Usage: %s mB/s");
-            provider.add("astrogreg.machine.faraday_generator.coolant_usage", "Coolant Usage: %s mB/s %s");
-            provider.add("config.jade.plugin_astrogreg.faraday_generator_info", "§aFaraday Generator Info§r");
-            provider.add("astrogreg.machine.faraday_generator.rotation_speed", "Rotational Speed: %s / %s RPM");
-            provider.add("astrogreg.machine.faraday_generator.max_eu_per_tick", "Max EU/t: %s (%s)");
-            provider.add("astrogreg.machine.faraday_generator.max_recipe_tier", "Max Recipe Tier: %s");
-            provider.add("astrogreg.machine.faraday_generator.energy_output", "Energy Output: %s / %s EU/t");
-            provider.add("astrogreg.machine.faraday_generator.conflicting_coils_1", "CONFLICTING MAGNET STRENGTHS");
-            provider.add("astrogreg.machine.faraday_generator.conflicting_coils_2", "Machine will not operate");
-            provider.add("astrogreg.machine.faraday_generator.superconductor_bonus", "Spring Multiplier: 1.%sx");
-    
-            provider.add("astrogreg.machine.large_miner.zpm.tooltip", "Planetary Depletion Apparatus");
-            provider.add("astrogreg.machine.fluid_drilling_rig.iv.tooltip", "Crust Sucker");
-    
-            provider.add("astrogreg.machine.kinetic_steam_engine_production.tooltip",
-                    "Produces 25,000 §6Stress Units§r and consumes 25mB/t §bSteam§r per middle layer.");
-            provider.add("astrogreg.machine.kinetic_steam_engine_steel_gearbox.tooltips",
-                    "Layers with §7Steel Gearboxes§r will consume §a20%§r more §bSteam§r and produce §a50%§r more §6Stress Units§r.");
-            provider.add("astrogreg.machine.kinetic_steam_engine_max_layers.tooltip", "§aMax Length:§r§e 16 Middle Layers");
-            provider.add("astrogreg.machine.kinetic_steam_engine.layer", "§eLength: %s Middle Layer");
-            provider.add("astrogreg.machine.kinetic_steam_engine.layers", "§eLength: %s Middle Layers");
-            provider.add("astrogreg.machine.kinetic_steam_engine.su_output", "§bStress Capacity: %s SU");
-            provider.add("astrogreg.machine.kinetic_steam_engine.steam_usage", "§6Steam Demand: %s mB/t");
-    
-            provider.add("astrogreg.machine.large_kinetic_machine_parallels.tooltip",
-                    "Performs up to 8 §aParallel Recipes§r at a cost of 1024 §6Stress Units§r at 32 RPM per Parallel");
-            provider.add("astrogreg.machine.large_kinetic_machine_recipes.tooltip", "Only performs §8ULV§r Recipes");
-            provider.add("astrogreg.machine.kinetic_machine.no_su", "§cInsufficient Stress Units");
-            provider.add("astrogreg.machine.kinetic_machine.su_input", "Stress Impact: %s / %s Available");
-            provider.add("config.jade.plugin_astrogreg.kinetic_steam_engine_info", "Kinetic Steam Engine Info");
-    
-            provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_0", "Combustion Torque Generator");
-            provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_1",
-                    "§eBase Production:§r 450,000 §6Stress Units");
-            provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_2",
-                    "Supply 20mB/s §7of Oxygen to produce up to§r 1,000,000 §6Stress Units§r§7 at§r 2x §7fuel consumption.");
-            provider.add("config.jade.plugin_astrogreg.kinetic_combustion_engine_info", "Kinetic Combustion Engine Info");
+package com.astro.core.datagen.lang;
 
-            provider.add("config.jade.plugin_astrogreg.kinetic_alternator_info", "Large Kinetic Alternator Info");
-            provider.add("astrogreg.machine.large_kinetic_alternator.bronze.production.tooltip",
-                    "Uses 1024 SU §7at§r 32 RPM §7and produces§r 8 EU/t §7per§r Parallel Recipe");
-            provider.add("astrogreg.machine.large_kinetic_alternator.bronze.max_production.tooltip",
-                    "§aMax Output:§r 64 EU/t at 8 Parallels (§a2A§r §8LV§r)");
+import com.tterrag.registrate.providers.RegistrateLangProvider;
 
-            provider.add("astrogreg.machine.large_kinetic_steel_alternator.tooltip",
-                    "Converts §6Stress Units§r into EU/t");
-            provider.add("astrogreg.machine.large_kinetic_steel_alternator.production.tooltip",
-                    "Uses 4096 SU §7at§r 32 RPM §7and produces§r 40 EU/t §7per§r Parallel Recipe");
-            provider.add("astrogreg.machine.large_kinetic_steel_alternator.max_production.tooltip",
-                    "§aMax Output:§r 320 EU/t at 8 Parallels (§a2.5A§r §bMV§r)");
-            provider.add("astrogreg.machine.kinetic_steel_alternator.no_lubricant", "§cNo Lubricant");
+@SuppressWarnings("all")
+public class AstroLangHandler {
 
-            provider.add("astrogreg.machine.overdrive_combustion_engine.tooltip", "Overdriven Chemical Ignition Manifold");
-    
-            provider.add("astrogreg.machine.large_primitive_composter.tooltip",
-                    "§o§7A more efficient way to get bone meal.");
-    
-            // custom hatch tooltips
-            provider.add("astrogreg.machine.muffler_hatch.efficiency_bonus",
-                    "§aEU Efficiency Bonus:§r %s%% EU/t");
-    
-            provider.add("astrogreg.machine.water_hatch.tooltip", "§eAccepted Fluid:§r Water");
-    
-            provider.add("astrogreg.machine.mana_input_hatch.tooltip", "Exotic Matter Input for Multiblocks");
-            provider.add("astrogreg.machine.mana_output_hatch.tooltip", "Exotic Matter Output for Multiblocks");
-    
-            provider.add("astrogreg.machine.cwu_input_hatch.tooltip", "Accepts CWU from adjacent Research Computers");
-    
-            provider.add("astrogreg.machine.expanded_me_pattern_buffer.tooltip.0",
-                    "§fAllows expanded direct §6AE2 pattern storage §ffor GregTech Multiblocks.");
-            provider.add("astrogreg.machine.expanded_me_pattern_buffer.tooltip.1",
-                    "§fLink §6Expanded Pattern Buffer Proxies §fwith a §bdatastick §fto link machines together!");
-            provider.add("astrogreg.machine.expanded_me_pattern_buffer_proxy.tooltip.0",
-                    "§fAllows linking many machines to a singular §6Expanded ME Pattern Buffer§f.");
-            provider.add("astrogreg.machine.me_tag_input_bus.tooltip.0", "§6Tag‑based AE2 Item Import");
-            provider.add("astrogreg.machine.me_tag_input_bus.tooltip.1", "§7Matches items via tag expressions");
-            provider.add("astrogreg.machine.me_tag_input_hatch.tooltip.0", "§6Tag‑based AE2 Fluid Import");
-            provider.add("astrogreg.machine.me_tag_input_hatch.tooltip.1", "§7Matches fluids via tag expressions");
-            provider.add("astrogreg.gui.me_tag.clear", "Clear");
-            provider.add("astrogreg.gui.me_tag.whitelist_tags", "Whitelist Tags");
-            provider.add("astrogreg.gui.me_tag.blacklist_tags", "Blacklist Tags");
-            provider.add("astrogreg.gui.me_tag.placeholder", "...");
-            provider.add("astrogreg.gui.me_tag.settings_copied", "Settings Copied: %s");
-            provider.add("astrogreg.gui.me_tag.settings_pasted", "Settings Pasted successfully.");
-            provider.add("astrogreg.gui.me_tag.item_preview", "Item Preview (Read Only)");
-            provider.add("astrogreg.gui.me_tag.datastick_name", "ME Tag Input Bus Configuration Data");
-            provider.add("astrogreg.gui.me_tag.fluid_preview", "Fluid Preview (Read Only)");
-            provider.add("astrogreg.gui.me_tag.settings_copied_hatch", "Tag Fluid Hatch settings copied");
-    
-            provider.add("astrogreg.machine.kinetic_input_hatch.tooltip", "Kinetic Stress Input for Multiblocks");
-            provider.add("astrogreg.machine.kinetic_output_hatch.tooltip", "Kinetic Stress Output for Multiblocks");
-    
-            provider.add("astrogreg.machine.observatory_object_holder.tooltip", "Holding Mechanism for Observatories");
-    
-            provider.add("astrogreg.machine.oxygenated_maintenance_hatch.tooltip",
-                    "For automatically maintaining multiblocks while providing an oxygenated environment!");
-    
-            // cwu generator tooltips
-            provider.add("astrogreg.machine.cwu_generator.tooltip.0", "§7Generates Computational Work Units");
-            provider.add("astrogreg.machine.cwu_generator.tooltip.1", "§9Computation:§r %s CWU/t");
-            provider.add("astrogreg.machine.cwu_generator.tooltip.2", "§cRequires:§r %s mB/t Lubricant");
-            provider.add("astrogreg.machine.cwu_generator.tooltip.3", "§9Fluid Capacity:§r %s mB");
-            provider.add("astrogreg.machine.cwu_generator.producing", "§9Computation:§r %s CWU/t");
-            provider.add("astrogreg.machine.cwu_generator.lubricant", "§6Lubricant Demand:§r %s mB/t");
-            provider.add("astrogreg.machine.cwu_generator.stored_lubricant", "§bLubricant:§r %s / %s mB");
-            provider.add("astrogreg.machine.cwu_generator.inactive.no_power_lube", "§cInactive:§r No Power & No Lubricant");
-            provider.add("astrogreg.machine.cwu_generator.inactive.no_power", "§cInactive:§r Insufficient Power");
-            provider.add("astrogreg.machine.cwu_generator.inactive.no_lube", "§cInactive:§r No Lubricant");
-    
-            // item lang
-            provider.add("item.astrogreg.fluix_boule.tooltip", "§7Raw Circuit");
-            provider.add("item.astrogreg.fluix_wafer.tooltip", "§7Raw Circuit");
-            provider.add("item.astrogreg.ae_wafer.tooltip", "§7Raw Arithmetic Circuit");
-            provider.add("item.astrogreg.ae_chip.tooltip", "§7Applied Energistics Chip");
-            provider.add("item.astrogreg.fluix_arithmetic_core.tooltip", "§7Arithmetic Processing Unit");
-    
-            provider.add("item.astrogreg.unfired_rune_tablet.tooltip", "§7Shaped Livingclay");
-            provider.add("item.astrogreg.rune_tablet.tooltip", "§7Mystical Frisbee");
-    
-            provider.add("item.astrogreg.data_disk.tooltip", "§o§7An Ultra-Low Capacity Data Storage");
-    
-            provider.add("item.astrogreg.mana_simple_soc_wafer.tooltip", "§7Arcane-Enchanced Simple Circuit");
-            provider.add("item.astrogreg.mana_soc_wafer.tooltip", "§7Arcane-Enchanced Basic Circuit");
-            provider.add("item.astrogreg.aetherized_advanced_soc_wafer.tooltip", "§7Arcane-Enchanced Advanced Circuit");
-            provider.add("item.astrogreg.aetherized_highly_advanced_soc_wafer.tooltip",
-                    "§7Arcane-Enchanced Highly Advanced Circuit");
-    
-            provider.add("item.astrogreg.arc_chip.tooltip", "Acausal Recursive Circuit");
-            provider.add("item.astrogreg.arc_wafer.tooltip", "Raw Paradox Circuit");
-    
-            // mobs
-            provider.add("entity.astrogreg.kuiper_slime", "Kuiper Slime");
-            provider.add("entity.astrogreg.glaciodillo", "Glaciodillo");
-            provider.add("entity.astrogreg.spig", "Spig");
-    
-            // ore veins
-            provider.add("gtceu.jei.ore_vein.topaz_vein_pluto", "Pluto Topaz Vein");
-            provider.add("gtceu.jei.ore_vein.bauxite_ilmenite_vein_pluto", "Pluto Bauxite Vein");
-            provider.add("gtceu.jei.ore_vein.desh_ostrum_vein_pluto", "Pluto Desh Vein");
-            provider.add("gtceu.jei.ore_vein.carnotite_vein_pluto", "Pluto Carnotite Vein");
-            provider.add("gtceu.jei.ore_vein.chromium_manganese_vein_pluto", "Pluto Grossular Vein");
-    
-            // biomes
-            provider.add("biome.astrogreg.plutonian_mountains", "Plutonian Mountains");
-            provider.add("biome.astrogreg.plutonian_rocky_plains", "Plutonian Rocky Plains");
-            provider.add("biome.astrogreg.plutonian_deep_canyons", "Plutonian Deep Canyons");
-            provider.add("biome.astrogreg.plutonian_mushroom_forest", "Plutonian Mushroom Forest");
-            provider.add("biome.astrogreg.pluto_ice_river", "Plutonian Frozen River");
-    
-            // flowers
-            provider.add("block.astrogreg.corrupt_daisy", "Corrupt Daisy");
-            provider.add("item.astrogreg.corrupt_daisy.tooltip", "I see a red door and I want it painted black.");
-            provider.add("emi.category.astrogreg.corrupt_daisy", "Corrupt Daisy");
-    
-            // miscellaneous
-            multilineLang(provider, "astrogreg.gui.configurator_slot.tooltip",
-                    "§fConfigurator Slot§r\n§7Place a §6Programmed Circuit§7 in this slot to\n§7change its configured value.\n§aA Programmed Circuit in this slot is also valid for recipe inputs.§r");
-    
-            provider.add("block.astrogreg.asteroid_waystone", "Asteroid Waystone");
-    
-            provider.add("astrogreg.recipe_condition.oxygenated.requires", "Requires Oxygenated Environment.");
-            provider.add("astrogreg.recipe_condition.oxygenated.requires_not", "Requires Unoxygenated Environment.");
-            provider.add("recipe.capability.cwu.name", "Requires CWU Input");
-    
-            provider.add("astrogreg.recipe_condition.planetary_research", "Requires Planet Data");
-            provider.add("astrogreg.item.planetary_data.title", "Planetary Research Data:");
-            provider.add("astrogreg.item.planetary_data.entry", " - [%s]");
-            provider.add("astrogreg.item.planetary_data.hold_shift", "§o§8Hold [§7Shift§8] for planet info");
-            provider.add("astrogreg.item.planetary_data.shift_header", "Planetary Research Item:");
-            provider.add("astrogreg.recipe.condition.planetary_research_slot.tooltip", "Requires Planetary Research Data");
-        }
-    
-        protected static void multilineLang(RegistrateLangProvider provider, String key, String multiline) {
-            var lines = multiline.split("\n");
-            multiLang(provider, key, lines);
-        }
-    
-        protected static void multiLang(RegistrateLangProvider provider, String key, String... values) {
-            for (var i = 0; i < values.length; i++) {
-                provider.add(getSubKey(key, i), values[i]);
-            }
-        }
-    
-        protected static String getSubKey(String key, int index) {
-            return key + "." + index;
+    public static void init(RegistrateLangProvider provider) {
+        // recipe types
+        provider.add("gtceu.kinetic_combustion_generator", "Kinetic Combustion");
+        provider.add("gtceu.concrete_plant", "Concrete Plant");
+        provider.add("gtceu.astroport", "Astroport");
+        provider.add("gtceu.observatory", "Observatory");
+        provider.add("gtceu.composter", "Composting");
+        provider.add("gtceu.large_rock_crusher", "Large Rock Crusher");
+
+        // multiblock tooltips
+        provider.add("astrogreg.machine.recipe_progress.tooltip", "Progress: %1$ss / %2$ss (%3$s%%)");
+        provider.add("astrogreg.machine.parallels", "Active Parallels: %s");
+
+        provider.add("astrogreg.machine.coke_oven_description.tooltip",
+                "Making better fuels for Steel and Power Generation");
+        provider.add("astrogreg.machine.coke_oven_parallels.tooltip",
+                "Gains Parallels for each layer in length added for up to 16 Parallels total");
+        provider.add("astrogreg.machine.coke_oven_duration.tooltip",
+                "Each Parallel increases recipe duration by 25% of the original duration");
+
+        provider.add("astrogreg.machine.steam_blast_furnace.steam_usage", "Using %s mB/t Steam (%s mB/t x %s)");
+        provider.add("astrogreg.machine.steam_blast_furnace.parallels", "Parallels: %s");
+
+        provider.add("astrogreg.machine.steam_miner.water_usage", "§bWater Demand: %s mB/t");
+        provider.add("astrogreg.machine.steam_miner.tooltip.description", "Steam-Powered Multiblock Ore Miner.");
+        provider.add("astrogreg.machine.steam_miner.tooltip.steam",
+                "Uses 16mB/t §bSteam§r §7per§r Parallel §7and takes§r 12s§7 per block, divided by the number of§r Active Parallels");
+
+        provider.add("astrogreg.machine.kinetic_miner.tooltip.description", "Stress-Powered Multiblock Ore Miner");
+        provider.add("astrogreg.machine.kinetic_miner.tooltip.rpm",
+                "Uses 1024 §6Stress Units§r§7 at§r 32 RPM §7per§r Parallel§7 and takes§r 24s§7 per block, divided by the number of§r Active Parallels");
+
+        provider.add("astrogreg.machine.miner.tooltip.bonus",
+                "Produces 2x§7 more crushed ore than a§r Macerator §7when provided with§r Drilling Fluid.");
+        provider.add("astrogreg.machine.miner.tooltip.fluids",
+                "Uses 6mB/t §7of§r Water §7or§r Drilling Fluid §7per§r Parallel");
+        provider.add("astrogreg.machine.miner.drilling_fluid_usage", "Drilling Fluid Usage: %s mB");
+        provider.add("astrogreg.machine.miner.fluid_conflict", "Remove Water or Drilling Fluid — cannot use both!");
+
+        provider.add("astrogreg.machine.solar_boiler_array_sunlit_info.tooltip",
+                "Cells must be exposed to direct sunlight to work properly.");
+        provider.add("astrogreg.machine.solar_boiler_array_heat_speed.tooltip",
+                "Heating speed scales with distance from the Sun.");
+        provider.add("astrogreg.machine.solar_boiler_array_heat_scaling.tooltip",
+                "Heat scaling: §e−1 K/s per Cell below 40 or +1% heating speed per sunlit Cell above 40");
+        provider.add("astrogreg.machine.solar_boiler_array_max_cells.tooltip",
+                "Max Cell Count: §e33 x 33 (1089 Cells)");
+        provider.add("astrogreg.machine.solar_boiler_array.solar_intensity", "Solar Intensity: %s%%");
+        provider.add("astrogreg.machine.solar_boiler_array.temperature", "Temperature: %s°C");
+        provider.add("astrogreg.machine.solar_boiler_array.thermal_efficiency", "Thermal Efficiency: %s%%");
+        provider.add("astrogreg.machine.solar_boiler_array.cell_quality", "Cell Quality: %sx");
+        provider.add("astrogreg.machine.solar_boiler_array.sunlit_cells", "Sunlit Cells: %s");
+        provider.add("astrogreg.machine.solar_boiler_array.steam_output", "Steam Output: %s mB/t");
+        provider.add("astrogreg.machine.solar_boiler_array.danger_explosive", "DANGER: EXPLOSIVE!");
+        provider.add("astrogreg.machine.solar_boiler_array.danger_no_water", "DO NOT ADD WATER!");
+        provider.add("astrogreg.machine.solar_boiler_array.danger_cool_first", "Wait for the array to cool first.");
+        provider.add("astrogreg.machine.solar_boiler_array.hold_shift", "§o§7Hold Shift for details");
+        provider.add("config.jade.plugin_astrogreg.solar_boiler_info", "Solar Boiler Array Info");
+
+        provider.add("astrogreg.machine.industrial_core.tooltip",
+                "Maximum EU/t for this machine is limited by the tier of its §bIndustrial Processing Core§r.");
+        provider.add("astrogreg.machine.processing_core.core", "§bProcessing Core:§r %s");
+        provider.add("astrogreg.machine.processing_core.max_eut", "§eMax EU/t:§r§f %s (%s)");
+        provider.add("config.jade.plugin_astrogreg.processing_core_info", "§aIndustrial Processing Core Info§r");
+
+        provider.add("astrogreg.machine.processing_cores_uniform.tooltip",
+                "All four §bIndustrial Processing Cores§r must be of the same tier in order to operate.");
+
+        provider.add("astrogreg.machine.observatory.tooltip.cwu",
+                "Accepts CWU from §bResearch Computers§r adjacent to §aComputation Input Hatches§r.");
+        provider.add("astrogreg.machine.observatory.tooltip.research_items",
+                "Insert §6Data Storage§r and §dResearch Subject§r items into the §9Observatory Research Panel§r.");
+        provider.add("config.jade.plugin_astrogreg.observatory_info", "Observatory Info");
+
+        provider.add("astrogreg.machine.astroport.tooltip.inputs",
+                "Requires ordered item inputs starting with the top left input bus, proceeding downwards, then continuing on the right column.");
+        provider.add("astrogreg.machine.astroport.tooltip.research",
+                "Requires §6Planetary Research Data§r from an §9Observatory§r.");
+
+        provider.add("astrogreg.machine.faraday_generator_expanding.tooltip",
+                "§eBase Production:§r§f 4096 EU/t (§a2A§r §5EV§r) §7per§r §eMagnet Ring§r.");
+        provider.add("astrogreg.machine.faraday_generator_magnets.tooltip",
+                "Higher tiers of §bFaraday Generator Magnet§r rows §7increase§r EU/t by §a400%§r for that §r§eMagnet Ring§r.");
+        provider.add("astrogreg.machine.faraday_generator_fluids.tooltip",
+                "Consumes 1mB §6Lubricant§r §7and either§r§f 100mB §r§bLiquid Oxygen§r§7 or§r 25mB §eLiquid Helium§r§f per second for each §eMagnet Ring.§r");
+        provider.add("astrogreg.machine.faraday_generator_returns.tooltip",
+                "Returns §a40%§r§7 of §rCoolant§7 back in§r Gaseous §7form.");
+        provider.add("astrogreg.machine.faraday_generator_springs.tooltip",
+                "§dCompressed Superconductor Springs§r above §9IV§r §7increase§r the EU/t output by §a5%§r per tier.");
+        provider.add("astrogreg.machine.faraday_generator_max_length.tooltip", "§aMax Length:§r§e 64 Magnet Rings");
+        provider.add("astrogreg.machine.faraday_generator.magnet_rows", "Magnet Rings: %s");
+        provider.add("astrogreg.machine.faraday_generator.hold_shift", "§o§7Hold Shift for details");
+        provider.add("astrogreg.machine.faraday_generator.total_output", "Total Output: %s EU/t");
+        provider.add("astrogreg.machine.faraday_generator.lubricant_usage", "Lubricant Usage: %s mB/s");
+        provider.add("astrogreg.machine.faraday_generator.coolant_usage", "Coolant Usage: %s mB/s %s");
+        provider.add("config.jade.plugin_astrogreg.faraday_generator_info", "§aFaraday Generator Info§r");
+        provider.add("astrogreg.machine.faraday_generator.rotation_speed", "Rotational Speed: %s / %s RPM");
+        provider.add("astrogreg.machine.faraday_generator.max_eu_per_tick", "Max EU/t: %s (%s)");
+        provider.add("astrogreg.machine.faraday_generator.max_recipe_tier", "Max Recipe Tier: %s");
+        provider.add("astrogreg.machine.faraday_generator.energy_output", "Energy Output: %s / %s EU/t");
+        provider.add("astrogreg.machine.faraday_generator.conflicting_coils_1", "CONFLICTING MAGNET STRENGTHS");
+        provider.add("astrogreg.machine.faraday_generator.conflicting_coils_2", "Machine will not operate");
+        provider.add("astrogreg.machine.faraday_generator.superconductor_bonus", "Spring Multiplier: 1.%sx");
+
+        provider.add("astrogreg.machine.large_miner.zpm.tooltip", "Planetary Depletion Apparatus");
+        provider.add("astrogreg.machine.fluid_drilling_rig.iv.tooltip", "Crust Sucker");
+
+        provider.add("astrogreg.machine.kinetic_steam_engine_production.tooltip",
+                "Produces 25,000 §6Stress Units§r and consumes 25mB/t §bSteam§r per middle layer.");
+        provider.add("astrogreg.machine.kinetic_steam_engine_steel_gearbox.tooltips",
+                "Layers with §7Steel Gearboxes§r will consume §a20%§r more §bSteam§r and produce §a50%§r more §6Stress Units§r.");
+        provider.add("astrogreg.machine.kinetic_steam_engine_max_layers.tooltip", "§aMax Length:§r§e 16 Middle Layers");
+        provider.add("astrogreg.machine.kinetic_steam_engine.layer", "§eLength: %s Middle Layer");
+        provider.add("astrogreg.machine.kinetic_steam_engine.layers", "§eLength: %s Middle Layers");
+        provider.add("astrogreg.machine.kinetic_steam_engine.su_output", "§bStress Capacity: %s SU");
+        provider.add("astrogreg.machine.kinetic_steam_engine.steam_usage", "§6Steam Demand: %s mB/t");
+
+        provider.add("astrogreg.machine.large_kinetic_machine_parallels.tooltip",
+                "Performs up to 8 §aParallel Recipes§r at a cost of 1024 §6Stress Units§r at 32 RPM per Parallel");
+        provider.add("astrogreg.machine.large_kinetic_machine_recipes.tooltip", "Only performs §8ULV§r Recipes");
+        provider.add("astrogreg.machine.kinetic_machine.no_su", "§cInsufficient Stress Units");
+        provider.add("astrogreg.machine.kinetic_machine.su_input", "Stress Impact: %s / %s Available");
+        provider.add("config.jade.plugin_astrogreg.kinetic_steam_engine_info", "Kinetic Steam Engine Info");
+
+        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_0", "Combustion Torque Generator");
+        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_1",
+                "§eBase Production:§r 450,000 §6Stress Units");
+        provider.add("astrogreg.machine.kinetic_combustion_engine.tooltip_2",
+                "Supply 20mB/s §7of Oxygen to produce up to§r 1,000,000 §6Stress Units§r§7 at§r 2x §7fuel consumption.");
+        provider.add("config.jade.plugin_astrogreg.kinetic_combustion_engine_info", "Kinetic Combustion Engine Info");
+
+        provider.add("config.jade.plugin_astrogreg.kinetic_alternator_info", "Large Kinetic Alternator Info");
+        provider.add("astrogreg.machine.large_kinetic_alternator.bronze.production.tooltip",
+                "Uses 1024 SU §7at§r 32 RPM §7and produces§r 8 EU/t §7per§r Parallel Recipe");
+        provider.add("astrogreg.machine.large_kinetic_alternator.bronze.max_production.tooltip",
+                "§aMax Output:§r 64 EU/t at 8 Parallels (§a2A§r §8LV§r)");
+
+        provider.add("astrogreg.machine.large_kinetic_steel_alternator.tooltip",
+                "Converts §6Stress Units§r into EU/t");
+        provider.add("astrogreg.machine.large_kinetic_steel_alternator.production.tooltip",
+                "Uses 4096 SU §7at§r 32 RPM §7and produces§r 40 EU/t §7per§r Parallel Recipe");
+        provider.add("astrogreg.machine.large_kinetic_steel_alternator.max_production.tooltip",
+                "§aMax Output:§r 320 EU/t at 8 Parallels (§a2.5A§r §bMV§r)");
+        provider.add("astrogreg.machine.kinetic_steel_alternator.no_lubricant", "§cNo Lubricant");
+
+        provider.add("astrogreg.machine.overdrive_combustion_engine.tooltip", "Overdriven Chemical Ignition Manifold");
+
+        provider.add("astrogreg.machine.large_primitive_composter.tooltip",
+                "§o§7A more efficient way to get bone meal.");
+
+        // custom hatch tooltips
+        provider.add("astrogreg.machine.muffler_hatch.efficiency_bonus",
+                "§aEU Efficiency Bonus:§r %s%% EU/t");
+
+        provider.add("astrogreg.machine.water_hatch.tooltip", "§eAccepted Fluid:§r Water");
+
+        provider.add("astrogreg.machine.mana_input_hatch.tooltip", "Exotic Matter Input for Multiblocks");
+        provider.add("astrogreg.machine.mana_output_hatch.tooltip", "Exotic Matter Output for Multiblocks");
+
+        provider.add("astrogreg.machine.cwu_input_hatch.tooltip", "Accepts CWU from adjacent Research Computers");
+
+        provider.add("astrogreg.machine.expanded_me_pattern_buffer.tooltip.0",
+                "§fAllows expanded direct §6AE2 pattern storage §ffor GregTech Multiblocks.");
+        provider.add("astrogreg.machine.expanded_me_pattern_buffer.tooltip.1",
+                "§fLink §6Expanded Pattern Buffer Proxies §fwith a §bdatastick §fto link machines together!");
+        provider.add("astrogreg.machine.expanded_me_pattern_buffer_proxy.tooltip.0",
+                "§fAllows linking many machines to a singular §6Expanded ME Pattern Buffer§f.");
+        provider.add("astrogreg.machine.me_tag_input_bus.tooltip.0", "§6Tag‑based AE2 Item Import");
+        provider.add("astrogreg.machine.me_tag_input_bus.tooltip.1", "§7Matches items via tag expressions");
+        provider.add("astrogreg.machine.me_tag_input_hatch.tooltip.0", "§6Tag‑based AE2 Fluid Import");
+        provider.add("astrogreg.machine.me_tag_input_hatch.tooltip.1", "§7Matches fluids via tag expressions");
+        provider.add("astrogreg.gui.me_tag.clear", "Clear");
+        provider.add("astrogreg.gui.me_tag.whitelist_tags", "Whitelist Tags");
+        provider.add("astrogreg.gui.me_tag.blacklist_tags", "Blacklist Tags");
+        provider.add("astrogreg.gui.me_tag.placeholder", "...");
+        provider.add("astrogreg.gui.me_tag.settings_copied", "Settings Copied: %s");
+        provider.add("astrogreg.gui.me_tag.settings_pasted", "Settings Pasted successfully.");
+        provider.add("astrogreg.gui.me_tag.item_preview", "Item Preview (Read Only)");
+        provider.add("astrogreg.gui.me_tag.datastick_name", "ME Tag Input Bus Configuration Data");
+        provider.add("astrogreg.gui.me_tag.fluid_preview", "Fluid Preview (Read Only)");
+        provider.add("astrogreg.gui.me_tag.settings_copied_hatch", "Tag Fluid Hatch settings copied");
+
+        provider.add("astrogreg.machine.kinetic_input_hatch.tooltip", "Kinetic Stress Input for Multiblocks");
+        provider.add("astrogreg.machine.kinetic_output_hatch.tooltip", "Kinetic Stress Output for Multiblocks");
+
+        provider.add("astrogreg.machine.observatory_object_holder.tooltip", "Holding Mechanism for Observatories");
+
+        provider.add("astrogreg.machine.oxygenated_maintenance_hatch.tooltip",
+                "For automatically maintaining multiblocks while providing an oxygenated environment!");
+
+        // cwu generator tooltips
+        provider.add("astrogreg.machine.cwu_generator.tooltip.0", "§7Generates Computational Work Units");
+        provider.add("astrogreg.machine.cwu_generator.tooltip.1", "§9Computation:§r %s CWU/t");
+        provider.add("astrogreg.machine.cwu_generator.tooltip.2", "§cRequires:§r %s mB/t Lubricant");
+        provider.add("astrogreg.machine.cwu_generator.tooltip.3", "§9Fluid Capacity:§r %s mB");
+        provider.add("astrogreg.machine.cwu_generator.producing", "§9Computation:§r %s CWU/t");
+        provider.add("astrogreg.machine.cwu_generator.lubricant", "§6Lubricant Demand:§r %s mB/t");
+        provider.add("astrogreg.machine.cwu_generator.stored_lubricant", "§bLubricant:§r %s / %s mB");
+        provider.add("astrogreg.machine.cwu_generator.inactive.no_power_lube", "§cInactive:§r No Power & No Lubricant");
+        provider.add("astrogreg.machine.cwu_generator.inactive.no_power", "§cInactive:§r Insufficient Power");
+        provider.add("astrogreg.machine.cwu_generator.inactive.no_lube", "§cInactive:§r No Lubricant");
+
+        // item lang
+        provider.add("item.astrogreg.fluix_boule.tooltip", "§7Raw Circuit");
+        provider.add("item.astrogreg.fluix_wafer.tooltip", "§7Raw Circuit");
+        provider.add("item.astrogreg.ae_wafer.tooltip", "§7Raw Arithmetic Circuit");
+        provider.add("item.astrogreg.ae_chip.tooltip", "§7Applied Energistics Chip");
+        provider.add("item.astrogreg.fluix_arithmetic_core.tooltip", "§7Arithmetic Processing Unit");
+
+        provider.add("item.astrogreg.unfired_rune_tablet.tooltip", "§7Shaped Livingclay");
+        provider.add("item.astrogreg.rune_tablet.tooltip", "§7Mystical Frisbee");
+
+        provider.add("item.astrogreg.data_disk.tooltip", "§o§7An Ultra-Low Capacity Data Storage");
+
+        provider.add("item.astrogreg.mana_simple_soc_wafer.tooltip", "§7Arcane-Enchanced Simple Circuit");
+        provider.add("item.astrogreg.mana_soc_wafer.tooltip", "§7Arcane-Enchanced Basic Circuit");
+        provider.add("item.astrogreg.aetherized_advanced_soc_wafer.tooltip", "§7Arcane-Enchanced Advanced Circuit");
+        provider.add("item.astrogreg.aetherized_highly_advanced_soc_wafer.tooltip",
+                "§7Arcane-Enchanced Highly Advanced Circuit");
+
+        provider.add("item.astrogreg.arc_chip.tooltip", "Acausal Recursive Circuit");
+        provider.add("item.astrogreg.arc_wafer.tooltip", "Raw Paradox Circuit");
+
+        // mobs
+        provider.add("entity.astrogreg.kuiper_slime", "Kuiper Slime");
+        provider.add("entity.astrogreg.glaciodillo", "Glaciodillo");
+        provider.add("entity.astrogreg.spig", "Spig");
+
+        // ore veins
+        provider.add("gtceu.jei.ore_vein.topaz_vein_pluto", "Pluto Topaz Vein");
+        provider.add("gtceu.jei.ore_vein.bauxite_ilmenite_vein_pluto", "Pluto Bauxite Vein");
+        provider.add("gtceu.jei.ore_vein.desh_ostrum_vein_pluto", "Pluto Desh Vein");
+        provider.add("gtceu.jei.ore_vein.carnotite_vein_pluto", "Pluto Carnotite Vein");
+        provider.add("gtceu.jei.ore_vein.chromium_manganese_vein_pluto", "Pluto Grossular Vein");
+
+        // biomes
+        provider.add("biome.astrogreg.plutonian_mountains", "Plutonian Mountains");
+        provider.add("biome.astrogreg.plutonian_rocky_plains", "Plutonian Rocky Plains");
+        provider.add("biome.astrogreg.plutonian_deep_canyons", "Plutonian Deep Canyons");
+        provider.add("biome.astrogreg.plutonian_mushroom_forest", "Plutonian Mushroom Forest");
+        provider.add("biome.astrogreg.pluto_ice_river", "Plutonian Frozen River");
+
+        // flowers
+        provider.add("block.astrogreg.corrupt_daisy", "Corrupt Daisy");
+        provider.add("item.astrogreg.corrupt_daisy.tooltip", "I see a red door and I want it painted black.");
+        provider.add("emi.category.astrogreg.corrupt_daisy", "Corrupt Daisy");
+
+        // miscellaneous
+        multilineLang(provider, "astrogreg.gui.configurator_slot.tooltip",
+                "§fConfigurator Slot§r\n§7Place a §6Programmed Circuit§7 in this slot to\n§7change its configured value.\n§aA Programmed Circuit in this slot is also valid for recipe inputs.§r");
+
+        provider.add("block.astrogreg.asteroid_waystone", "Asteroid Waystone");
+
+        provider.add("astrogreg.recipe_condition.oxygenated.requires", "Requires Oxygenated Environment.");
+        provider.add("astrogreg.recipe_condition.oxygenated.requires_not", "Requires Unoxygenated Environment.");
+        provider.add("recipe.capability.cwu.name", "Requires CWU Input");
+
+        provider.add("astrogreg.recipe_condition.planetary_research", "Requires Planet Data");
+        provider.add("astrogreg.item.planetary_data.title", "Planetary Research Data:");
+        provider.add("astrogreg.item.planetary_data.entry", " - [%s]");
+        provider.add("astrogreg.item.planetary_data.hold_shift", "§o§8Hold [§7Shift§8] for planet info");
+        provider.add("astrogreg.item.planetary_data.shift_header", "Planetary Research Item:");
+        provider.add("astrogreg.recipe.condition.planetary_research_slot.tooltip", "Requires Planetary Research Data");
+    }
+
+    protected static void multilineLang(RegistrateLangProvider provider, String key, String multiline) {
+        var lines = multiline.split("\n");
+        multiLang(provider, key, lines);
+    }
+
+    protected static void multiLang(RegistrateLangProvider provider, String key, String... values) {
+        for (var i = 0; i < values.length; i++) {
+            provider.add(getSubKey(key, i), values[i]);
         }
     }
+
+    protected static String getSubKey(String key, int index) {
+        return key + "." + index;
+    }
+}

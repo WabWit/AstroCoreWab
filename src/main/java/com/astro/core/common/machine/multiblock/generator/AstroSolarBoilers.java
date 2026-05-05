@@ -101,8 +101,8 @@ public class AstroSolarBoilers extends WorkableMultiblockMachine implements IDis
 
         if (getOffsetTimer() % 20 == 0) {
             boolean isKuiperBelt = getLevel().dimension().location().getPath().equals("kuiper_belt");
-            boolean canSeeSun = (GTUtil.canSeeSunClearly(getLevel(), getPos().above()) || isKuiperBelt)
-                    && isWorkingEnabled();
+            boolean canSeeSun = (GTUtil.canSeeSunClearly(getLevel(), getPos().above()) || isKuiperBelt) &&
+                    isWorkingEnabled();
 
             if (canSeeSun) {
                 sunlit = calculateSunlitArea(isKuiperBelt);

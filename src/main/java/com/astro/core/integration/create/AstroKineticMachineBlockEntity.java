@@ -1,7 +1,5 @@
 package com.astro.core.integration.create;
 
-import com.astro.core.common.machine.multiblock.kinetic.KineticSteelAlternatorMachine;
-import com.astro.core.common.machine.part.KineticInputHatch;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.blockentity.MetaMachineBlockEntity;
 import com.gregtechceu.gtceu.api.item.tool.GTToolType;
@@ -29,7 +27,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 
+import com.astro.core.common.machine.multiblock.kinetic.KineticSteelAlternatorMachine;
 import com.astro.core.common.machine.part.AstroHatches;
+import com.astro.core.common.machine.part.KineticInputHatch;
 import com.simibubi.create.content.kinetics.base.GeneratingKineticBlockEntity;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;

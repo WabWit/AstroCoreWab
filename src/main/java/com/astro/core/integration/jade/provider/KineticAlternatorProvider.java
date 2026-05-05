@@ -50,21 +50,21 @@ public class KineticAlternatorProvider implements IBlockComponentProvider, IServ
                     .append(Component.literal(GTValues.VNF[tier])
                             .withStyle(style -> style.withColor(GTValues.VC[tier])))
                     .append(Component.translatable("gtceu.universal.padded_parentheses",
-                                    Component.translatable("gtceu.recipe.eu.total",
-                                            FormattingUtil.formatNumbers(currentEU)))
+                            Component.translatable("gtceu.recipe.eu.total",
+                                    FormattingUtil.formatNumbers(currentEU)))
                             .withStyle(ChatFormatting.WHITE));
 
             tooltip.add(Component.translatable("gtceu.top.energy_production").append(" ").append(text));
         }
 
         tooltip.add(Component.translatable("gtceu.multiblock.total_runs",
-                        Component.literal(FormattingUtil.formatNumbers(parallels))
-                                .withStyle(ChatFormatting.DARK_PURPLE))
+                Component.literal(FormattingUtil.formatNumbers(parallels))
+                        .withStyle(ChatFormatting.DARK_PURPLE))
                 .withStyle(ChatFormatting.GRAY));
 
         tooltip.add(Component.translatable("gtceu.multiblock.parallel.exact",
-                        Component.literal(FormattingUtil.formatNumbers(parallels))
-                                .withStyle(ChatFormatting.DARK_PURPLE))
+                Component.literal(FormattingUtil.formatNumbers(parallels))
+                        .withStyle(ChatFormatting.DARK_PURPLE))
                 .withStyle(ChatFormatting.GRAY));
     }
 
@@ -78,9 +78,8 @@ public class KineticAlternatorProvider implements IBlockComponentProvider, IServ
             if (machine.isFormed()) {
                 int parallels = machine.getAvailableParallels();
                 long outputVoltage = machine.getOutputVoltage();
-                int euPerParallel = machine instanceof KineticSteelAlternatorMachine
-                        ? KineticSteelAlternatorMachine.EU_PER_PARALLEL
-                        : KineticAlternatorMachine.EU_PER_PARALLEL;
+                int euPerParallel = machine instanceof KineticSteelAlternatorMachine ?
+                        KineticSteelAlternatorMachine.EU_PER_PARALLEL : KineticAlternatorMachine.EU_PER_PARALLEL;
 
                 compoundTag.putInt("parallels", parallels);
                 compoundTag.putInt("euPerParallel", euPerParallel);

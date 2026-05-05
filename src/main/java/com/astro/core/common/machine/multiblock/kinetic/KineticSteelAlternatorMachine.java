@@ -121,22 +121,22 @@ public class KineticSteelAlternatorMachine extends KineticAlternatorMachine {
         int tier = getOutputTier();
 
         textList.add(Component.translatable("gtceu.multiblock.max_energy_per_tick",
-                        FormattingUtil.formatNumbers(maxEUt), GTValues.VNF[tier])
+                FormattingUtil.formatNumbers(maxEUt), GTValues.VNF[tier])
                 .withStyle(ChatFormatting.GRAY));
 
         textList.add(Component.translatable("gtceu.multiblock.max_recipe_tier",
-                        GTValues.VNF[GTValues.ULV])
+                GTValues.VNF[GTValues.ULV])
                 .withStyle(ChatFormatting.GRAY));
 
         textList.add(Component.translatable("astrogreg.machine.kinetic_machine.su_input",
-                        availableSU, maxSU)
+                availableSU, maxSU)
                 .withStyle(ChatFormatting.AQUA));
 
         textList.add(Component.translatable("gtceu.multiblock.turbine.energy_per_tick",
                 FormattingUtil.formatNumbers(currentEUt), FormattingUtil.formatNumbers(maxEUt)));
 
         textList.add(Component.translatable("astrogreg.machine.steam_blast_furnace.parallels",
-                        clampParallel(targetParallel), parallels)
+                clampParallel(targetParallel), parallels)
                 .append(ComponentPanelWidget.withButton(Component.literal(" [-] "), "parallelSub"))
                 .append(ComponentPanelWidget.withButton(Component.literal("[+]"), "parallelAdd")));
 
