@@ -100,11 +100,12 @@ public class AstroSolarBoilers extends WorkableMultiblockMachine implements IDis
         var cfg = AstroConfigs.INSTANCE.Steam;
 
         if (getOffsetTimer() % 20 == 0) {
-            boolean canSeeSun = (GTUtil.canSeeSunClearly(getLevel(), getPos().above()) ||
-                    getLevel().dimension().location().getPath().equals("kuiper_belt")) && isWorkingEnabled();
+            boolean isKuiperBelt = getLevel().dimension().location().getPath().equals("kuiper_belt");
+            boolean canSeeSun = (GTUtil.canSeeSunClearly(getLevel(), getPos().above()) || isKuiperBelt)
+                    && isWorkingEnabled();
 
             if (canSeeSun) {
-                sunlit = calculateSunlitArea();
+                sunlit = calculateSunlitArea(isKuiperBelt);
                 if (sunlit > 0 && temperature < MAX_TEMP) {
                     double heatMult = 1.0 + (sunlit * cfg.heatSpeedPerCell);
                     int heatGain = (int) (cfg.baseHeatRate * getDimensionMultiplier() * heatMult);
@@ -286,16 +287,17 @@ public class AstroSolarBoilers extends WorkableMultiblockMachine implements IDis
         return totalMultiplier / totalCells;
     }
 
-    private int calculateSunlitArea() {
+    private int calculateSunlitArea(boolean forceAllSunlit) {
         int count = 0;
         Direction back = getFrontFacing().getOpposite();
         Direction left = getFrontFacing().getCounterClockWise();
         for (int b = 1; b <= bDist; b++) {
             BlockPos rowPos = getPos().relative(back, b);
-            if (getLevel().canSeeSky(rowPos.above())) count++;
-            for (int l = 1; l <= lDist; l++) if (getLevel().canSeeSky(rowPos.relative(left, l).above())) count++;
+            if (forceAllSunlit || getLevel().canSeeSky(rowPos.above())) count++;
+            for (int l = 1; l <= lDist; l++)
+                if (forceAllSunlit || getLevel().canSeeSky(rowPos.relative(left, l).above())) count++;
             for (int r = 1; r <= rDist; r++)
-                if (getLevel().canSeeSky(rowPos.relative(left.getOpposite(), r).above())) count++;
+                if (forceAllSunlit || getLevel().canSeeSky(rowPos.relative(left.getOpposite(), r).above())) count++;
         }
         return count;
     }
