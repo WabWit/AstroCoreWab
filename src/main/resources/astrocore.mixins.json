@@ -19,7 +19,7 @@
     "appliedenergistics.MixinMEPatternBufferPartMachine",
     "appliedenergistics.MixinPatternProviderLogicImpl",
     "botania.accessor.BotaniaEmiRecipeAccessor",
-    "botania.ApothecaryBlockEntityMixin.RunicAltarBlockEntityAccessor",
+    "botania.accessor.RunicAltarBlockEntityAccessor",
     "botania.ApothecaryBlockEntityMixin",
     "botania.RunicAltarBlockEntityMixin",
     "botania.RunicAltarEmiRecipeMixin",
