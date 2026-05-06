@@ -13,6 +13,7 @@
     "adastra.SlidingDoorBlockMixin",
     "adastra.SolarPanelBlockEntityMixin",
     "adastra.SpaceSuitItemMixin",
+    "appliedenergistics.accessor.QuantumBridgeAccessor",
     "appliedenergistics.MixinContainerRenamer",
     "appliedenergistics.MixinCutterHook",
     "appliedenergistics.MixinMEPatternBufferCustomName",

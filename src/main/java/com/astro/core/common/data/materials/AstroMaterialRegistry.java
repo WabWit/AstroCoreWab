@@ -1,4 +1,4 @@
-package com.astro.core.common.data;
+package com.astro.core.common.data.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 

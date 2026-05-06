@@ -58,6 +58,7 @@ public class AstroMaterials {
     public static Material FLUIX;
     public static Material FLUIX_PEARL;
     public static Material FUTURA_ALLOY;
+    public static Material CERTUS_GEL;
     public static Material POLYAMIDE_IMIDE;
     public static Material BLAZING_ETRIUM;
     public static Material NIOTIC_CALORITE;
@@ -67,6 +68,7 @@ public class AstroMaterials {
     public static Material THALASSIUM;
     public static Material CARNOTITE;
     public static Material DEIONIZED_WATER;
+    public static Material SODIUM_SILICATE_SOLUTION;
     public static Material DIVINYLBENZENE;
     public static Material DIETHYLBENZENE;
     public static Material MAGNETIC_NEUTRONIUM;
@@ -329,6 +331,14 @@ public class AstroMaterials {
                 .formula("(Fe6CrMnNi)4✨")
                 .buildAndRegister();
 
+        CERTUS_GEL = new Material.Builder(
+                AstroCore.id("certus_precursor_gel"))
+                .langValue("Certus Precursor Gel")
+                .liquid(293)
+                .flags(DISABLE_DECOMPOSITION)
+                .color(0xc2d6ff).secondaryColor(0x86bacf)
+                .buildAndRegister().setFormula("SiO2⋅§on§rH2O", true);
+
         // GregTech
         POLYAMIDE_IMIDE = new Material.Builder(
                 AstroCore.id("polyamide_imide"))
@@ -444,8 +454,17 @@ public class AstroMaterials {
         DEIONIZED_WATER = new Material.Builder(
                 AstroCore.id("deionized_water"))
                 .flags(DISABLE_DECOMPOSITION)
-                .liquid(new FluidBuilder().customStill().temperature(273))
+                .liquid(new FluidBuilder().customStill().temperature(293))
                 .components(Water, 1)
+                .buildAndRegister();
+
+        SODIUM_SILICATE_SOLUTION = new Material.Builder(
+                AstroCore.id("sodium_silicate"))
+                .langValue("Sodium Silicate")
+                .liquid(new FluidBuilder().customStill().temperature(293))
+                .color(0x9b9c9e)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Sodium, 2, Silicon, 1, Oxygen, 3)
                 .buildAndRegister();
 
         DIETHYLBENZENE = new Material.Builder(
