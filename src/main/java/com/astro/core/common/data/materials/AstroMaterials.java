@@ -107,6 +107,7 @@ public class AstroMaterials {
     public static Material LIQUID_MOON_AIR;
     public static Material LIQUID_VENUS_AIR;
     public static Material LIQUID_MERCURY_AIR;
+    public static Material NUT_MIXTURE;
 
     public static void register() {
         // Misc
@@ -689,6 +690,13 @@ public class AstroMaterials {
                 .buildAndRegister();
 
         createComponentDusts();
+
+        NUT_MIXTURE = new Material.Builder(
+                AstroCore.id("nut_mixture"))
+                .flags(DISABLE_DECOMPOSITION)
+                .liquid()
+                .color(0xa67a5e)
+                .buildAndRegister();
     }
 
     public static void init() {
