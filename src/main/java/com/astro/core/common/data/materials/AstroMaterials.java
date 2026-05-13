@@ -690,13 +690,6 @@ public class AstroMaterials {
                 .buildAndRegister();
 
         createComponentDusts();
-
-        NUT_MIXTURE = new Material.Builder(
-                AstroCore.id("nut_mixture"))
-                .flags(DISABLE_DECOMPOSITION)
-                .liquid()
-                .color(0xa67a5e)
-                .buildAndRegister();
     }
 
     public static void init() {
